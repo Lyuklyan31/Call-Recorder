@@ -9,7 +9,17 @@ import SwiftUI
 
 struct CallSetupView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack {
+            CallSetupNavigationBar()
+            
+            Text("Enter your phone number")
+                .font(.system(size: 19, weight: .medium ))
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding()
+            
+            Spacer()
+                .navigationBarBackButtonHidden()
+        }
     }
 }
 
