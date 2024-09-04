@@ -7,12 +7,34 @@
 
 import SwiftUI
 
-struct CallSetupNBSubView: View {
+struct CallSetupNavigationBar: View {
+    @Environment(\.dismiss) var dismiss
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            VStack {
+                ZStack {
+                    Button {
+                        dismiss()
+                    } label: {
+                        HStack {
+                            Image(.arrowBack)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(width: 48, height: 48)
+                            Spacer()
+                        }
+                    }
+                    Text("Call Setup")
+                        .font(.system(size: 19, weight: .bold ))
+                        .bold()
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .foregroundColor(.primaryExtraDark)
+                }
+            }
+        }
     }
 }
 
 #Preview {
-    CallSetupNBSubView()
+    CallSetupNavigationBar()
 }
