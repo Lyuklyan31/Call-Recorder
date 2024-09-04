@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CallButtonSubView: View {
+struct CallButton: View {
     var body: some View {
         Button {
             
@@ -35,5 +35,5 @@ struct CallButtonSubView: View {
 }
 
 #Preview {
-    CallButtonSubView()
+    CallButton()
 }
