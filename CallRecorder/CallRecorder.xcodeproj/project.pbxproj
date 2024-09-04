@@ -11,9 +11,15 @@
 		7B9B6A6D2C87A6750001D94D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B9B6A6C2C87A6750001D94D /* Assets.xcassets */; };
 		7B9B6A702C87A6750001D94D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B9B6A6F2C87A6750001D94D /* Preview Assets.xcassets */; };
 		7B9B6A802C87B2390001D94D /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A7F2C87B2390001D94D /* MainContentView.swift */; };
-		7B9B6A862C87B5230001D94D /* CallButtonSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A852C87B5230001D94D /* CallButtonSubView.swift */; };
-		7B9B6A892C87B65A0001D94D /* RecordButtonSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A882C87B65A0001D94D /* RecordButtonSubView.swift */; };
-		7B9B6A8B2C87B6DA0001D94D /* SettingTollBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A8A2C87B6DA0001D94D /* SettingTollBarButton.swift */; };
+		7B9B6A862C87B5230001D94D /* CallButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A852C87B5230001D94D /* CallButton.swift */; };
+		7B9B6A892C87B65A0001D94D /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A882C87B65A0001D94D /* RecordButton.swift */; };
+		7B9B6A8D2C87BD670001D94D /* MainNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A8C2C87BD670001D94D /* MainNavigationBar.swift */; };
+		7B9B6A8F2C87C2B90001D94D /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A8E2C87C2B90001D94D /* MainTabBar.swift */; };
+		7B9B6A912C87C5400001D94D /* CallRecordsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A902C87C5400001D94D /* CallRecordsButton.swift */; };
+		7B9B6A932C87C72B0001D94D /* VoiceRecordsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A922C87C72B0001D94D /* VoiceRecordsButton.swift */; };
+		7B9B6A952C87C9700001D94D /* CallSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A942C87C9700001D94D /* CallSetupView.swift */; };
+		7B9B6A9A2C87C9E60001D94D /* CallSetupNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A992C87C9E60001D94D /* CallSetupNavigationBar.swift */; };
+		7B9B6A9C2C8860CC0001D94D /* AddPhoneNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A9B2C8860CC0001D94D /* AddPhoneNumber.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,9 +28,15 @@
 		7B9B6A6C2C87A6750001D94D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B9B6A6F2C87A6750001D94D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		7B9B6A7F2C87B2390001D94D /* MainContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
-		7B9B6A852C87B5230001D94D /* CallButtonSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallButtonSubView.swift; sourceTree = "<group>"; };
-		7B9B6A882C87B65A0001D94D /* RecordButtonSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButtonSubView.swift; sourceTree = "<group>"; };
-		7B9B6A8A2C87B6DA0001D94D /* SettingTollBarButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingTollBarButton.swift; sourceTree = "<group>"; };
+		7B9B6A852C87B5230001D94D /* CallButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallButton.swift; sourceTree = "<group>"; };
+		7B9B6A882C87B65A0001D94D /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
+		7B9B6A8C2C87BD670001D94D /* MainNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationBar.swift; sourceTree = "<group>"; };
+		7B9B6A8E2C87C2B90001D94D /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
+		7B9B6A902C87C5400001D94D /* CallRecordsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecordsButton.swift; sourceTree = "<group>"; };
+		7B9B6A922C87C72B0001D94D /* VoiceRecordsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecordsButton.swift; sourceTree = "<group>"; };
+		7B9B6A942C87C9700001D94D /* CallSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSetupView.swift; sourceTree = "<group>"; };
+		7B9B6A992C87C9E60001D94D /* CallSetupNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSetupNavigationBar.swift; sourceTree = "<group>"; };
+		7B9B6A9B2C8860CC0001D94D /* AddPhoneNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPhoneNumber.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,7 +71,8 @@
 			children = (
 				7B9B6A682C87A6740001D94D /* CallRecorderApp.swift */,
 				7B9B6A7F2C87B2390001D94D /* MainContentView.swift */,
-				7B9B6A872C87B5270001D94D /* SubViews */,
+				7B9B6A872C87B5270001D94D /* MainSubViews */,
+				7B9B6A962C87C9750001D94D /* Views */,
 				7B9B6A6C2C87A6750001D94D /* Assets.xcassets */,
 				7B9B6A6E2C87A6750001D94D /* Preview Content */,
 			);
@@ -74,14 +87,43 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
-		7B9B6A872C87B5270001D94D /* SubViews */ = {
+		7B9B6A872C87B5270001D94D /* MainSubViews */ = {
 			isa = PBXGroup;
 			children = (
-				7B9B6A852C87B5230001D94D /* CallButtonSubView.swift */,
-				7B9B6A882C87B65A0001D94D /* RecordButtonSubView.swift */,
-				7B9B6A8A2C87B6DA0001D94D /* SettingTollBarButton.swift */,
+				7B9B6A8C2C87BD670001D94D /* MainNavigationBar.swift */,
+				7B9B6A8E2C87C2B90001D94D /* MainTabBar.swift */,
+				7B9B6A852C87B5230001D94D /* CallButton.swift */,
+				7B9B6A882C87B65A0001D94D /* RecordButton.swift */,
+				7B9B6A902C87C5400001D94D /* CallRecordsButton.swift */,
+				7B9B6A922C87C72B0001D94D /* VoiceRecordsButton.swift */,
 			);
-			path = SubViews;
+			path = MainSubViews;
+			sourceTree = "<group>";
+		};
+		7B9B6A962C87C9750001D94D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6A972C87C9AD0001D94D /* CallSetupView */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7B9B6A972C87C9AD0001D94D /* CallSetupView */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6A942C87C9700001D94D /* CallSetupView.swift */,
+				7B9B6A982C87C9BB0001D94D /* CallSetupSubViews */,
+			);
+			path = CallSetupView;
+			sourceTree = "<group>";
+		};
+		7B9B6A982C87C9BB0001D94D /* CallSetupSubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6A992C87C9E60001D94D /* CallSetupNavigationBar.swift */,
+				7B9B6A9B2C8860CC0001D94D /* AddPhoneNumber.swift */,
+			);
+			path = CallSetupSubViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -154,11 +196,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B9B6A892C87B65A0001D94D /* RecordButtonSubView.swift in Sources */,
-				7B9B6A862C87B5230001D94D /* CallButtonSubView.swift in Sources */,
-				7B9B6A8B2C87B6DA0001D94D /* SettingTollBarButton.swift in Sources */,
+				7B9B6A9C2C8860CC0001D94D /* AddPhoneNumber.swift in Sources */,
+				7B9B6A8D2C87BD670001D94D /* MainNavigationBar.swift in Sources */,
+				7B9B6A892C87B65A0001D94D /* RecordButton.swift in Sources */,
+				7B9B6A862C87B5230001D94D /* CallButton.swift in Sources */,
 				7B9B6A692C87A6740001D94D /* CallRecorderApp.swift in Sources */,
 				7B9B6A802C87B2390001D94D /* MainContentView.swift in Sources */,
+				7B9B6A9A2C87C9E60001D94D /* CallSetupNavigationBar.swift in Sources */,
+				7B9B6A912C87C5400001D94D /* CallRecordsButton.swift in Sources */,
+				7B9B6A8F2C87C2B90001D94D /* MainTabBar.swift in Sources */,
+				7B9B6A952C87C9700001D94D /* CallSetupView.swift in Sources */,
+				7B9B6A932C87C72B0001D94D /* VoiceRecordsButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

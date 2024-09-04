@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct RecordButtonSubView: View {
+struct RecordButton: View {
     var body: some View {
         Button {
             
@@ -35,5 +35,5 @@ struct RecordButtonSubView: View {
 }
 
 #Preview {
-    RecordButtonSubView()
+    RecordButton()
 }

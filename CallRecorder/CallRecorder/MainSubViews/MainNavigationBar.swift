@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NavigationBarSubView: View {
+struct MainNavigationBar: View {
     @Binding var selectedTab: Int
     var body: some View {
         VStack {
@@ -17,10 +17,10 @@ struct NavigationBarSubView: View {
                     .bold()
                     .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.8), value: selectedTab)
                 Spacer()
-                Button {
-                    
+                NavigationLink {
+                     CallSetupView()
                 } label: {
-                    Image("setting")
+                    Image(.setting)
                         .resizable()
                         .scaledToFit()
                         .frame(width: 48, height: 48)
@@ -42,5 +42,5 @@ struct NavigationBarSubView: View {
 }
 
 #Preview {
-    NavigationBarSubView(selectedTab: .constant(0))
+    MainNavigationBar(selectedTab: .constant(0))
 }

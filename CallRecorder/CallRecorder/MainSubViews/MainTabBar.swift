@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-struct MainTabBarSubView: View {
+struct MainTabBar: View {
     @Binding var selectedTab: Int
     var body: some View {
         ZStack {
             TabView(selection: $selectedTab) {
-                CallButtonSubView()
+                CallButton()
                     .tag(0)
                     
-                RecordButtonSubView()
+                RecordButton()
                     .tag(1)
             }
             .tabViewStyle(.page)
@@ -27,5 +27,5 @@ struct MainTabBarSubView: View {
 }
 
 #Preview {
-    MainTabBarSubView(selectedTab: .constant(0))
+    MainTabBar(selectedTab: .constant(0))
 }
