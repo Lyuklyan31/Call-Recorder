@@ -9,7 +9,21 @@ import SwiftUI
 
 struct CallRecordsButton: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button {
+            
+        } label: {
+            VStack {
+                Image(.callRecords)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 64, height: 64)
+                
+                Text("Call Records")
+                    .foregroundColor(.primaryExtraDark.opacity(0.5))
+                    .offset(y: 8)
+                    .frame(alignment: .leading)
+            }
+        }
     }
 }
 
