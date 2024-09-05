@@ -9,7 +9,21 @@ import SwiftUI
 
 struct Waves: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack {
+            VStack {
+                Rectangle()
+                    .frame(height: 2)
+                    .foregroundColor(.customPink)
+                    .bold()
+                Spacer()
+            }
+            LinearGradient(
+                gradient: Gradient(colors: [.customPink.opacity(0.4), .backraundWhite]),
+                startPoint: .top,
+                endPoint: .bottom
+            )
+            .edgesIgnoringSafeArea(.all)
+        }
     }
 }
 
