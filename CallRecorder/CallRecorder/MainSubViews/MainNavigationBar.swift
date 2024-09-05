@@ -12,10 +12,21 @@ struct MainNavigationBar: View {
     var body: some View {
         VStack {
             HStack {
-                Text(selectedTab == 0 ? "Call Recorder" : "Voice Memo")
-                    .font(.largeTitle)
-                    .bold()
-                    .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.8), value: selectedTab)
+                ZStack {
+                    if selectedTab == 0 {
+                        Text("Call Recorder")
+                            .font(.largeTitle)
+                            .bold()
+                            .transition(.opacity.combined(with: .scale))
+                    } else {
+                        Text("Voice Memo")
+                            .font(.largeTitle)
+                            .bold()
+                            .transition(.opacity.combined(with: .scale))
+                    }
+                }
+                .animation(.easeInOut(duration: 0.5), value: selectedTab)
+                
                 Spacer()
                 NavigationLink {
                      CallSetupView()
