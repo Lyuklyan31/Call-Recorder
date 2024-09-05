@@ -11,19 +11,26 @@ struct MainContentView: View {
     @State private var selectedTab = 0
     var body: some View {
         NavigationView {
-            VStack {
-                MainNavigationBar(selectedTab: $selectedTab)
-                    .padding()
+            ZStack {
+                LinearGradient(
+                    gradient: Gradient(colors: [.backraundWhite, .backraundPink]),
+                    startPoint: .top,
+                    endPoint: .bottom
+                )
+                .edgesIgnoringSafeArea(.all)
                 
-                MainTabBar(selectedTab: $selectedTab)
-                HStack(spacing: 104) {
-                    CallRecordsButton()
-                    VoiceRecordsButton()
+                VStack {
+                    MainNavigationBar(selectedTab: $selectedTab)
+                        .padding()
+                    
+                    MainTabBar(selectedTab: $selectedTab)
+                    HStack(spacing: 104) {
+                        CallRecordsButton()
+                        VoiceRecordsButton()
+                    }
+                    .padding(.vertical, 32)
                 }
-                .padding(.vertical, 32)
-                
             }
-            .navigationBarTitleDisplayMode(.inline)
         }
     }
 }
