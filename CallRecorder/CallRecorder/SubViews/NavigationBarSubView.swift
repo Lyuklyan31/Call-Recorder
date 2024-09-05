@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct CallSetupNavigationBar: View {
+struct NavigationBar: View {
     @Environment(\.dismiss) var dismiss
+    @State var title: String
     var body: some View {
         HStack {
             VStack {
@@ -24,7 +25,7 @@ struct CallSetupNavigationBar: View {
                             Spacer()
                         }
                     }
-                    Text("Call Setup")
+                    Text(title)
                         .font(.system(size: 19, weight: .bold ))
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .center)
@@ -36,5 +37,5 @@ struct CallSetupNavigationBar: View {
 }
 
 #Preview {
-    CallSetupNavigationBar()
+    NavigationBar(title: "title")
 }

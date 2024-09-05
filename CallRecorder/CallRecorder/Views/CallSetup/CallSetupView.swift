@@ -22,7 +22,7 @@ struct CallSetupView: View {
             .edgesIgnoringSafeArea(.all)
             
             VStack {
-                CallSetupNavigationBar()
+                NavigationBarSubView(title: "Call Setup")
                 
                 Text("Enter your phone number")
                     .foregroundColor(.primaryExtraDark)
@@ -44,6 +44,7 @@ struct CallSetupView: View {
                     
                 ContinueButton(amountNumbers: $phoneNumber)
                     .padding(.horizontal)
+                
                 Spacer()
                     .navigationBarBackButtonHidden()
             }

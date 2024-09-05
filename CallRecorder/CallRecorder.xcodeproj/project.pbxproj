@@ -14,17 +14,27 @@
 		7B9B6A862C87B5230001D94D /* CallButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A852C87B5230001D94D /* CallButton.swift */; };
 		7B9B6A892C87B65A0001D94D /* RecordButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A882C87B65A0001D94D /* RecordButton.swift */; };
 		7B9B6A8D2C87BD670001D94D /* MainNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A8C2C87BD670001D94D /* MainNavigationBar.swift */; };
-		7B9B6A8F2C87C2B90001D94D /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A8E2C87C2B90001D94D /* MainTabBar.swift */; };
 		7B9B6A912C87C5400001D94D /* CallRecordsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A902C87C5400001D94D /* CallRecordsButton.swift */; };
 		7B9B6A932C87C72B0001D94D /* VoiceRecordsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A922C87C72B0001D94D /* VoiceRecordsButton.swift */; };
 		7B9B6A952C87C9700001D94D /* CallSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A942C87C9700001D94D /* CallSetupView.swift */; };
-		7B9B6A9A2C87C9E60001D94D /* CallSetupNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A992C87C9E60001D94D /* CallSetupNavigationBar.swift */; };
+		7B9B6A9A2C87C9E60001D94D /* NavigationBarSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A992C87C9E60001D94D /* NavigationBarSubView.swift */; };
 		7B9B6A9C2C8860CC0001D94D /* ChooseCountryDialCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A9B2C8860CC0001D94D /* ChooseCountryDialCode.swift */; };
 		7B9B6A9E2C8876D80001D94D /* countryCode.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B9B6A9D2C8876D80001D94D /* countryCode.json */; };
 		7B9B6AA02C8877000001D94D /* CountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A9F2C8877000001D94D /* CountryCode.swift */; };
 		7B9B6AA22C887AAC0001D94D /* CountryCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AA12C887AAC0001D94D /* CountryCodeViewModel.swift */; };
 		7B9B6AA42C89CF2F0001D94D /* PhoneNumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AA32C89CF2F0001D94D /* PhoneNumberTextField.swift */; };
 		7B9B6AA62C89D7A20001D94D /* ContinueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AA52C89D7A20001D94D /* ContinueButton.swift */; };
+		7B9B6AA82C8A21CE0001D94D /* ConfirmOTPcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AA72C8A21CE0001D94D /* ConfirmOTPcodeView.swift */; };
+		7B9B6AAC2C8A2DD00001D94D /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AAB2C8A2DD00001D94D /* MainTabBar.swift */; };
+		7B9B6AAF2C8A3E2A0001D94D /* ConfirmOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AAE2C8A3E2A0001D94D /* ConfirmOTPViewModel.swift */; };
+		7B9B6AB12C8A3E970001D94D /* OTPLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AB02C8A3E970001D94D /* OTPLine.swift */; };
+		7B9B6AB42C8A4B560001D94D /* VoiceRecordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AB32C8A4B560001D94D /* VoiceRecordsView.swift */; };
+		7B9B6AB72C8A4C970001D94D /* SegmnetVoiceRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AB62C8A4C970001D94D /* SegmnetVoiceRecords.swift */; };
+		7B9B6AB92C8A4F1C0001D94D /* ButtonsAllWorkHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AB82C8A4F1C0001D94D /* ButtonsAllWorkHome.swift */; };
+		7B9B6ABB2C8A5AC40001D94D /* VoiceRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ABA2C8A5AC40001D94D /* VoiceRecordingView.swift */; };
+		7B9B6ABF2C8A61080001D94D /* Waves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ABE2C8A61080001D94D /* Waves.swift */; };
+		7B9B6AC12C8A61530001D94D /* ButtonsPlayStopResset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AC02C8A61530001D94D /* ButtonsPlayStopResset.swift */; };
+		7B9B6AC32C8A6B840001D94D /* VoiceRecordingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AC22C8A6B840001D94D /* VoiceRecordingViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,17 +46,27 @@
 		7B9B6A852C87B5230001D94D /* CallButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallButton.swift; sourceTree = "<group>"; };
 		7B9B6A882C87B65A0001D94D /* RecordButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordButton.swift; sourceTree = "<group>"; };
 		7B9B6A8C2C87BD670001D94D /* MainNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationBar.swift; sourceTree = "<group>"; };
-		7B9B6A8E2C87C2B90001D94D /* MainTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		7B9B6A902C87C5400001D94D /* CallRecordsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecordsButton.swift; sourceTree = "<group>"; };
 		7B9B6A922C87C72B0001D94D /* VoiceRecordsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecordsButton.swift; sourceTree = "<group>"; };
 		7B9B6A942C87C9700001D94D /* CallSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSetupView.swift; sourceTree = "<group>"; };
-		7B9B6A992C87C9E60001D94D /* CallSetupNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSetupNavigationBar.swift; sourceTree = "<group>"; };
+		7B9B6A992C87C9E60001D94D /* NavigationBarSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarSubView.swift; sourceTree = "<group>"; };
 		7B9B6A9B2C8860CC0001D94D /* ChooseCountryDialCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCountryDialCode.swift; sourceTree = "<group>"; };
 		7B9B6A9D2C8876D80001D94D /* countryCode.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countryCode.json; sourceTree = "<group>"; };
 		7B9B6A9F2C8877000001D94D /* CountryCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCode.swift; sourceTree = "<group>"; };
 		7B9B6AA12C887AAC0001D94D /* CountryCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodeViewModel.swift; sourceTree = "<group>"; };
 		7B9B6AA32C89CF2F0001D94D /* PhoneNumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberTextField.swift; sourceTree = "<group>"; };
 		7B9B6AA52C89D7A20001D94D /* ContinueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButton.swift; sourceTree = "<group>"; };
+		7B9B6AA72C8A21CE0001D94D /* ConfirmOTPcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOTPcodeView.swift; sourceTree = "<group>"; };
+		7B9B6AAB2C8A2DD00001D94D /* MainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
+		7B9B6AAE2C8A3E2A0001D94D /* ConfirmOTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOTPViewModel.swift; sourceTree = "<group>"; };
+		7B9B6AB02C8A3E970001D94D /* OTPLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPLine.swift; sourceTree = "<group>"; };
+		7B9B6AB32C8A4B560001D94D /* VoiceRecordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecordsView.swift; sourceTree = "<group>"; };
+		7B9B6AB62C8A4C970001D94D /* SegmnetVoiceRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmnetVoiceRecords.swift; sourceTree = "<group>"; };
+		7B9B6AB82C8A4F1C0001D94D /* ButtonsAllWorkHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsAllWorkHome.swift; sourceTree = "<group>"; };
+		7B9B6ABA2C8A5AC40001D94D /* VoiceRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecordingView.swift; sourceTree = "<group>"; };
+		7B9B6ABE2C8A61080001D94D /* Waves.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Waves.swift; sourceTree = "<group>"; };
+		7B9B6AC02C8A61530001D94D /* ButtonsPlayStopResset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsPlayStopResset.swift; sourceTree = "<group>"; };
+		7B9B6AC22C8A6B840001D94D /* VoiceRecordingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecordingViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,10 +101,11 @@
 			children = (
 				7B9B6A682C87A6740001D94D /* CallRecorderApp.swift */,
 				7B9B6A7F2C87B2390001D94D /* MainContentView.swift */,
-				7B9B6A9D2C8876D80001D94D /* countryCode.json */,
+				7B9B6AAA2C8A26C40001D94D /* SubViews */,
 				7B9B6A872C87B5270001D94D /* MainSubViews */,
 				7B9B6A962C87C9750001D94D /* Views */,
 				7B9B6A6C2C87A6750001D94D /* Assets.xcassets */,
+				7B9B6A9D2C8876D80001D94D /* countryCode.json */,
 				7B9B6A6E2C87A6750001D94D /* Preview Content */,
 			);
 			path = CallRecorder;
@@ -102,7 +123,7 @@
 			isa = PBXGroup;
 			children = (
 				7B9B6A8C2C87BD670001D94D /* MainNavigationBar.swift */,
-				7B9B6A8E2C87C2B90001D94D /* MainTabBar.swift */,
+				7B9B6AAB2C8A2DD00001D94D /* MainTabBar.swift */,
 				7B9B6A852C87B5230001D94D /* CallButton.swift */,
 				7B9B6A882C87B65A0001D94D /* RecordButton.swift */,
 				7B9B6A902C87C5400001D94D /* CallRecordsButton.swift */,
@@ -114,31 +135,96 @@
 		7B9B6A962C87C9750001D94D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7B9B6A972C87C9AD0001D94D /* CallSetupView */,
+				7B9B6ABC2C8A5ACF0001D94D /* VoiceRecording */,
+				7B9B6AB22C8A46250001D94D /* VoiceRecords */,
+				7B9B6A972C87C9AD0001D94D /* CallSetup */,
+				7B9B6AAD2C8A3E030001D94D /* ConfirmOTPCode */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		7B9B6A972C87C9AD0001D94D /* CallSetupView */ = {
+		7B9B6A972C87C9AD0001D94D /* CallSetup */ = {
 			isa = PBXGroup;
 			children = (
 				7B9B6A9F2C8877000001D94D /* CountryCode.swift */,
 				7B9B6AA12C887AAC0001D94D /* CountryCodeViewModel.swift */,
 				7B9B6A942C87C9700001D94D /* CallSetupView.swift */,
-				7B9B6A982C87C9BB0001D94D /* CallSetupSubViews */,
+				7B9B6A982C87C9BB0001D94D /* SubViews */,
 			);
-			path = CallSetupView;
+			path = CallSetup;
 			sourceTree = "<group>";
 		};
-		7B9B6A982C87C9BB0001D94D /* CallSetupSubViews */ = {
+		7B9B6A982C87C9BB0001D94D /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
-				7B9B6A992C87C9E60001D94D /* CallSetupNavigationBar.swift */,
 				7B9B6A9B2C8860CC0001D94D /* ChooseCountryDialCode.swift */,
 				7B9B6AA32C89CF2F0001D94D /* PhoneNumberTextField.swift */,
 				7B9B6AA52C89D7A20001D94D /* ContinueButton.swift */,
 			);
-			path = CallSetupSubViews;
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		7B9B6AA92C8A22990001D94D /* ConfirmOTPcodeSubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6AB02C8A3E970001D94D /* OTPLine.swift */,
+			);
+			path = ConfirmOTPcodeSubViews;
+			sourceTree = "<group>";
+		};
+		7B9B6AAA2C8A26C40001D94D /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6A992C87C9E60001D94D /* NavigationBarSubView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		7B9B6AAD2C8A3E030001D94D /* ConfirmOTPCode */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6AA72C8A21CE0001D94D /* ConfirmOTPcodeView.swift */,
+				7B9B6AAE2C8A3E2A0001D94D /* ConfirmOTPViewModel.swift */,
+				7B9B6AA92C8A22990001D94D /* ConfirmOTPcodeSubViews */,
+			);
+			path = ConfirmOTPCode;
+			sourceTree = "<group>";
+		};
+		7B9B6AB22C8A46250001D94D /* VoiceRecords */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6AB32C8A4B560001D94D /* VoiceRecordsView.swift */,
+				7B9B6AB52C8A4C6D0001D94D /* SubViews */,
+			);
+			path = VoiceRecords;
+			sourceTree = "<group>";
+		};
+		7B9B6AB52C8A4C6D0001D94D /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6AB62C8A4C970001D94D /* SegmnetVoiceRecords.swift */,
+				7B9B6AB82C8A4F1C0001D94D /* ButtonsAllWorkHome.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		7B9B6ABC2C8A5ACF0001D94D /* VoiceRecording */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6ABA2C8A5AC40001D94D /* VoiceRecordingView.swift */,
+				7B9B6AC22C8A6B840001D94D /* VoiceRecordingViewModel.swift */,
+				7B9B6ABD2C8A60F50001D94D /* SubViews */,
+			);
+			path = VoiceRecording;
+			sourceTree = "<group>";
+		};
+		7B9B6ABD2C8A60F50001D94D /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6ABE2C8A61080001D94D /* Waves.swift */,
+				7B9B6AC02C8A61530001D94D /* ButtonsPlayStopResset.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,18 +299,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B9B6A9C2C8860CC0001D94D /* ChooseCountryDialCode.swift in Sources */,
+				7B9B6AB92C8A4F1C0001D94D /* ButtonsAllWorkHome.swift in Sources */,
 				7B9B6A8D2C87BD670001D94D /* MainNavigationBar.swift in Sources */,
 				7B9B6A892C87B65A0001D94D /* RecordButton.swift in Sources */,
+				7B9B6AC32C8A6B840001D94D /* VoiceRecordingViewModel.swift in Sources */,
+				7B9B6AB72C8A4C970001D94D /* SegmnetVoiceRecords.swift in Sources */,
+				7B9B6ABB2C8A5AC40001D94D /* VoiceRecordingView.swift in Sources */,
 				7B9B6A862C87B5230001D94D /* CallButton.swift in Sources */,
 				7B9B6A692C87A6740001D94D /* CallRecorderApp.swift in Sources */,
 				7B9B6A802C87B2390001D94D /* MainContentView.swift in Sources */,
-				7B9B6A9A2C87C9E60001D94D /* CallSetupNavigationBar.swift in Sources */,
+				7B9B6A9A2C87C9E60001D94D /* NavigationBarSubView.swift in Sources */,
+				7B9B6ABF2C8A61080001D94D /* Waves.swift in Sources */,
 				7B9B6A912C87C5400001D94D /* CallRecordsButton.swift in Sources */,
-				7B9B6A8F2C87C2B90001D94D /* MainTabBar.swift in Sources */,
+				7B9B6AAF2C8A3E2A0001D94D /* ConfirmOTPViewModel.swift in Sources */,
 				7B9B6A952C87C9700001D94D /* CallSetupView.swift in Sources */,
+				7B9B6AB42C8A4B560001D94D /* VoiceRecordsView.swift in Sources */,
+				7B9B6AC12C8A61530001D94D /* ButtonsPlayStopResset.swift in Sources */,
 				7B9B6AA22C887AAC0001D94D /* CountryCodeViewModel.swift in Sources */,
+				7B9B6AA82C8A21CE0001D94D /* ConfirmOTPcodeView.swift in Sources */,
 				7B9B6A932C87C72B0001D94D /* VoiceRecordsButton.swift in Sources */,
+				7B9B6AAC2C8A2DD00001D94D /* MainTabBar.swift in Sources */,
 				7B9B6AA62C89D7A20001D94D /* ContinueButton.swift in Sources */,
+				7B9B6AB12C8A3E970001D94D /* OTPLine.swift in Sources */,
 				7B9B6AA02C8877000001D94D /* CountryCode.swift in Sources */,
 				7B9B6AA42C89CF2F0001D94D /* PhoneNumberTextField.swift in Sources */,
 			);
