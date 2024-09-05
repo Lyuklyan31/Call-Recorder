@@ -6,3 +6,31 @@
 //
 
 import Foundation
+
+class VoiceRecordingViewModel: ObservableObject {
+    
+    @Published  var timerRecord: Timer?
+    @Published  var seconds: Int = 0
+    @Published  var minutes: Int = 0
+    @Published  var timeString: String = "00:00"
+    
+    func startTimer() {
+        timerRecord = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [self] timer in
+            self.seconds += 1
+            
+            if self.seconds == 60 {
+                self.seconds = 0
+                self.minutes += 1
+            }
+            
+            let timeString = String(format: "%02d:%02d", minutes, self.seconds)
+            self.timeString = timeString
+        })
+    }
+    
+    func stopTimer() {
+        self.timerRecord?.invalidate()
+        seconds = 0
+        minutes = 0
+    }
+}
