@@ -8,11 +8,38 @@
 import SwiftUI
 
 struct ButtonsPlayStopResset: View {
+    var viewModel: VoiceRecordingViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Spacer()
+            Button {
+//                viewModel.startTimer()
+            } label: {
+                RoundedRectangle(cornerRadius: 24)
+                    .frame(width: 64, height: 64)
+                    .foregroundColor(.white)
+                    .overlay {
+                        Image(.play)
+                    }
+            }
+            Spacer()
+            
+            Button {
+//                viewModel.stopTimer()
+            } label: {
+                RoundedRectangle(cornerRadius: 24)
+                    .frame(width: 64, height: 64)
+                    .foregroundColor(.white)
+                    .overlay {
+                        Image(.resset)
+                    }
+            }
+            Spacer()
+        }
     }
 }
 
 #Preview {
-    ButtonsPlayStopResset()
+    ButtonsPlayStopResset(viewModel: VoiceRecordingViewModel())
 }
