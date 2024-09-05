@@ -24,7 +24,6 @@ struct ChooseCountryDialCode: View {
             HStack {
                 Text(selectionCountry ?? "Select")
                 Text(selectionFlag ?? "")
-                Text(selectionDialCode ?? "")
                 
                 Spacer()
                 
@@ -32,7 +31,7 @@ struct ChooseCountryDialCode: View {
                     .rotationEffect(.degrees(isPickerVisible ? 90 : 0))
             }
             .onTapGesture {
-                withAnimation(.snappy) {
+                withAnimation(.spring(response: 0.4, dampingFraction: 0.7)) {
                     isPickerVisible.toggle()
                 }
             }
@@ -57,7 +56,7 @@ struct ChooseCountryDialCode: View {
                             .frame(height: 30)
                             .padding(.horizontal)
                             .onTapGesture {
-                                withAnimation(.snappy) {
+                                withAnimation(.easeInOut(duration: 0.3)) {
                                     selectionCountry = countryCodeViewModel.codeCountry[item].name
                                     selectionFlag = countryCodeViewModel.codeCountry[item].flag
                                     selectionDialCode = countryCodeViewModel.codeCountry[item].dialCode
@@ -68,17 +67,17 @@ struct ChooseCountryDialCode: View {
                     }
                 }
                 .frame(height: 300)
-                .transition(.move(edge: .bottom))
+                .transition(.asymmetric(insertion: .move(edge: .top).combined(with: .opacity),
+                                        removal: .move(edge: .top).combined(with: .opacity)))
             }
         }
         .padding()
         .background(Color.white)
         .clipShape(RoundedRectangle(cornerRadius: 24))
-        .padding()
-       
+        .padding(.horizontal)
     }
 }
 
 #Preview {
-    AddPhoneNumber(selectionCountry: .constant("Ukraine"), selectionFlag: .constant("🇺🇦"), selectionDialCode: .constant("+380"))
+    ChooseCountryDialCode(selectionCountry: .constant("Ukraine"), selectionFlag: .constant("🇺🇦"), selectionDialCode: .constant("+380"))
 }
