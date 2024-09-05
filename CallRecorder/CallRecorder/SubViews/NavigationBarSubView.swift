@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NavigationBar: View {
+struct NavigationBarSubView: View {
     @Environment(\.dismiss) var dismiss
     @State var title: String
     var body: some View {
@@ -37,5 +37,5 @@ struct NavigationBar: View {
 }
 
 #Preview {
-    NavigationBar(title: "title")
+    NavigationBarSubView(title: "title")
 }
