@@ -16,10 +16,14 @@ struct RecordButton: View {
                 Circle()
                     .frame(width: 240)
                     .foregroundColor(.customPink.opacity(0.1))
+                    .blur(radius: 1.2)
+                    .shadow(radius: 2)
                 
                 Circle()
                     .frame(width: 192)
                     .foregroundColor(.customPink.opacity(0.1))
+                    .blur(radius: 1.2)
+                    .shadow(radius: 2)
                 
                 Circle()
                     .frame(width: 142)
