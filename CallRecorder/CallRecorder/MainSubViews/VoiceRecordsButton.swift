@@ -9,8 +9,8 @@ import SwiftUI
 
 struct VoiceRecordsButton: View {
     var body: some View {
-        Button {
-            
+        NavigationLink {
+            VoiceRecordsView()
         } label: {
             VStack {
                 Image(.voiceRecords)
