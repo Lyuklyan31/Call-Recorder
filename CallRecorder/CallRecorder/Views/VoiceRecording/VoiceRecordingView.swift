@@ -39,11 +39,12 @@ struct VoiceRecordingView: View {
                         Spacer()
                         ButtonsPlayStopResset(viewModel: viewModel)
                             .padding(.bottom)
-                           
+                        
                     }
                 }
                 .navigationBarBackButtonHidden()
             }
+        
         }
     }
 }

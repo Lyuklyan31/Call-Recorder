@@ -8,25 +8,26 @@
 import SwiftUI
 
 struct ButtonsPlayStopResset: View {
-    var viewModel: VoiceRecordingViewModel
+    @ObservedObject var viewModel: VoiceRecordingViewModel
     
     var body: some View {
         HStack {
             Spacer()
             Button {
-//                viewModel.startTimer()
+                viewModel.timerIsRunning ? viewModel.stopTimer() : viewModel.startTimer()
             } label: {
                 RoundedRectangle(cornerRadius: 24)
                     .frame(width: 64, height: 64)
                     .foregroundColor(.white)
                     .overlay {
-                        Image(.play)
+                        viewModel.timerIsRunning ? Image(.stop) : Image(.play)
                     }
             }
+           
             Spacer()
             
             Button {
-//                viewModel.stopTimer()
+              
             } label: {
                 RoundedRectangle(cornerRadius: 24)
                     .frame(width: 64, height: 64)

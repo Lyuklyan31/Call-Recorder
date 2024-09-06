@@ -5,7 +5,7 @@
 //  Created by Andrii Boichuk on 06.09.2024.
 //
 
-import Foundation
+import SwiftUI
 
 class VoiceRecordingViewModel: ObservableObject {
     
@@ -14,7 +14,10 @@ class VoiceRecordingViewModel: ObservableObject {
     @Published  var minutes: Int = 0
     @Published  var timeString: String = "00:00"
     
+    @Published var timerIsRunning: Bool = false
+    
     func startTimer() {
+        self.timerIsRunning = true
         timerRecord = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [self] timer in
             self.seconds += 1
             
@@ -29,8 +32,7 @@ class VoiceRecordingViewModel: ObservableObject {
     }
     
     func stopTimer() {
+        self.timerIsRunning = false
         self.timerRecord?.invalidate()
-        seconds = 0
-        minutes = 0
     }
 }
