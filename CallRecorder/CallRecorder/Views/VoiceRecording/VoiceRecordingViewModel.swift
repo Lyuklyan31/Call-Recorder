@@ -17,6 +17,8 @@ class VoiceRecordingViewModel: ObservableObject {
     @Published var timerIsRunning: Bool = false
     
     func startTimer() {
+        self.timerRecord?.invalidate()
+        
         self.timerIsRunning = true
         timerRecord = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block: { [self] timer in
             self.seconds += 1
@@ -34,5 +36,15 @@ class VoiceRecordingViewModel: ObservableObject {
     func stopTimer() {
         self.timerIsRunning = false
         self.timerRecord?.invalidate()
+    }
+    
+    func resetTimer() {
+        self.timerIsRunning = false
+        self.timerRecord?.invalidate()
+        self.seconds = 0
+        self.minutes = 0
+        
+        let timeString = String(format: "%02d:%02d", minutes, self.seconds)
+        self.timeString = timeString
     }
 }

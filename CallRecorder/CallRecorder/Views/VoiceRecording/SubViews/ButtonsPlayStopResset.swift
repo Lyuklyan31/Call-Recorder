@@ -27,7 +27,7 @@ struct ButtonsPlayStopResset: View {
             Spacer()
             
             Button {
-              
+                viewModel.resetTimer()
             } label: {
                 RoundedRectangle(cornerRadius: 24)
                     .frame(width: 64, height: 64)
