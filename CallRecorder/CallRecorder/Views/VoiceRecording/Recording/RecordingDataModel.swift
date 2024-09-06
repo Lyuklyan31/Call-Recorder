@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct RecordingDataModel {
+    let fileURL: URL
+    let createdAt: Date
+}
