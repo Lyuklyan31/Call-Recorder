@@ -35,6 +35,7 @@
 		7B9B6ABF2C8A61080001D94D /* Waves.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ABE2C8A61080001D94D /* Waves.swift */; };
 		7B9B6AC12C8A61530001D94D /* ButtonsPlayStopResset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AC02C8A61530001D94D /* ButtonsPlayStopResset.swift */; };
 		7B9B6AC32C8A6B840001D94D /* VoiceRecordingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AC22C8A6B840001D94D /* VoiceRecordingViewModel.swift */; };
+		7B9B6AD12C8B307E0001D94D /* RecordingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AD02C8B307E0001D94D /* RecordingDataModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,6 +68,7 @@
 		7B9B6ABE2C8A61080001D94D /* Waves.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Waves.swift; sourceTree = "<group>"; };
 		7B9B6AC02C8A61530001D94D /* ButtonsPlayStopResset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsPlayStopResset.swift; sourceTree = "<group>"; };
 		7B9B6AC22C8A6B840001D94D /* VoiceRecordingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecordingViewModel.swift; sourceTree = "<group>"; };
+		7B9B6AD02C8B307E0001D94D /* RecordingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingDataModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,8 +106,8 @@
 				7B9B6AAA2C8A26C40001D94D /* SubViews */,
 				7B9B6A872C87B5270001D94D /* MainSubViews */,
 				7B9B6A962C87C9750001D94D /* Views */,
-				7B9B6A6C2C87A6750001D94D /* Assets.xcassets */,
 				7B9B6A9D2C8876D80001D94D /* countryCode.json */,
+				7B9B6A6C2C87A6750001D94D /* Assets.xcassets */,
 				7B9B6A6E2C87A6750001D94D /* Preview Content */,
 			);
 			path = CallRecorder;
@@ -136,22 +138,22 @@
 			isa = PBXGroup;
 			children = (
 				7B9B6ABC2C8A5ACF0001D94D /* VoiceRecording */,
-				7B9B6AB22C8A46250001D94D /* VoiceRecords */,
-				7B9B6A972C87C9AD0001D94D /* CallSetup */,
-				7B9B6AAD2C8A3E030001D94D /* ConfirmOTPCode */,
+				7B9B6AB22C8A46250001D94D /* VoiceRecordsList */,
+				7B9B6A972C87C9AD0001D94D /* Call */,
 			);
 			path = Views;
 			sourceTree = "<group>";
 		};
-		7B9B6A972C87C9AD0001D94D /* CallSetup */ = {
+		7B9B6A972C87C9AD0001D94D /* Call */ = {
 			isa = PBXGroup;
 			children = (
 				7B9B6A9F2C8877000001D94D /* CountryCode.swift */,
 				7B9B6AA12C887AAC0001D94D /* CountryCodeViewModel.swift */,
 				7B9B6A942C87C9700001D94D /* CallSetupView.swift */,
+				7B9B6AAD2C8A3E030001D94D /* ConfirmOTPCode */,
 				7B9B6A982C87C9BB0001D94D /* SubViews */,
 			);
-			path = CallSetup;
+			path = Call;
 			sourceTree = "<group>";
 		};
 		7B9B6A982C87C9BB0001D94D /* SubViews */ = {
@@ -190,13 +192,13 @@
 			path = ConfirmOTPCode;
 			sourceTree = "<group>";
 		};
-		7B9B6AB22C8A46250001D94D /* VoiceRecords */ = {
+		7B9B6AB22C8A46250001D94D /* VoiceRecordsList */ = {
 			isa = PBXGroup;
 			children = (
 				7B9B6AB32C8A4B560001D94D /* VoiceRecordsView.swift */,
 				7B9B6AB52C8A4C6D0001D94D /* SubViews */,
 			);
-			path = VoiceRecords;
+			path = VoiceRecordsList;
 			sourceTree = "<group>";
 		};
 		7B9B6AB52C8A4C6D0001D94D /* SubViews */ = {
@@ -214,6 +216,7 @@
 				7B9B6ABA2C8A5AC40001D94D /* VoiceRecordingView.swift */,
 				7B9B6AC22C8A6B840001D94D /* VoiceRecordingViewModel.swift */,
 				7B9B6ABD2C8A60F50001D94D /* SubViews */,
+				7B9B6ACF2C8B306A0001D94D /* Recording */,
 			);
 			path = VoiceRecording;
 			sourceTree = "<group>";
@@ -225,6 +228,14 @@
 				7B9B6AC02C8A61530001D94D /* ButtonsPlayStopResset.swift */,
 			);
 			path = SubViews;
+			sourceTree = "<group>";
+		};
+		7B9B6ACF2C8B306A0001D94D /* Recording */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6AD02C8B307E0001D94D /* RecordingDataModel.swift */,
+			);
+			path = Recording;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -311,6 +322,7 @@
 				7B9B6A9A2C87C9E60001D94D /* NavigationBarSubView.swift in Sources */,
 				7B9B6ABF2C8A61080001D94D /* Waves.swift in Sources */,
 				7B9B6A912C87C5400001D94D /* CallRecordsButton.swift in Sources */,
+				7B9B6AD12C8B307E0001D94D /* RecordingDataModel.swift in Sources */,
 				7B9B6AAF2C8A3E2A0001D94D /* ConfirmOTPViewModel.swift in Sources */,
 				7B9B6A952C87C9700001D94D /* CallSetupView.swift in Sources */,
 				7B9B6AB42C8A4B560001D94D /* VoiceRecordsView.swift in Sources */,

@@ -10,10 +10,10 @@ import SwiftUI
 class VoiceRecordingViewModel: ObservableObject {
     
     @Published  var timerRecord: Timer?
+    
     @Published  var seconds: Int = 0
     @Published  var minutes: Int = 0
     @Published  var timeString: String = "00:00"
-    
     @Published var timerIsRunning: Bool = false
     
     func startTimer() {
