@@ -29,7 +29,7 @@ struct MainNavigationBar: View {
                 
                 Spacer()
                 NavigationLink {
-                     CallSetupView()
+                    SettingView()
                 } label: {
                     Image(.setting)
                         .resizable()
