@@ -24,6 +24,8 @@ struct VoiceRecordsView: View {
                 SegmnetVoiceRecords()
                 
                 ButtonsAllWorkHome()
+                
+                RecordingsList()
                 Spacer()
                     .navigationBarBackButtonHidden()
             }
@@ -33,4 +35,5 @@ struct VoiceRecordsView: View {
 
 #Preview {
     VoiceRecordsView()
+        .environmentObject(AudioRecorder())
 }
