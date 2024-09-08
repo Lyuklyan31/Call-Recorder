@@ -9,8 +9,8 @@ import SwiftUI
 
 struct CallRecordsButton: View {
     var body: some View {
-        Button {
-            
+        NavigationLink {
+            CallSetupView()
         } label: {
             VStack {
                 Image(.callRecords)
