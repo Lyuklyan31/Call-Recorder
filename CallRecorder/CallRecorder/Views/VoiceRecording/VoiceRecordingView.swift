@@ -9,7 +9,7 @@ import SwiftUI
 
 struct VoiceRecordingView: View {
    
-    @ObservedObject var viewModel = VoiceRecordingViewModel()
+    @ObservedObject var viewModel = TimerViewModel()
     
     var body: some View {
         ZStack {
@@ -29,7 +29,7 @@ struct VoiceRecordingView: View {
                     .bold()
                     .padding(.bottom, 24)
                 
-                Text("Recording from iPhone Microphone")
+                Text(viewModel.timerIsRunning ? "Recording Paused" : "Recording from iPhone Microphone")
                     .foregroundColor(.primaryExtraDark.opacity(0.5))
                     .padding(.bottom, 181)
                 
@@ -51,4 +51,6 @@ struct VoiceRecordingView: View {
 
 #Preview {
     VoiceRecordingView()
+        .environmentObject(AudioRecorder())
+        .environmentObject(WavesViewModel())
 }

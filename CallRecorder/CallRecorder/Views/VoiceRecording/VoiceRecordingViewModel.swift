@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-class VoiceRecordingViewModel: ObservableObject {
+class TimerViewModel: ObservableObject {
     
     @Published  var timerRecord: Timer?
     

@@ -3,13 +3,12 @@ import AVFoundation
 
 struct Waves: View {
     @EnvironmentObject var audioManager: WavesViewModel
-   
+    
     var body: some View {
         ZStack {
             VStack {
                 GeometryReader { geometry in
                     ZStack {
-                        // Градієнт, що починається від середини і тягнеться до самого низу
                         LinearGradient(
                             gradient: Gradient(colors: [.customPink.opacity(0.3), .backraundWhite]),
                             startPoint: .center,  // Початкова точка градієнта з середини
@@ -22,7 +21,7 @@ struct Waves: View {
                                 let history = audioManager.amplitudeHistory
                                 let step = width / CGFloat(history.count)
                                 
-                                let baseline = (height / 2) - 150 // Встановіть baseline на центрі
+                                let baseline = (height / 2) - 130 // Встановіть baseline на центрі
                                 
                                 path.move(to: CGPoint(x: 0, y: baseline))
                                 
@@ -33,7 +32,7 @@ struct Waves: View {
                                     
                                     if i > 0 {
                                         let previousX = CGFloat(i - 1) * step
-                                        let previousAmplitude = history[i - 1] * 150
+                                        let previousAmplitude = history[i - 1] * -20
                                         let previousY = baseline - previousAmplitude
                                         
                                         path.addQuadCurve(
@@ -59,7 +58,7 @@ struct Waves: View {
                             let history = audioManager.amplitudeHistory
                             let step = width / CGFloat(history.count)
                             
-                            let baseline = (height / 2) - 150 // Встановіть baseline на центрі
+                            let baseline = (height / 2) - 130 // Встановіть baseline на центрі
                             
                             path.move(to: CGPoint(x: 0, y: baseline))
                             
@@ -70,7 +69,7 @@ struct Waves: View {
                                 
                                 if i > 0 {
                                     let previousX = CGFloat(i - 1) * step
-                                    let previousAmplitude = history[i - 1] * 150
+                                    let previousAmplitude = history[i - 1] * -20
                                     let previousY = baseline - previousAmplitude
                                     
                                     path.addQuadCurve(
@@ -84,17 +83,15 @@ struct Waves: View {
                     }
                 }
                 .onAppear {
-                    if audioManager.isActive == true {
+                    if audioManager.isActive {
                         audioManager.startMonitoring()
-                    } else {
-                        audioManager.stopMonitoring()
                     }
-            }
+                }
                 
                 Spacer()
             }
         }
-        .edgesIgnoringSafeArea(.all) 
+        .edgesIgnoringSafeArea(.all)
     }
 }
 
