@@ -8,11 +8,46 @@
 import SwiftUI
 
 struct RecordingsList: View {
+    
+    @EnvironmentObject var audioRecorder: AudioRecorder
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        List {
+            ForEach(Array(audioRecorder.recordings.enumerated()), id: \.element.createdAt) { index, recording in
+                RecordingRow(audioURL: recording.fileURL, index: index + 1) // Передаємо порядковий номер
+            }
+            .onDelete(perform: delete)
+        }
+        .listStyle(PlainListStyle())
+    }
+    
+    func delete(at offsets: IndexSet) {
+        var urlsToDelete = [URL]()
+        for index in offsets {
+            urlsToDelete.append(audioRecorder.recordings[index].fileURL)
+        }
+        audioRecorder.deleteRecording(urlsToDelete: urlsToDelete)
+    }
+}
+
+struct RecordingRow: View {
+    
+    var audioURL: URL
+    var index: Int // Порядковий номер
+    
+    var body: some View {
+        HStack {
+            Image(.microphoneRec)
+            VStack(alignment: .leading) {
+                Text("Memo \(index)")
+                Text("\(audioURL.lastPathComponent)")
+            }
+            Spacer()
+        }
     }
 }
 
 #Preview {
     RecordingsList()
+        .environmentObject(AudioRecorder())
 }
