@@ -18,10 +18,17 @@ struct ButtonsPlayStopResset: View {
         HStack {
             Spacer()
             Button {
-//                audioRecorder.startRecording()
-                viewModel.timerIsRunning ? wavesViewModel.stopMonitoring() : wavesViewModel.startMonitoring()
-                viewModel.timerIsRunning ? viewModel.stopTimer() : viewModel.startTimer()
+                audioRecorder.startRecording()
                 
+                if viewModel.timerIsRunning == true {
+                    wavesViewModel.stopMonitoring()
+                    viewModel.stopTimer()
+                    viewModel.resetTimer()
+                } else {
+                    wavesViewModel.startMonitoring()
+                    viewModel.startTimer()
+                }
+             
             } label: {
                 RoundedRectangle(cornerRadius: 24)
                     .frame(width: 64, height: 64)
