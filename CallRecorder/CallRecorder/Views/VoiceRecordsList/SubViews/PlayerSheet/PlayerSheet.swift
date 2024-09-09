@@ -8,8 +8,41 @@
 import SwiftUI
 
 struct PlayerSheet: View {
+    @Environment(\.dismiss) var dismiss
     var body: some View {
-        Text("Hello, World!")
+        VStack {
+            HStack {
+                Button {
+                    
+                } label: {
+                    Image(.trash)
+                }
+               
+                Button {
+                    
+                } label: {
+                    Image(.share)
+                }
+                
+                Button {
+                    
+                } label: {
+                    Image(.favorite)
+
+                }
+                
+                Spacer()
+                
+                Button {
+                    dismiss()
+                } label: {
+                    Image(.dismissButton)
+                }
+                
+            }
+            .padding()
+            Spacer()
+        }
     }
 }
 

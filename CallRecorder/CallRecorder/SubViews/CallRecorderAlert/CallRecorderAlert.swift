@@ -7,50 +7,56 @@
 
 import SwiftUI
 
-struct CallRecorderAlert_: View {
+struct CallRecorderAlert: View {
     @State private var selectedTab: Int = 0
+    @Binding var showAlert: Bool
     var body: some View {
-        VStack {
-            RoundedRectangle(cornerRadius: 48)
-                .frame(height: 484)
-                .overlay {
-                    VStack {
-                        Text("Don’t forget to tap ‘add call’ and choose contact to you want to call")
-                            .font(.system(size: 19, weight: .medium))
-                            .foregroundColor(.primaryExtraDark)
-                            .padding(.top, 24)
-                            .padding(.horizontal)
-                        
-                        TabBarIphones(selectedTab: $selectedTab)
-                        
-                        SwipeProgress(selectedTab: $selectedTab)
-                        .padding(.top, 24)
-                        .padding(.bottom, 10)
-                           
-                        Button {
+        ZStack {
+            Color.primaryExtraDark.opacity(0.2)
+            VStack {
+                RoundedRectangle(cornerRadius: 48)
+                    .frame(height: 484)
+                    .foregroundColor(.white)
+                    .overlay {
+                        VStack {
+                            Text("Don’t forget to tap ‘add call’ and choose contact to you want to call")
+                                .font(.system(size: 19, weight: .medium))
+                                .foregroundColor(.primaryExtraDark)
+                                .padding(.top, 24)
+                                .padding(.horizontal)
                             
-                        } label: {
-                            RoundedRectangle(cornerRadius: 24)
-                                .stroke(lineWidth: 2)
-                                .frame(height: 56)
-                                .foregroundColor(.customPink)
-                                .overlay {
-                                    Text("Close")
-                                        .font(.system(size: 19, weight: .medium))
-                                        .foregroundColor(.customPink)
-                                }
-                               
-                        }
-                        .padding()
+                            TabBarIphones(selectedTab: $selectedTab)
+                            
+                            SwipeProgress(selectedTab: $selectedTab)
+                                .padding(.top, 24)
+                                .padding(.bottom, 10)
+                            
+                            Button {
+                                showAlert = false
+                            } label: {
+                                RoundedRectangle(cornerRadius: 24)
+                                    .stroke(lineWidth: 2)
+                                    .frame(height: 56)
+                                    .foregroundColor(.customPink)
+                                    .overlay {
+                                        Text("Close")
+                                            .font(.system(size: 19, weight: .medium))
+                                            .foregroundColor(.customPink)
+                                    }
+                                
+                            }
+                            .padding()
                         
-                        Spacer()
+                            Spacer()
+                        }
                     }
-                }
+            }
+            .padding()
         }
-        .padding()
+        .ignoresSafeArea()
     }
 }
 
 #Preview {
-    CallRecorderAlert_()
+    CallRecorderAlert(showAlert: .constant(true))
 }

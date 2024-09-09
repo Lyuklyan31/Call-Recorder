@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct VoiceRecordsView: View {
+struct VoiceRecordsList: View {
 
     var body: some View {
         ZStack {
@@ -35,6 +35,6 @@ struct VoiceRecordsView: View {
 }
 
 #Preview {
-    VoiceRecordsView()
+    VoiceRecordsList()
         .environmentObject(AudioRecorder())
 }

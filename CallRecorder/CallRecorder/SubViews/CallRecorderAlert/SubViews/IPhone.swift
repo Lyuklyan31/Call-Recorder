@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct IPhoneOne: View {
+struct IPhone: View {
     var image: String
     var body: some View {
         Image(image)
@@ -26,5 +26,5 @@ struct IPhoneOne: View {
 }
 
 #Preview {
-    IPhoneOne(image: "iPhone")
+    IPhone(image: "iPhone")
 }

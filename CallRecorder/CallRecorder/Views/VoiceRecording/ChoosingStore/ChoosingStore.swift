@@ -50,8 +50,8 @@ struct ChoosingStore: View {
                     .padding(16)
                 Spacer()
                 
-                Button {
-                   
+                NavigationLink {
+                   VoiceRecordingView()
                 } label: {
                     RoundedRectangle(cornerRadius: 24)
                         .frame(height: 56)

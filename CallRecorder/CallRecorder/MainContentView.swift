@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MainContentView: View {
     @State private var selectedTab = 0
+    @State private var showAlert = false
     var body: some View {
         NavigationView {
             ZStack {
@@ -23,12 +24,15 @@ struct MainContentView: View {
                     MainNavigationBar(selectedTab: $selectedTab)
                         .padding()
                     
-                    MainTabBar(selectedTab: $selectedTab)
+                    MainTabBar(selectedTab: $selectedTab, showAlert: $showAlert)
                     HStack(spacing: 104) {
                         CallRecordsButton()
                         VoiceRecordsButton()
                     }
                     .padding(.vertical, 32)
+                }
+                if showAlert == true {
+                    CallRecorderAlert(showAlert: $showAlert)
                 }
             }
         }

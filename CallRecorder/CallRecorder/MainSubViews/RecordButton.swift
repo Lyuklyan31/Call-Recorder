@@ -10,7 +10,7 @@ import SwiftUI
 struct RecordButton: View {
     var body: some View {
         NavigationLink {
-            VoiceRecordingView()
+            ChoosingStore()
         } label: {
             ZStack {
                 Circle()

@@ -10,7 +10,10 @@
 		7B39C28D2C8C9D8F0099B213 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B39C28C2C8C9D8F0099B213 /* SettingView.swift */; };
 		7B39C2912C8C9EB70099B213 /* ButtonSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B39C2902C8C9EB70099B213 /* ButtonSetting.swift */; };
 		7B9B5E292C8F1971007F2325 /* PlayerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B5E282C8F1971007F2325 /* PlayerSheet.swift */; };
-		7B9B5E2D2C8F1A97007F2325 /* CallRecorderAlert .swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B5E2C2C8F1A97007F2325 /* CallRecorderAlert .swift */; };
+		7B9B5E2D2C8F1A97007F2325 /* CallRecorderAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B5E2C2C8F1A97007F2325 /* CallRecorderAlert.swift */; };
+		7B9B5E312C8F9662007F2325 /* IPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B5E302C8F9662007F2325 /* IPhone.swift */; };
+		7B9B5E352C8F979E007F2325 /* TabBarIphones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B5E342C8F979E007F2325 /* TabBarIphones.swift */; };
+		7B9B5E372C8F97F3007F2325 /* SwipeProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B5E362C8F97F3007F2325 /* SwipeProgress.swift */; };
 		7B9B6A692C87A6740001D94D /* CallRecorderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A682C87A6740001D94D /* CallRecorderApp.swift */; };
 		7B9B6A6D2C87A6750001D94D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B9B6A6C2C87A6750001D94D /* Assets.xcassets */; };
 		7B9B6A702C87A6750001D94D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B9B6A6F2C87A6750001D94D /* Preview Assets.xcassets */; };
@@ -32,7 +35,7 @@
 		7B9B6AAC2C8A2DD00001D94D /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AAB2C8A2DD00001D94D /* MainTabBar.swift */; };
 		7B9B6AAF2C8A3E2A0001D94D /* ConfirmOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AAE2C8A3E2A0001D94D /* ConfirmOTPViewModel.swift */; };
 		7B9B6AB12C8A3E970001D94D /* OTPLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AB02C8A3E970001D94D /* OTPLine.swift */; };
-		7B9B6AB42C8A4B560001D94D /* VoiceRecordsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AB32C8A4B560001D94D /* VoiceRecordsView.swift */; };
+		7B9B6AB42C8A4B560001D94D /* VoiceRecordsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AB32C8A4B560001D94D /* VoiceRecordsList.swift */; };
 		7B9B6AB72C8A4C970001D94D /* SegmnetVoiceRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AB62C8A4C970001D94D /* SegmnetVoiceRecords.swift */; };
 		7B9B6AB92C8A4F1C0001D94D /* ButtonsAllWorkHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AB82C8A4F1C0001D94D /* ButtonsAllWorkHome.swift */; };
 		7B9B6ABB2C8A5AC40001D94D /* VoiceRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ABA2C8A5AC40001D94D /* VoiceRecordingView.swift */; };
@@ -56,7 +59,10 @@
 		7B39C28C2C8C9D8F0099B213 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		7B39C2902C8C9EB70099B213 /* ButtonSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSetting.swift; sourceTree = "<group>"; };
 		7B9B5E282C8F1971007F2325 /* PlayerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSheet.swift; sourceTree = "<group>"; };
-		7B9B5E2C2C8F1A97007F2325 /* CallRecorderAlert .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CallRecorderAlert .swift"; sourceTree = "<group>"; };
+		7B9B5E2C2C8F1A97007F2325 /* CallRecorderAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecorderAlert.swift; sourceTree = "<group>"; };
+		7B9B5E302C8F9662007F2325 /* IPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPhone.swift; sourceTree = "<group>"; };
+		7B9B5E342C8F979E007F2325 /* TabBarIphones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIphones.swift; sourceTree = "<group>"; };
+		7B9B5E362C8F97F3007F2325 /* SwipeProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeProgress.swift; sourceTree = "<group>"; };
 		7B9B6A652C87A6740001D94D /* CallRecorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CallRecorder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B9B6A682C87A6740001D94D /* CallRecorderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecorderApp.swift; sourceTree = "<group>"; };
 		7B9B6A6C2C87A6750001D94D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,7 +85,7 @@
 		7B9B6AAB2C8A2DD00001D94D /* MainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
 		7B9B6AAE2C8A3E2A0001D94D /* ConfirmOTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOTPViewModel.swift; sourceTree = "<group>"; };
 		7B9B6AB02C8A3E970001D94D /* OTPLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPLine.swift; sourceTree = "<group>"; };
-		7B9B6AB32C8A4B560001D94D /* VoiceRecordsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecordsView.swift; sourceTree = "<group>"; };
+		7B9B6AB32C8A4B560001D94D /* VoiceRecordsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecordsList.swift; sourceTree = "<group>"; };
 		7B9B6AB62C8A4C970001D94D /* SegmnetVoiceRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmnetVoiceRecords.swift; sourceTree = "<group>"; };
 		7B9B6AB82C8A4F1C0001D94D /* ButtonsAllWorkHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsAllWorkHome.swift; sourceTree = "<group>"; };
 		7B9B6ABA2C8A5AC40001D94D /* VoiceRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecordingView.swift; sourceTree = "<group>"; };
@@ -141,6 +147,25 @@
 			children = (
 			);
 			name = SubViews;
+			sourceTree = "<group>";
+		};
+		7B9B5E2E2C8F963D007F2325 /* CallRecorderAlert */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B5E2C2C8F1A97007F2325 /* CallRecorderAlert.swift */,
+				7B9B5E2F2C8F9647007F2325 /* SubViews */,
+			);
+			path = CallRecorderAlert;
+			sourceTree = "<group>";
+		};
+		7B9B5E2F2C8F9647007F2325 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B5E302C8F9662007F2325 /* IPhone.swift */,
+				7B9B5E342C8F979E007F2325 /* TabBarIphones.swift */,
+				7B9B5E362C8F97F3007F2325 /* SwipeProgress.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		7B9B6A5C2C87A6740001D94D = {
@@ -241,7 +266,7 @@
 			isa = PBXGroup;
 			children = (
 				7B9B6A992C87C9E60001D94D /* NavigationBarSubView.swift */,
-				7B9B5E2C2C8F1A97007F2325 /* CallRecorderAlert .swift */,
+				7B9B5E2E2C8F963D007F2325 /* CallRecorderAlert */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -259,7 +284,7 @@
 		7B9B6AB22C8A46250001D94D /* VoiceRecordsList */ = {
 			isa = PBXGroup;
 			children = (
-				7B9B6AB32C8A4B560001D94D /* VoiceRecordsView.swift */,
+				7B9B6AB32C8A4B560001D94D /* VoiceRecordsList.swift */,
 				7B9B6AB52C8A4C6D0001D94D /* SubViews */,
 			);
 			path = VoiceRecordsList;
@@ -412,7 +437,7 @@
 				7B9B6A8D2C87BD670001D94D /* MainNavigationBar.swift in Sources */,
 				7B9B6A892C87B65A0001D94D /* RecordButton.swift in Sources */,
 				7B9B6AC32C8A6B840001D94D /* VoiceRecordingViewModel.swift in Sources */,
-				7B9B5E2D2C8F1A97007F2325 /* CallRecorderAlert .swift in Sources */,
+				7B9B5E2D2C8F1A97007F2325 /* CallRecorderAlert.swift in Sources */,
 				7B9B6AB72C8A4C970001D94D /* SegmnetVoiceRecords.swift in Sources */,
 				7B9B6ABB2C8A5AC40001D94D /* VoiceRecordingView.swift in Sources */,
 				7B9B6A862C87B5230001D94D /* CallButton.swift in Sources */,
@@ -424,6 +449,7 @@
 				7B39C2912C8C9EB70099B213 /* ButtonSetting.swift in Sources */,
 				7B9B6ABF2C8A61080001D94D /* Waves.swift in Sources */,
 				7B9B6AD52C8B31060001D94D /* ExtensionData.swift in Sources */,
+				7B9B5E312C8F9662007F2325 /* IPhone.swift in Sources */,
 				7B9B6A912C87C5400001D94D /* CallRecordsButton.swift in Sources */,
 				7B9B6AD12C8B307E0001D94D /* RecordingDataModel.swift in Sources */,
 				7BABC3472C8D308D0047F65A /* ChoosingStore.swift in Sources */,
@@ -433,11 +459,12 @@
 				7B9B6AAF2C8A3E2A0001D94D /* ConfirmOTPViewModel.swift in Sources */,
 				7B9B6A952C87C9700001D94D /* CallSetupView.swift in Sources */,
 				7B39C28D2C8C9D8F0099B213 /* SettingView.swift in Sources */,
-				7B9B6AB42C8A4B560001D94D /* VoiceRecordsView.swift in Sources */,
+				7B9B6AB42C8A4B560001D94D /* VoiceRecordsList.swift in Sources */,
 				7B9B5E292C8F1971007F2325 /* PlayerSheet.swift in Sources */,
 				7B9B6AC12C8A61530001D94D /* ButtonsPlayStopResset.swift in Sources */,
 				7B9B6AA22C887AAC0001D94D /* CountryCodeViewModel.swift in Sources */,
 				7BABC34F2C8DF5D70047F65A /* RecordingDetailsSheet.swift in Sources */,
+				7B9B5E372C8F97F3007F2325 /* SwipeProgress.swift in Sources */,
 				7B9B6AA82C8A21CE0001D94D /* ConfirmOTPcodeView.swift in Sources */,
 				7B9B6A932C87C72B0001D94D /* VoiceRecordsButton.swift in Sources */,
 				7B9B6AAC2C8A2DD00001D94D /* MainTabBar.swift in Sources */,
@@ -446,6 +473,7 @@
 				7B9B6AB12C8A3E970001D94D /* OTPLine.swift in Sources */,
 				7B9B6AA02C8877000001D94D /* CountryCode.swift in Sources */,
 				7B9B6AA42C89CF2F0001D94D /* PhoneNumberTextField.swift in Sources */,
+				7B9B5E352C8F979E007F2325 /* TabBarIphones.swift in Sources */,
 				7BABC34D2C8D368D0047F65A /* OnMyiPhone.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

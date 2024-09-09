@@ -8,11 +8,22 @@
 import SwiftUI
 
 struct TabBarIphones: View {
+    @Binding var selectedTab: Int
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TabView(selection: $selectedTab) {
+           IPhone(image: "iPhoneFirst")
+                .tag(0)
+                
+            IPhone(image: "iPhoneSecond")
+                .tag(1)
+        }
+        .tabViewStyle(.page)
+        .onAppear {
+            UIPageControl.appearance().isHidden = true
+        }
     }
 }
 
 #Preview {
-    TabBarIphones()
+    TabBarIphones(selectedTab: .constant(0))
 }

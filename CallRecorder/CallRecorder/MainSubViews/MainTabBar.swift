@@ -9,10 +9,11 @@ import SwiftUI
 
 struct MainTabBar: View {
     @Binding var selectedTab: Int
+    @Binding var showAlert: Bool
     var body: some View {
         ZStack {
             TabView(selection: $selectedTab) {
-                CallButton()
+                CallButton(showAlert: $showAlert)
                     .tag(0)
                     
                 RecordButton()
@@ -27,5 +28,5 @@ struct MainTabBar: View {
 }
 
 #Preview {
-    MainTabBar(selectedTab: .constant(0))
+    MainTabBar(selectedTab: .constant(0), showAlert: .constant(false))
 }

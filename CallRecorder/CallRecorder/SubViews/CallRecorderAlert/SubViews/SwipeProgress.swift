@@ -8,11 +8,22 @@
 import SwiftUI
 
 struct SwipeProgress: View {
+    @Binding var selectedTab: Int
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        HStack {
+            Spacer()
+            ForEach(0..<2) { index in
+                Capsule()
+                    .frame(width: selectedTab == index ? 24 : 8, height: 8)
+                    .foregroundColor(.customPink.opacity(selectedTab == index ? 1.0 : 0.2))
+                    .animation(.spring(response: 0.5, dampingFraction: 0.6, blendDuration: 0.8), value: selectedTab)
+            }
+            
+            Spacer()
+        }
     }
 }
 
 #Preview {
-    SwipeProgress()
+    SwipeProgress(selectedTab: .constant(0))
 }
