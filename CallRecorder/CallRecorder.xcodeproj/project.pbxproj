@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		7B39C28D2C8C9D8F0099B213 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B39C28C2C8C9D8F0099B213 /* SettingView.swift */; };
 		7B39C2912C8C9EB70099B213 /* ButtonSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B39C2902C8C9EB70099B213 /* ButtonSetting.swift */; };
+		7B9B5E292C8F1971007F2325 /* PlayerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B5E282C8F1971007F2325 /* PlayerSheet.swift */; };
+		7B9B5E2D2C8F1A97007F2325 /* CallRecorderAlert .swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B5E2C2C8F1A97007F2325 /* CallRecorderAlert .swift */; };
 		7B9B6A692C87A6740001D94D /* CallRecorderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A682C87A6740001D94D /* CallRecorderApp.swift */; };
 		7B9B6A6D2C87A6750001D94D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B9B6A6C2C87A6750001D94D /* Assets.xcassets */; };
 		7B9B6A702C87A6750001D94D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B9B6A6F2C87A6750001D94D /* Preview Assets.xcassets */; };
@@ -44,11 +46,17 @@
 		7B9B6ADB2C8B3C500001D94D /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ADA2C8B3C500001D94D /* AudioPlayer.swift */; };
 		7B9B6ADD2C8B3D410001D94D /* WavesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ADC2C8B3D410001D94D /* WavesViewModel.swift */; };
 		7B9B6ADF2C8BD3DF0001D94D /* RecordingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ADE2C8BD3DF0001D94D /* RecordingsList.swift */; };
+		7BABC3472C8D308D0047F65A /* ChoosingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABC3462C8D308D0047F65A /* ChoosingStore.swift */; };
+		7BABC34B2C8D323F0047F65A /* ICloudDriveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABC34A2C8D323F0047F65A /* ICloudDriveButton.swift */; };
+		7BABC34D2C8D368D0047F65A /* OnMyiPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABC34C2C8D368D0047F65A /* OnMyiPhone.swift */; };
+		7BABC34F2C8DF5D70047F65A /* RecordingDetailsSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABC34E2C8DF5D70047F65A /* RecordingDetailsSheet.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7B39C28C2C8C9D8F0099B213 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		7B39C2902C8C9EB70099B213 /* ButtonSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSetting.swift; sourceTree = "<group>"; };
+		7B9B5E282C8F1971007F2325 /* PlayerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSheet.swift; sourceTree = "<group>"; };
+		7B9B5E2C2C8F1A97007F2325 /* CallRecorderAlert .swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CallRecorderAlert .swift"; sourceTree = "<group>"; };
 		7B9B6A652C87A6740001D94D /* CallRecorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CallRecorder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B9B6A682C87A6740001D94D /* CallRecorderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecorderApp.swift; sourceTree = "<group>"; };
 		7B9B6A6C2C87A6750001D94D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -85,6 +93,10 @@
 		7B9B6ADA2C8B3C500001D94D /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		7B9B6ADC2C8B3D410001D94D /* WavesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavesViewModel.swift; sourceTree = "<group>"; };
 		7B9B6ADE2C8BD3DF0001D94D /* RecordingsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsList.swift; sourceTree = "<group>"; };
+		7BABC3462C8D308D0047F65A /* ChoosingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingStore.swift; sourceTree = "<group>"; };
+		7BABC34A2C8D323F0047F65A /* ICloudDriveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICloudDriveButton.swift; sourceTree = "<group>"; };
+		7BABC34C2C8D368D0047F65A /* OnMyiPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnMyiPhone.swift; sourceTree = "<group>"; };
+		7BABC34E2C8DF5D70047F65A /* RecordingDetailsSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingDetailsSheet.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,6 +125,22 @@
 				7B39C2902C8C9EB70099B213 /* ButtonSetting.swift */,
 			);
 			path = SubViews;
+			sourceTree = "<group>";
+		};
+		7B9B5E2A2C8F1A48007F2325 /* PlayerSheet */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B5E282C8F1971007F2325 /* PlayerSheet.swift */,
+				7B9B5E2B2C8F1A56007F2325 /* SubViews */,
+			);
+			path = PlayerSheet;
+			sourceTree = "<group>";
+		};
+		7B9B5E2B2C8F1A56007F2325 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = SubViews;
 			sourceTree = "<group>";
 		};
 		7B9B6A5C2C87A6740001D94D = {
@@ -213,6 +241,7 @@
 			isa = PBXGroup;
 			children = (
 				7B9B6A992C87C9E60001D94D /* NavigationBarSubView.swift */,
+				7B9B5E2C2C8F1A97007F2325 /* CallRecorderAlert .swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -242,6 +271,8 @@
 				7B9B6AB62C8A4C970001D94D /* SegmnetVoiceRecords.swift */,
 				7B9B6AB82C8A4F1C0001D94D /* ButtonsAllWorkHome.swift */,
 				7B9B6ADE2C8BD3DF0001D94D /* RecordingsList.swift */,
+				7BABC34E2C8DF5D70047F65A /* RecordingDetailsSheet.swift */,
+				7B9B5E2A2C8F1A48007F2325 /* PlayerSheet */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -253,6 +284,7 @@
 				7B9B6AC22C8A6B840001D94D /* VoiceRecordingViewModel.swift */,
 				7B9B6ABD2C8A60F50001D94D /* SubViews */,
 				7B9B6ACF2C8B306A0001D94D /* Recording */,
+				7BABC3482C8D31FC0047F65A /* ChoosingStore */,
 			);
 			path = VoiceRecording;
 			sourceTree = "<group>";
@@ -284,6 +316,24 @@
 				7B9B6AD42C8B31060001D94D /* ExtensionData.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		7BABC3482C8D31FC0047F65A /* ChoosingStore */ = {
+			isa = PBXGroup;
+			children = (
+				7BABC3462C8D308D0047F65A /* ChoosingStore.swift */,
+				7BABC3492C8D32160047F65A /* SubViews */,
+			);
+			path = ChoosingStore;
+			sourceTree = "<group>";
+		};
+		7BABC3492C8D32160047F65A /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7BABC34A2C8D323F0047F65A /* ICloudDriveButton.swift */,
+				7BABC34C2C8D368D0047F65A /* OnMyiPhone.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -362,9 +412,11 @@
 				7B9B6A8D2C87BD670001D94D /* MainNavigationBar.swift in Sources */,
 				7B9B6A892C87B65A0001D94D /* RecordButton.swift in Sources */,
 				7B9B6AC32C8A6B840001D94D /* VoiceRecordingViewModel.swift in Sources */,
+				7B9B5E2D2C8F1A97007F2325 /* CallRecorderAlert .swift in Sources */,
 				7B9B6AB72C8A4C970001D94D /* SegmnetVoiceRecords.swift in Sources */,
 				7B9B6ABB2C8A5AC40001D94D /* VoiceRecordingView.swift in Sources */,
 				7B9B6A862C87B5230001D94D /* CallButton.swift in Sources */,
+				7BABC34B2C8D323F0047F65A /* ICloudDriveButton.swift in Sources */,
 				7B9B6A692C87A6740001D94D /* CallRecorderApp.swift in Sources */,
 				7B9B6A802C87B2390001D94D /* MainContentView.swift in Sources */,
 				7B9B6A9A2C87C9E60001D94D /* NavigationBarSubView.swift in Sources */,
@@ -374,6 +426,7 @@
 				7B9B6AD52C8B31060001D94D /* ExtensionData.swift in Sources */,
 				7B9B6A912C87C5400001D94D /* CallRecordsButton.swift in Sources */,
 				7B9B6AD12C8B307E0001D94D /* RecordingDataModel.swift in Sources */,
+				7BABC3472C8D308D0047F65A /* ChoosingStore.swift in Sources */,
 				7B9B6ADD2C8B3D410001D94D /* WavesViewModel.swift in Sources */,
 				7B9B6AD72C8B31210001D94D /* Helper.swift in Sources */,
 				7B9B6ADB2C8B3C500001D94D /* AudioPlayer.swift in Sources */,
@@ -381,8 +434,10 @@
 				7B9B6A952C87C9700001D94D /* CallSetupView.swift in Sources */,
 				7B39C28D2C8C9D8F0099B213 /* SettingView.swift in Sources */,
 				7B9B6AB42C8A4B560001D94D /* VoiceRecordsView.swift in Sources */,
+				7B9B5E292C8F1971007F2325 /* PlayerSheet.swift in Sources */,
 				7B9B6AC12C8A61530001D94D /* ButtonsPlayStopResset.swift in Sources */,
 				7B9B6AA22C887AAC0001D94D /* CountryCodeViewModel.swift in Sources */,
+				7BABC34F2C8DF5D70047F65A /* RecordingDetailsSheet.swift in Sources */,
 				7B9B6AA82C8A21CE0001D94D /* ConfirmOTPcodeView.swift in Sources */,
 				7B9B6A932C87C72B0001D94D /* VoiceRecordsButton.swift in Sources */,
 				7B9B6AAC2C8A2DD00001D94D /* MainTabBar.swift in Sources */,
@@ -391,6 +446,7 @@
 				7B9B6AB12C8A3E970001D94D /* OTPLine.swift in Sources */,
 				7B9B6AA02C8877000001D94D /* CountryCode.swift in Sources */,
 				7B9B6AA42C89CF2F0001D94D /* PhoneNumberTextField.swift in Sources */,
+				7BABC34D2C8D368D0047F65A /* OnMyiPhone.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,7 +505,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -506,7 +562,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;

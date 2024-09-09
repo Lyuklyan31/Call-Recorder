@@ -26,6 +26,7 @@ struct VoiceRecordsView: View {
                 ButtonsAllWorkHome()
                 
                 RecordingsList()
+                    .background(.white)
                 Spacer()
                     .navigationBarBackButtonHidden()
             }

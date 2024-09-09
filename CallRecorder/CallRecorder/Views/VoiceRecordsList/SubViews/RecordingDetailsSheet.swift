@@ -8,11 +8,68 @@
 import SwiftUI
 
 struct RecordingDetailsSheet: View {
+    
+    // MARK: - Properties
+    @State private var showSheet = false
+    
+    var audioURL: URL
+    
+    // MARK: - Body
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button {
+            showSheet.toggle()
+        } label: {
+            ZStack {
+                HStack {
+                    Image(.microphoneForPlayer)
+                    
+                    VStack(alignment: .leading) {
+                        Text("Memo")
+                            .foregroundColor(.primary)
+                        
+                        Text("\(audioURL.lastPathComponent)")
+                            .padding(.bottom, 8)
+                    }
+                    
+                    Spacer()
+                    
+                    HStack(spacing: 16) {
+                        Button {
+                            
+                        } label: {
+                            Image(.play)
+                        }
+                        
+                        Button {
+                            
+                        } label: {
+                            Image(.button10Sec)
+                        }
+                    }
+                }
+                .padding()
+            }
+            .sheet(isPresented: $showSheet) {
+                PlayerSheet()
+                    .presentationDetents([.fraction(0.6)])
+            }
+        }
     }
-}
-
-#Preview {
-    RecordingDetailsSheet()
+  
+    // MARK: - Helpers
+    func getCreationDate(from url: URL) -> String? {
+        do {
+            let attributes = try FileManager.default.attributesOfItem(atPath: url.path)
+            
+            if let creationDate = attributes[.creationDate] as? Date {
+                let formatter = DateFormatter()
+                formatter.dateStyle = .medium
+                formatter.timeStyle = .short
+                return formatter.string(from: creationDate)
+            }
+        } catch {
+            print("Error retrieving file attributes: \(error)")
+        }
+        return nil
+    }
 }

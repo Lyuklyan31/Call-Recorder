@@ -1,24 +1,28 @@
-//
-//  RecordingsList.swift
-//  CallRecorder
-//
-//  Created by Andrii Boichuk on 07.09.2024.
-//
-
 import SwiftUI
 
 struct RecordingsList: View {
     
     @EnvironmentObject var audioRecorder: AudioRecorder
+    @State private var selectedRecording: URL?
+    @State private var showSheet = false
     
     var body: some View {
-        List {
+        VStack {
             ForEach(Array(audioRecorder.recordings.enumerated()), id: \.element.createdAt) { index, recording in
-                RecordingRow(audioURL: recording.fileURL, index: index + 1) // Передаємо порядковий номер
+                RecordingRow(audioURL: recording.fileURL, index: index + 1, selectedRecording: $selectedRecording, showSheet: $showSheet)
             }
             .onDelete(perform: delete)
         }
-        .listStyle(PlainListStyle())
+        .padding()
+        .sheet(isPresented: $showSheet) {
+            if let selectedRecording = selectedRecording {
+                RecordingDetailsSheet(audioURL: selectedRecording)
+                    .presentationDetents([.fraction(0.12)])
+            }
+        }
+        .onChange(of: selectedRecording) { newValue in
+            showSheet = newValue != nil
+        }
     }
     
     func delete(at offsets: IndexSet) {
@@ -33,19 +37,38 @@ struct RecordingsList: View {
 struct RecordingRow: View {
     
     var audioURL: URL
-    var index: Int // Порядковий номер
+    var index: Int
+    @Binding var selectedRecording: URL?
+    @Binding var showSheet: Bool
     
     var body: some View {
-        HStack {
-            Image(.microphoneRec)
-            VStack(alignment: .leading) {
-                Text("Memo \(index)")
-                Text("\(audioURL.lastPathComponent)")
+        Button {
+            selectedRecording = audioURL
+        } label: {
+            HStack {
+                Image(.microphoneRec)
+                VStack(alignment: .leading) {
+                    Text("Memo \(index)")
+                        .foregroundColor(.primary)
+                    Text("\(audioURL.lastPathComponent)")
+                        .padding(.bottom, 8)
+                        .foregroundColor(.primaryExtraDark.opacity(0.5))
+                    Rectangle()
+                        .frame(height: 1)
+                        .foregroundColor(.primary.opacity(0.5))
+                }
+                Spacer()
             }
-            Spacer()
+        }
+        .onChange(of: selectedRecording) { newValue in
+            if newValue == audioURL {
+                showSheet = true
+            }
         }
     }
 }
+
+
 
 #Preview {
     RecordingsList()

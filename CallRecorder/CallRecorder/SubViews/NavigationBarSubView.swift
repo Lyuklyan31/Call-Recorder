@@ -26,7 +26,7 @@ struct NavigationBarSubView: View {
                         }
                     }
                     Text(title)
-                        .font(.system(size: 19, weight: .bold ))
+                        .font(.system(size: 19, weight: .medium ))
                         .bold()
                         .frame(maxWidth: .infinity, alignment: .center)
                         .foregroundColor(.primaryExtraDark)
