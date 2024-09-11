@@ -11,7 +11,7 @@ struct RecordingDetailsSheet: View {
     
     // MARK: - Properties
     @State private var showSheet = false
-    
+    @ObservedObject var audioPlayer = AudioPlayer()
     var audioURL: URL
     
     // MARK: - Body
@@ -34,12 +34,22 @@ struct RecordingDetailsSheet: View {
                     Spacer()
                     
                     HStack(spacing: 16) {
-                        Button {
-                            
-                        } label: {
-                            Image(.play)
+                        if audioPlayer.isPlaying == false {
+                            Button(action: {
+                                self.audioPlayer.startPlayback(audio: self.audioURL)
+                            }) {
+                                Image(.play)
+                                    .imageScale(.large)
+                            }
+                        } else {
+                            Button(action: {
+                                self.audioPlayer.stopPlayback()
+                            }) {
+                                Image(.stop)
+                                    .imageScale(.large)
+                            }
                         }
-                        
+            
                         Button {
                             
                         } label: {
@@ -73,5 +83,4 @@ struct RecordingDetailsSheet: View {
         return nil
     }
 }
-
 
