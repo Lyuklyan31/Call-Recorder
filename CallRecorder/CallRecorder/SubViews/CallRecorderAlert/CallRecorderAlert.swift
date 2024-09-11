@@ -15,7 +15,7 @@ struct CallRecorderAlert: View {
             Color.primaryExtraDark.opacity(0.2)
             VStack {
                 RoundedRectangle(cornerRadius: 48)
-                    .frame(height: 484)
+                    .frame(height: 444)
                     .foregroundColor(.white)
                     .overlay {
                         VStack {
@@ -29,7 +29,7 @@ struct CallRecorderAlert: View {
                             
                             SwipeProgress(selectedTab: $selectedTab)
                                 .padding(.top, 24)
-                                .padding(.bottom, 10)
+                                
                             
                             Button {
                                 showAlert = false
@@ -45,7 +45,8 @@ struct CallRecorderAlert: View {
                                     }
                                 
                             }
-                            .padding()
+                            .padding(.bottom, 16)
+                            .padding(.horizontal)
                         
                             Spacer()
                         }

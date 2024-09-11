@@ -8,12 +8,16 @@
 import SwiftUI
 
 struct OnMyiPhone: View {
+    @EnvironmentObject var audioRecorder: AudioRecorder
     @Binding var iPhoneChoose: Bool
     @Binding var iCloudChoose: Bool
+    
     var body: some View {
             Button {
                 iPhoneChoose.toggle()
                 changeChoose()
+                audioRecorder.onMyPhonestore = iPhoneChoose
+                audioRecorder.iCloudStore = !iPhoneChoose 
             } label: {
                 ZStack {
                     RoundedRectangle(cornerRadius: 24)
@@ -62,4 +66,5 @@ struct OnMyiPhone: View {
 
 #Preview {
     OnMyiPhone(iPhoneChoose: .constant(false), iCloudChoose: .constant(false))
+        .environmentObject(AudioRecorder())
 }

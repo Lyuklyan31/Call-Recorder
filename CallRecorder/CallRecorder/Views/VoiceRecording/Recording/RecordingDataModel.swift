@@ -10,4 +10,9 @@ import Foundation
 struct RecordingDataModel {
     let fileURL: URL
     let createdAt: Date
+    
+    var fileName: String {
+        return fileURL.deletingPathExtension().lastPathComponent
+    }
 }
+

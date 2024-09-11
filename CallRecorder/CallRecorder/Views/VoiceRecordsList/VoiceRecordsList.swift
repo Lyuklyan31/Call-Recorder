@@ -27,7 +27,7 @@ struct VoiceRecordsList: View {
                 
                 RecordingsList()
                     .background(.white)
-                Spacer()
+               
                     .navigationBarBackButtonHidden()
             }
         }

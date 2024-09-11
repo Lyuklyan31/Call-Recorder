@@ -1,16 +1,12 @@
-//
-//  AudioRecorder.swift
-//  CallRecorder
-//
-//  Created by Andrii Boichuk on 06.09.2024.
-//
-
 import Foundation
 import SwiftUI
 import Combine
 import AVFoundation
 
 class AudioRecorder: NSObject, ObservableObject {
+
+    @Published var iCloudStore = false
+    @Published var onMyPhonestore = false
 
     override init() {
         super.init()
@@ -20,31 +16,46 @@ class AudioRecorder: NSObject, ObservableObject {
     let objectWillChange = PassthroughSubject<AudioRecorder, Never>()
     
     var audioRecorder: AVAudioRecorder!
-    
     var recordings = [RecordingDataModel]()
     
-    var recording = false { ///recording = false: Логічна змінна, що позначає, чи триває зараз запис аудіо. Вона за замовчуванням встановлена як false.
-        didSet {///didSet: Спеціальний обробник, який викликається після того, як змінна recording змінить значення. Тут при зміні змінної надсилається сповіщення інтерфейсу через objectWillChange.
+    var recording = false {
+        didSet {
             objectWillChange.send(self)
         }
     }
-    
-    func startRecording() {
-        let recordingSession = AVAudioSession.sharedInstance() ///recordingSession: Створюється сеанс аудіо через AVAudioSession, який дозволяє керувати налаштуваннями звуку на пристрої.
 
+    func startRecording() {
+        let recordingSession = AVAudioSession.sharedInstance()
         
-        do {///do/try/catch: Блок для обробки помилок. У блоці do виконується код, що може викликати помилку. Якщо вона виникне, то блок catch обробляє її.
-            try recordingSession.setCategory(.playAndRecord, mode: .default) ///recordingSession.setCategory(.playAndRecord, mode: .default): Встановлює категорію аудіо, що дозволяє як записувати, так і відтворювати звук.
-            try recordingSession.setActive(true) ///recordingSession.setActive(true): Активує аудіо сесію.
+        do {
+            try recordingSession.setCategory(.playAndRecord, mode: .default)
+            try recordingSession.setActive(true)
         } catch {
             print("Failed to set up recording session")
         }
         
-        let documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0] ///  Отримує шлях до директорії документів користувача на пристрої.
+        var documentPath: URL
 
-        let audioFilename = documentPath.appendingPathComponent("\(Date().toString(dateFormat: "dd-MM-YY 'at' HH:mm:ss")).m4a") /// Формує шлях для збереження аудіофайлу, використовуючи поточну дату як частину імені файлу.
+        if iCloudStore {
+            print("iCloud")
+            documentPath = FileManager.default.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent("Documents") ?? FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        } else {
+            print("onPhone")
+            documentPath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        }
         
-        let settings = [ /// Налаштування для аудіозапису. Визначає формат аудіо (AAC), частоту дискретизації (12000 Гц), кількість каналів (1), та якість запису (висока).
+        let baseFileName = "Memo"
+        let fileManager = FileManager.default
+        var audioFilename: URL
+        var fileIndex = 1
+        
+        repeat {
+            let fileName = "\(baseFileName) \(fileIndex)"
+            audioFilename = documentPath.appendingPathComponent(fileName)
+            fileIndex += 1
+        } while fileManager.fileExists(atPath: audioFilename.path)
+        
+        let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
             AVSampleRateKey: 12000,
             AVNumberOfChannelsKey: 1,
@@ -52,54 +63,61 @@ class AudioRecorder: NSObject, ObservableObject {
         ]
         
         do {
-            audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings) /// Створює екземпляр аудіозапису з заданими налаштуваннями.
-            audioRecorder.record() /// Починає запис аудіо.
-            recording = true /// Встановлює значення змінної recording на true, що позначає початок запису.
+            audioRecorder = try AVAudioRecorder(url: audioFilename, settings: settings)
+            audioRecorder.record()
+            recording = true
         } catch {
             print("Could not start recording")
         }
     }
-    
-    func fetchRecording() {///fetchRecording(): Оновлює список записаних аудіофайлів.
-           recordings.removeAll()///recordings.removeAll(): Очищає масив recordings.
-           let fileManager = FileManager.default///fileManager: Отримує екземпляр FileManager для роботи з файловою системою.
-           let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]///documentDirectory: Шлях до директорії з документами.
-           let directoryContents = try! fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)///directoryContents: Масив файлів з цієї директорії.
-           for audio in directoryContents {///for audio in directoryContents: Цикл, що створює новий об’єкт Recording для кожного аудіофайлу та додає його до масиву recordings.
-               let recording = RecordingDataModel(fileURL: audio, createdAt: getFileDate(for: audio))
-               recordings.append(recording)
-           }
-           recordings.sort(by: { $0.createdAt.compare($1.createdAt) == .orderedAscending}) ///recordings.sort(): Сортує записи за датою створення.
-           objectWillChange.send(self) ///objectWillChange.send(self): Повідомляє про зміни в об’єкті.
-       }
-    
+
+    func fetchRecording() {
+        recordings.removeAll()
+        let fileManager = FileManager.default
+        var documentDirectory: URL
+        
+        if iCloudStore {
+            documentDirectory = fileManager.url(forUbiquityContainerIdentifier: nil)?.appendingPathComponent("Documents") ?? fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        } else {
+            documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        }
+        
+        let directoryContents = try! fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)
+        for audio in directoryContents {
+            let creationDate = getFileDate(for: audio) ?? Date() // Default to current date
+            let recording = RecordingDataModel(fileURL: audio, createdAt: creationDate)
+            recordings.append(recording)
+        }
+        recordings.sort(by: { $0.createdAt.compare($1.createdAt) == .orderedAscending })
+        objectWillChange.send(self)
+    }
+
     func resetRecording() {
+        let fileManager = FileManager.default
+        
         if recording {
-            audioRecorder.stop()  // Зупиняємо запис
-            
-            // Видаляємо поточний файл запису
-            let currentRecordingURL = audioRecorder.url // Отримуємо URL записаного файлу
+            audioRecorder.stop()
+            let currentRecordingURL = audioRecorder.url
             do {
-                try FileManager.default.removeItem(at: currentRecordingURL) // Видаляємо файл
-                print("Файл видалено: \(currentRecordingURL)")
+                try fileManager.removeItem(at: currentRecordingURL)
+                print("File deleted: \(currentRecordingURL)")
             } catch {
-                print("Не вдалося видалити файл: \(error)")
+                print("Failed to delete file: \(error)")
             }
-            
-            recording = false // Скидаємо статус запису
-            fetchRecording() // Оновлюємо список записів
+            recording = false
+            fetchRecording()
         }
     }
-    
-    func deleteRecording(urlsToDelete: [URL]) { /// deleteRecording(): Видаляє вибрані аудіофайли. urlsToDelete: Масив URL-адрес файлів, які треба видалити.
-        for url in urlsToDelete { /// for url in urlsToDelete: Проходить по кожному URL і видаляє його через FileManager.
-            print(url)
+
+    func deleteRecording(urlsToDelete: [URL]) {
+        let fileManager = FileManager.default
+        for url in urlsToDelete {
             do {
-               try FileManager.default.removeItem(at: url)
+                try fileManager.removeItem(at: url)
             } catch {
                 print("File could not be deleted!")
             }
         }
-        fetchRecording() /// Після видалення файлів оновлюється список записаних файлів.
+        fetchRecording()
     }
 }

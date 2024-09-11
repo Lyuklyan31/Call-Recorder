@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct ICloudDriveButton: View {
+    
+    @EnvironmentObject var audioRecorder: AudioRecorder
+    
     @Binding var iCloudChoose: Bool
     @Binding var iPhoneChoose: Bool
     
@@ -15,6 +18,8 @@ struct ICloudDriveButton: View {
         Button {
             iCloudChoose.toggle()
             changeChoose()
+            audioRecorder.iCloudStore = iCloudChoose
+            audioRecorder.iCloudStore = iCloudChoose
         } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 24)
@@ -63,4 +68,5 @@ struct ICloudDriveButton: View {
 
 #Preview {
     ICloudDriveButton(iCloudChoose: .constant(false), iPhoneChoose: .constant(false))
+        .environmentObject(AudioRecorder())
 }

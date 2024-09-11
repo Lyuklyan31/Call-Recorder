@@ -9,14 +9,12 @@ import SwiftUI
 
 struct PlayerSheet: View {
     @Environment(\.dismiss) var dismiss
+    var audioURL: URL
+    
     var body: some View {
         VStack {
             HStack {
-                Button {
-                    
-                } label: {
-                    Image(.trash)
-                }
+//                ButtonPlayerDelete(action: )
                
                 Button {
                     
@@ -46,6 +44,3 @@ struct PlayerSheet: View {
     }
 }
 
-#Preview {
-    PlayerSheet()
-}

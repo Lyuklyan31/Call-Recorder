@@ -50,7 +50,7 @@ struct RecordingDetailsSheet: View {
                 .padding()
             }
             .sheet(isPresented: $showSheet) {
-                PlayerSheet()
+                PlayerSheet(audioURL: audioURL)
                     .presentationDetents([.fraction(0.6)])
             }
         }
@@ -73,3 +73,5 @@ struct RecordingDetailsSheet: View {
         return nil
     }
 }
+
+

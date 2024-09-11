@@ -49,6 +49,8 @@
 		7B9B6ADB2C8B3C500001D94D /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ADA2C8B3C500001D94D /* AudioPlayer.swift */; };
 		7B9B6ADD2C8B3D410001D94D /* WavesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ADC2C8B3D410001D94D /* WavesViewModel.swift */; };
 		7B9B6ADF2C8BD3DF0001D94D /* RecordingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ADE2C8BD3DF0001D94D /* RecordingsList.swift */; };
+		7BAAFDB52C90FF94008B2AAF /* ButtonDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAAFDB42C90FF94008B2AAF /* ButtonDelete.swift */; };
+		7BAAFDB92C9123ED008B2AAF /* ButtonPlayerDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAAFDB82C9123ED008B2AAF /* ButtonPlayerDelete.swift */; };
 		7BABC3472C8D308D0047F65A /* ChoosingStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABC3462C8D308D0047F65A /* ChoosingStore.swift */; };
 		7BABC34B2C8D323F0047F65A /* ICloudDriveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABC34A2C8D323F0047F65A /* ICloudDriveButton.swift */; };
 		7BABC34D2C8D368D0047F65A /* OnMyiPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABC34C2C8D368D0047F65A /* OnMyiPhone.swift */; };
@@ -99,6 +101,8 @@
 		7B9B6ADA2C8B3C500001D94D /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		7B9B6ADC2C8B3D410001D94D /* WavesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavesViewModel.swift; sourceTree = "<group>"; };
 		7B9B6ADE2C8BD3DF0001D94D /* RecordingsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsList.swift; sourceTree = "<group>"; };
+		7BAAFDB42C90FF94008B2AAF /* ButtonDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDelete.swift; sourceTree = "<group>"; };
+		7BAAFDB82C9123ED008B2AAF /* ButtonPlayerDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPlayerDelete.swift; sourceTree = "<group>"; };
 		7BABC3462C8D308D0047F65A /* ChoosingStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingStore.swift; sourceTree = "<group>"; };
 		7BABC34A2C8D323F0047F65A /* ICloudDriveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICloudDriveButton.swift; sourceTree = "<group>"; };
 		7BABC34C2C8D368D0047F65A /* OnMyiPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnMyiPhone.swift; sourceTree = "<group>"; };
@@ -145,6 +149,7 @@
 		7B9B5E2B2C8F1A56007F2325 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				7BAAFDB82C9123ED008B2AAF /* ButtonPlayerDelete.swift */,
 			);
 			name = SubViews;
 			sourceTree = "<group>";
@@ -295,7 +300,7 @@
 			children = (
 				7B9B6AB62C8A4C970001D94D /* SegmnetVoiceRecords.swift */,
 				7B9B6AB82C8A4F1C0001D94D /* ButtonsAllWorkHome.swift */,
-				7B9B6ADE2C8BD3DF0001D94D /* RecordingsList.swift */,
+				7BAAFDB32C90FF79008B2AAF /* RecordingList */,
 				7BABC34E2C8DF5D70047F65A /* RecordingDetailsSheet.swift */,
 				7B9B5E2A2C8F1A48007F2325 /* PlayerSheet */,
 			);
@@ -308,8 +313,8 @@
 				7B9B6ABA2C8A5AC40001D94D /* VoiceRecordingView.swift */,
 				7B9B6AC22C8A6B840001D94D /* VoiceRecordingViewModel.swift */,
 				7B9B6ABD2C8A60F50001D94D /* SubViews */,
-				7B9B6ACF2C8B306A0001D94D /* Recording */,
 				7BABC3482C8D31FC0047F65A /* ChoosingStore */,
+				7B9B6ACF2C8B306A0001D94D /* Recording */,
 			);
 			path = VoiceRecording;
 			sourceTree = "<group>";
@@ -341,6 +346,15 @@
 				7B9B6AD42C8B31060001D94D /* ExtensionData.swift */,
 			);
 			path = Extension;
+			sourceTree = "<group>";
+		};
+		7BAAFDB32C90FF79008B2AAF /* RecordingList */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6ADE2C8BD3DF0001D94D /* RecordingsList.swift */,
+				7BAAFDB42C90FF94008B2AAF /* ButtonDelete.swift */,
+			);
+			path = RecordingList;
 			sourceTree = "<group>";
 		};
 		7BABC3482C8D31FC0047F65A /* ChoosingStore */ = {
@@ -438,6 +452,7 @@
 				7B9B6A892C87B65A0001D94D /* RecordButton.swift in Sources */,
 				7B9B6AC32C8A6B840001D94D /* VoiceRecordingViewModel.swift in Sources */,
 				7B9B5E2D2C8F1A97007F2325 /* CallRecorderAlert.swift in Sources */,
+				7BAAFDB92C9123ED008B2AAF /* ButtonPlayerDelete.swift in Sources */,
 				7B9B6AB72C8A4C970001D94D /* SegmnetVoiceRecords.swift in Sources */,
 				7B9B6ABB2C8A5AC40001D94D /* VoiceRecordingView.swift in Sources */,
 				7B9B6A862C87B5230001D94D /* CallButton.swift in Sources */,
@@ -456,6 +471,7 @@
 				7B9B6ADD2C8B3D410001D94D /* WavesViewModel.swift in Sources */,
 				7B9B6AD72C8B31210001D94D /* Helper.swift in Sources */,
 				7B9B6ADB2C8B3C500001D94D /* AudioPlayer.swift in Sources */,
+				7BAAFDB52C90FF94008B2AAF /* ButtonDelete.swift in Sources */,
 				7B9B6AAF2C8A3E2A0001D94D /* ConfirmOTPViewModel.swift in Sources */,
 				7B9B6A952C87C9700001D94D /* CallSetupView.swift in Sources */,
 				7B39C28D2C8C9D8F0099B213 /* SettingView.swift in Sources */,
@@ -605,6 +621,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CallRecorder/CallRecorder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CallRecorder/Preview Content\"";
@@ -635,6 +652,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CallRecorder/CallRecorder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CallRecorder/Preview Content\"";

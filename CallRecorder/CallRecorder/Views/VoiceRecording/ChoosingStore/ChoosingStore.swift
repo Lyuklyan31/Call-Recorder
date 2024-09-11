@@ -74,4 +74,5 @@ struct ChoosingStore: View {
 
 #Preview {
     ChoosingStore()
+        .environmentObject(AudioRecorder())
 }

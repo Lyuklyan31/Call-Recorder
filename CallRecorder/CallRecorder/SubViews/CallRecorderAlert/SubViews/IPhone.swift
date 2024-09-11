@@ -13,7 +13,7 @@ struct IPhone: View {
         Image(image)
             .resizable()
             .scaledToFill()
-            .offset(y: -60)
+            .offset(y: -63)
             .frame(width: 276, height: 235)
             .mask(LinearGradient(
                 gradient: Gradient(stops: [

@@ -1,5 +1,7 @@
 import SwiftUI
 
+import SwiftUI
+
 struct RecordingsList: View {
     
     @EnvironmentObject var audioRecorder: AudioRecorder
@@ -7,13 +9,23 @@ struct RecordingsList: View {
     @State private var showSheet = false
     
     var body: some View {
-        VStack {
-            ForEach(Array(audioRecorder.recordings.enumerated()), id: \.element.createdAt) { index, recording in
-                RecordingRow(audioURL: recording.fileURL, index: index + 1, selectedRecording: $selectedRecording, showSheet: $showSheet)
+        List {
+            ForEach(audioRecorder.recordings.indices, id: \.self) { index in
+                let recording = audioRecorder.recordings[index]
+                RecordingRow(audioURL: recording.fileURL, selectedRecording: $selectedRecording, showSheet: $showSheet)
+                
+                    .swipeActions(edge: .trailing) {
+                        ButtonDelete(action: {
+                            delete(at: IndexSet(integer: index))
+                        })
+                        ShareLink(item: recording.fileURL, preview: SharePreview(recording.fileURL.lastPathComponent, image: Image("microphone"))) {
+                            Image(.shareForSwipe)
+                        }
+                        .tint(.blue)
+                    }
             }
-            .onDelete(perform: delete)
         }
-        .padding()
+        .listStyle(.plain)
         .sheet(isPresented: $showSheet) {
             if let selectedRecording = selectedRecording {
                 RecordingDetailsSheet(audioURL: selectedRecording)
@@ -34,30 +46,32 @@ struct RecordingsList: View {
     }
 }
 
+
 struct RecordingRow: View {
     
     var audioURL: URL
-    var index: Int
+    
     @Binding var selectedRecording: URL?
     @Binding var showSheet: Bool
     
     var body: some View {
+        let creationDate = getFileDate(for: audioURL)
+        let formattedDate = creationDate?.formattedDate() ?? "Unknown date"
+        
         Button {
             selectedRecording = audioURL
         } label: {
             HStack {
                 Image(.microphoneRec)
                 VStack(alignment: .leading) {
-                    Text("Memo \(index)")
+                    Text(audioURL.deletingPathExtension().lastPathComponent)
                         .foregroundColor(.primary)
-                    Text("\(audioURL.lastPathComponent)")
+                        .font(.system(size: 17, weight: .regular))
+                    Text(formattedDate)
                         .padding(.bottom, 8)
+                        .font(.system(size: 15, weight: .regular))
                         .foregroundColor(.primaryExtraDark.opacity(0.5))
-                    Rectangle()
-                        .frame(height: 1)
-                        .foregroundColor(.primary.opacity(0.5))
                 }
-                Spacer()
             }
         }
         .onChange(of: selectedRecording) { newValue in
@@ -67,6 +81,7 @@ struct RecordingRow: View {
         }
     }
 }
+
 
 
 

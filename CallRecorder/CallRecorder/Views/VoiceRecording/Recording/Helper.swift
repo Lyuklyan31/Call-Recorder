@@ -8,11 +8,13 @@
 import Foundation
 
 
-func getFileDate(for file: URL) -> Date {
-    if let attributes = try? FileManager.default.attributesOfItem(atPath: file.path) as [FileAttributeKey: Any],
-        let creationDate = attributes[FileAttributeKey.creationDate] as? Date {
-        return creationDate
-    } else {
-        return Date()
+func getFileDate(for file: URL) -> Date? {
+    let fileManager = FileManager.default
+    do {
+        let attributes = try fileManager.attributesOfItem(atPath: file.path)
+        return attributes[.creationDate] as? Date
+    } catch {
+        print("Could not retrieve file attributes: \(error)")
+        return nil
     }
 }
