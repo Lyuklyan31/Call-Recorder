@@ -1,10 +1,3 @@
-//
-//  AudioPlayer.swift
-//  CallRecorder
-//
-//  Created by Andrii Boichuk on 06.09.2024.
-//
-
 import Foundation
 import SwiftUI
 import Combine
@@ -22,13 +15,23 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
     
     var audioPlayer: AVAudioPlayer!
     
+    var audioDuration: TimeInterval {
+        return audioPlayer?.duration ?? 0.0
+    }
+    
+    var currentTime: TimeInterval {
+        return audioPlayer?.currentTime ?? 0.0
+    }
+    
     func startPlayback(audio: URL) {
         let playbackSession = AVAudioSession.sharedInstance()
         
         do {
+            try playbackSession.setCategory(.playback, mode: .default, options: [])
+            try playbackSession.setActive(true)
             try playbackSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
-        } catch {
-            print("Playing over the device's speakers failed")
+        } catch let error {
+            print("Audio session setup failed with error: \(error.localizedDescription)")
         }
         
         do {
@@ -36,8 +39,11 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
             audioPlayer.delegate = self
             audioPlayer.play()
             isPlaying = true
-        } catch {
-            print("Playback failed.")
+            
+            print("Audio duration: \(audioPlayer.duration) seconds")
+            
+        } catch let error {
+            print("Playback failed with error: \(error.localizedDescription)")
         }
     }
     
