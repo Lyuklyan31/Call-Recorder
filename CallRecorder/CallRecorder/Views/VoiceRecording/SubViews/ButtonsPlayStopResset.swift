@@ -18,13 +18,13 @@ struct ButtonsPlayStopResset: View {
         HStack {
             Spacer()
             Button {
-                audioRecorder.startRecording()
-                
                 if viewModel.timerIsRunning == true {
+                    audioRecorder.stopRecording()
                     wavesViewModel.stopMonitoring()
                     viewModel.stopTimer()
                     viewModel.resetTimer()
                 } else {
+                    audioRecorder.startRecording()
                     wavesViewModel.startMonitoring()
                     viewModel.startTimer()
                 }
@@ -42,7 +42,7 @@ struct ButtonsPlayStopResset: View {
           
             Button {
                 viewModel.resetTimer()
-//                audioRecorder.resetRecording()
+                audioRecorder.resetRecording()
                 showingAlert = true
             } label: {
                 RoundedRectangle(cornerRadius: 24)
@@ -61,6 +61,7 @@ struct ButtonsPlayStopResset: View {
                 message: Text("Cancelling the recording will discard any unsaved data. Continue?"),
                 primaryButton: .destructive(Text("Cancel")) {
                     wavesViewModel.stopMonitoring()
+                    audioRecorder.resetRecording()
                 },
                 secondaryButton: .cancel(Text("Back")) {
                    
