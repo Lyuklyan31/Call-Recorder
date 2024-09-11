@@ -1,9 +1,3 @@
-//
-//  RecordingDetailsSheet.swift
-//  CallRecorder
-//
-//  Created by Andrii Boichuk on 08.09.2024.
-//
 
 import SwiftUI
 
@@ -16,54 +10,79 @@ struct RecordingDetailsSheet: View {
     
     // MARK: - Body
     var body: some View {
-        Button {
-            showSheet.toggle()
-        } label: {
-            ZStack {
-                HStack {
-                    Image(.microphoneForPlayer)
+        let creationDate = getFileDate(for: audioURL)
+        let formattedDate = creationDate?.formattedDate() ?? "Unknown date"
+        
+        ZStack {
+            VStack {
+                ZStack {
+                    Capsule()
+                        .foregroundColor(.primaryExtraDark.opacity(0.1))
+                        .frame(height: 4)
+                        .padding(.top, 3.36)
+                        .padding(.horizontal, 1)
                     
-                    VStack(alignment: .leading) {
-                        Text("Memo")
-                            .foregroundColor(.primary)
-                        
-                        Text("\(audioURL.lastPathComponent)")
-                            .padding(.bottom, 8)
-                    }
-                    
-                    Spacer()
-                    
-                    HStack(spacing: 16) {
-                        if audioPlayer.isPlaying == false {
-                            Button(action: {
-                                self.audioPlayer.startPlayback(audio: self.audioURL)
-                            }) {
-                                Image(.play)
-                                    .imageScale(.large)
-                            }
-                        } else {
-                            Button(action: {
-                                self.audioPlayer.stopPlayback()
-                            }) {
-                                Image(.stop)
-                                    .imageScale(.large)
-                            }
-                        }
-            
-                        Button {
-                            
-                        } label: {
-                            Image(.button10Sec)
-                        }
-                    }
+                    Capsule()
+                        .foregroundColor(.customPink)
+                        .frame(height: 4)
+                        .padding(.top, 3.36)
+                        .padding(.horizontal, 1)
                 }
-                .padding()
+                Spacer()
             }
+            Button {
+                showSheet.toggle()
+            } label: {
+                VStack {
+                    
+                   
+                    HStack {
+                        Image(.microphoneForPlayer)
+                        
+                        VStack(alignment: .leading) {
+                            Text("Memo")
+                                .foregroundColor(.primary)
+                                .font(.system(size: 19, weight: .medium))
+                                .padding(.bottom, 2)
+                            Text("\(formattedDate)")
+                                .foregroundColor(.primaryExtraDark.opacity(0.5))
+                        }
+                        
+                        Spacer()
+                        
+                        HStack(spacing: 16) {
+                            if audioPlayer.isPlaying == false {
+                                Button(action: {
+                                    self.audioPlayer.startPlayback(audio: self.audioURL)
+                                }) {
+                                    Image(.play)
+                                        .imageScale(.large)
+                                }
+                            } else {
+                                Button(action: {
+                                    self.audioPlayer.stopPlayback()
+                                }) {
+                                    Image(.stop)
+                                        .imageScale(.large)
+                                }
+                            }
+                            
+                            Button {
+                                
+                            } label: {
+                                Image(.button10Sec)
+                            }
+                        }
+                    }
+                    .padding()
+                }
+            }
+        }
             .sheet(isPresented: $showSheet) {
                 PlayerSheet(audioURL: audioURL)
                     .presentationDetents([.fraction(0.6)])
             }
-        }
+        
     }
   
     // MARK: - Helpers
@@ -84,3 +103,8 @@ struct RecordingDetailsSheet: View {
     }
 }
 
+#Preview {
+    RecordingDetailsSheet(audioURL: URL(fileURLWithPath: "example/path/to/audiofile.m4a"))
+        .environmentObject(AudioPlayer())
+}
+  
