@@ -1,7 +1,5 @@
 import SwiftUI
 
-import SwiftUI
-
 struct RecordingsList: View {
     
     @EnvironmentObject var audioRecorder: AudioRecorder
@@ -47,12 +45,16 @@ struct RecordingsList: View {
 }
 
 
+import SwiftUI
+
 struct RecordingRow: View {
     
     var audioURL: URL
     
     @Binding var selectedRecording: URL?
     @Binding var showSheet: Bool
+    
+    @State private var audioDuration: String = "00:00"
     
     var body: some View {
         let creationDate = getFileDate(for: audioURL)
@@ -72,6 +74,11 @@ struct RecordingRow: View {
                         .font(.system(size: 15, weight: .regular))
                         .foregroundColor(.primaryExtraDark.opacity(0.5))
                 }
+                
+                Spacer()
+                Text(audioDuration)
+                    .font(.system(size: 17, weight: .regular))
+                    .foregroundColor(.primaryExtraDark.opacity(0.5))
             }
         }
         .onChange(of: selectedRecording) { newValue in
@@ -79,11 +86,15 @@ struct RecordingRow: View {
                 showSheet = true
             }
         }
+        .onAppear {
+            AudioPlayer.getAudioDuration(url: audioURL) { duration in
+                let minutes = Int(duration) / 60
+                let seconds = Int(duration) % 60
+                audioDuration = String(format: "%02d:%02d", minutes, seconds)
+            }
+        }
     }
 }
-
-
-
 
 #Preview {
     RecordingsList()

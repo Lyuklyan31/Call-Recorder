@@ -13,7 +13,7 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
         }
     }
     
-    var audioPlayer: AVAudioPlayer!
+    var audioPlayer: AVAudioPlayer?
     
     var audioDuration: TimeInterval {
         return audioPlayer?.duration ?? 0.0
@@ -36,11 +36,11 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
         
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: audio)
-            audioPlayer.delegate = self
-            audioPlayer.play()
+            audioPlayer?.delegate = self
+            audioPlayer?.play()
             isPlaying = true
             
-            print("Audio duration: \(audioPlayer.duration) seconds")
+            print("Audio duration: \(audioPlayer?.duration ?? 0.0) seconds")
             
         } catch let error {
             print("Playback failed with error: \(error.localizedDescription)")
@@ -48,13 +48,27 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
     
     func stopPlayback() {
-        audioPlayer.stop()
+        audioPlayer?.stop()
         isPlaying = false
     }
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         if flag {
             isPlaying = false
+        }
+    }
+    
+    static func getAudioDuration(url: URL, completion: @escaping (TimeInterval) -> Void) {
+        let asset = AVAsset(url: url)
+      
+        Task {
+            do {
+                let duration = try await asset.load(.duration)
+                completion(duration.seconds)
+            } catch {
+                print("Error loading asset duration: \(error.localizedDescription)")
+                completion(0.0)
+            }
         }
     }
 }
