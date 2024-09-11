@@ -10,15 +10,15 @@ class AudioRecorder: NSObject, ObservableObject {
 
     override init() {
         super.init()
-        fetchRecording()
+        fetchRecording()///Це означає, що коли ти створюєш новий екземпляр класу AudioRecorder, метод fetchRecording() автоматично викликається, щоб завантажити і оновити список записів.
     }
     
-    let objectWillChange = PassthroughSubject<AudioRecorder, Never>()
+    let objectWillChange = PassthroughSubject<AudioRecorder, Never>() /// Це об'єкт типу PassthroughSubject, який повідомляє про зміни властивостей класу.
     
     var audioRecorder: AVAudioRecorder!
     var recordings = [RecordingDataModel]()
     
-    var recording = false {
+    var recording = false {/// recording — це змінна, що вказує, чи ведеться запис. При її зміні викликається оновлення UI через objectWillChange.
         didSet {
             objectWillChange.send(self)
         }
@@ -46,14 +46,23 @@ class AudioRecorder: NSObject, ObservableObject {
         
         let baseFileName = "Memo"
         let fileManager = FileManager.default
-        var audioFilename: URL
         var fileIndex = 1
-        
+        var audioFilename: URL
+        var fileName: String
+
         repeat {
-            let fileName = "\(baseFileName) \(fileIndex)"
-            audioFilename = documentPath.appendingPathComponent(fileName)
+            if fileIndex == 0 {
+                fileName = baseFileName
+            } else {
+                fileName = "\(baseFileName) \(fileIndex)"
+            }
+           
+            audioFilename = documentPath.appendingPathComponent(fileName).appendingPathExtension("m4a")
+            
             fileIndex += 1
-        } while fileManager.fileExists(atPath: audioFilename.path)
+        } while fileManager.fileExists(atPath: audioFilename.path)  
+
+
         
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
@@ -97,12 +106,14 @@ class AudioRecorder: NSObject, ObservableObject {
         
         if recording {
             audioRecorder.stop()
-            let currentRecordingURL = audioRecorder.url
-            do {
-                try fileManager.removeItem(at: currentRecordingURL)
-                print("File deleted: \(currentRecordingURL)")
-            } catch {
-                print("Failed to delete file: \(error)")
+            if audioRecorder.currentTime > 0 {
+                let currentRecordingURL = audioRecorder.url
+                do {
+                    try fileManager.removeItem(at: currentRecordingURL)
+                    print("File deleted: \(currentRecordingURL)")
+                } catch {
+                    print("Failed to delete file: \(error)")
+                }
             }
             recording = false
             fetchRecording()
@@ -119,5 +130,14 @@ class AudioRecorder: NSObject, ObservableObject {
             }
         }
         fetchRecording()
+    }
+    
+    func stopRecording() {
+        if audioRecorder.isRecording {
+            audioRecorder.stop()
+            recording = false
+            fetchRecording()
+            objectWillChange.send(self) 
+        }
     }
 }
