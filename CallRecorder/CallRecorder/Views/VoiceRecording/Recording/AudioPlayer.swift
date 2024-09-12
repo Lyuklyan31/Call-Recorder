@@ -5,22 +5,22 @@ import AVFoundation
 
 class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
     
-    let objectWillChange = PassthroughSubject<AudioPlayer, Never>()
+    @Published var isPlaying = false
+    @Published var isPause = false
+    @Published var progress: Double = 0.0
     
-    var isPlaying = false {
-        didSet {
-            objectWillChange.send(self)
+    private var audioPlayer: AVAudioPlayer?
+    private var timer: Timer?
+    
+    override init() {
+        super.init()
+        startTimer()
+    }
+    
+    private func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
+            self.updateProgress()
         }
-    }
-    
-    var audioPlayer: AVAudioPlayer?
-    
-    var audioDuration: TimeInterval {
-        return audioPlayer?.duration ?? 0.0
-    }
-    
-    var currentTime: TimeInterval {
-        return audioPlayer?.currentTime ?? 0.0
     }
     
     func startPlayback(audio: URL) {
@@ -35,13 +35,14 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
         }
         
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: audio)
-            audioPlayer?.delegate = self
-            audioPlayer?.play()
+            if let player = audioPlayer {
+                player.play()
+            } else {
+                audioPlayer = try AVAudioPlayer(contentsOf: audio)
+                audioPlayer?.delegate = self
+                audioPlayer?.play()
+            }
             isPlaying = true
-            
-            print("Audio duration: \(audioPlayer?.duration ?? 0.0) seconds")
-            
         } catch let error {
             print("Playback failed with error: \(error.localizedDescription)")
         }
@@ -52,9 +53,28 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
         isPlaying = false
     }
     
+    func resetPlayback() {
+        stopPlayback()
+        progress = 0.0
+    }
+    
+    func seekForward(seconds: TimeInterval = 10) {
+        guard let player = audioPlayer else { return }
+        let newTime = player.currentTime + seconds
+        player.currentTime = min(newTime, player.duration)
+    }
+    
+    private func updateProgress() {
+        guard let player = audioPlayer, player.isPlaying else {
+            return
+        }
+        progress = player.currentTime / player.duration
+    }
+    
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         if flag {
             isPlaying = false
+            progress = 0.0
         }
     }
     
@@ -71,4 +91,12 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
             }
         }
     }
+    
+    func audioDuration(for url: URL, completion: @escaping (String) -> Void) {
+            AudioPlayer.getAudioDuration(url: url) { duration in
+                let minutes = Int(duration) / 60
+                let seconds = Int(duration) % 60
+                completion(String(format: "%02d:%02d", minutes, seconds))
+            }
+        }
 }

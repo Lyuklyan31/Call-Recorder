@@ -8,7 +8,9 @@
 import SwiftUI
 
 struct VoiceRecordsList: View {
-
+    
+    @State private var selection = 0
+    
     var body: some View {
         ZStack {
             LinearGradient(
@@ -21,11 +23,11 @@ struct VoiceRecordsList: View {
             VStack {
                 NavigationBarSubView(title: "Voice Records")
                     
-                SegmnetVoiceRecords()
+                SegmnetVoiceRecords(selection: $selection)
                 
                 ButtonsAllWorkHome()
                 
-                RecordingsList()
+                RecordingsList(selection: $selection)
                     .navigationBarBackButtonHidden()
             }
         }

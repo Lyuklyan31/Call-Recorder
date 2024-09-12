@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct SegmnetVoiceRecords: View {
-    @State private var selection = 0
+    @Binding var selection: Int
     var body: some View {
         VStack {
             Picker("What is your favorite color?", selection: $selection) {
@@ -23,5 +23,5 @@ struct SegmnetVoiceRecords: View {
 }
 
 #Preview {
-    SegmnetVoiceRecords()
+    SegmnetVoiceRecords(selection: .constant(0))
 }

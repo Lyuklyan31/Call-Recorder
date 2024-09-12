@@ -1,5 +1,5 @@
-
 import SwiftUI
+import Combine
 
 struct RecordingDetailsSheet: View {
     
@@ -15,7 +15,7 @@ struct RecordingDetailsSheet: View {
         
         ZStack {
             VStack {
-                ZStack {
+                ZStack(alignment: .leading) {
                     Capsule()
                         .foregroundColor(.primaryExtraDark.opacity(0.1))
                         .frame(height: 4)
@@ -24,9 +24,10 @@ struct RecordingDetailsSheet: View {
                     
                     Capsule()
                         .foregroundColor(.customPink)
-                        .frame(height: 4)
+                        .frame(width: CGFloat(audioPlayer.progress * UIScreen.main.bounds.width), height: 4)
                         .padding(.top, 3.36)
                         .padding(.horizontal, 1)
+                        .animation(.linear(duration: 0.1), value: audioPlayer.progress)
                 }
                 Spacer()
             }
@@ -34,8 +35,6 @@ struct RecordingDetailsSheet: View {
                 showSheet.toggle()
             } label: {
                 VStack {
-                    
-                   
                     HStack {
                         Image(.microphoneForPlayer)
                         
@@ -68,7 +67,9 @@ struct RecordingDetailsSheet: View {
                             }
                             
                             Button {
-                                
+                                if self.audioPlayer.isPlaying {
+                                    self.audioPlayer.seekForward()
+                                }
                             } label: {
                                 Image(.button10Sec)
                             }
@@ -78,11 +79,13 @@ struct RecordingDetailsSheet: View {
                 }
             }
         }
-            .sheet(isPresented: $showSheet) {
-                PlayerSheet(audioURL: audioURL)
-                    .presentationDetents([.fraction(0.6)])
-            }
-        
+        .sheet(isPresented: $showSheet) {
+            PlayerSheet(audioURL: audioURL)
+                .presentationDetents([.fraction(0.6)])
+        }
+        .onDisappear {
+            self.audioPlayer.resetPlayback()
+        }
     }
   
     // MARK: - Helpers
@@ -102,9 +105,3 @@ struct RecordingDetailsSheet: View {
         return nil
     }
 }
-
-#Preview {
-    RecordingDetailsSheet(audioURL: URL(fileURLWithPath: "example/path/to/audiofile.m4a"))
-        .environmentObject(AudioPlayer())
-}
-  

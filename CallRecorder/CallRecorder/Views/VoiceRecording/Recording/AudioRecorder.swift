@@ -120,6 +120,7 @@ class AudioRecorder: NSObject, ObservableObject {
         }
     }
 
+
     func deleteRecording(urlsToDelete: [URL]) {
         let fileManager = FileManager.default
         for url in urlsToDelete {
