@@ -17,6 +17,7 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
         startTimer()
     }
     
+    
     private func startTimer() {
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
             self.updateProgress()
@@ -64,6 +65,16 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
         player.currentTime = min(newTime, player.duration)
     }
     
+    func curentTime() -> String {
+        guard let player = audioPlayer, player.isPlaying else {
+            return "00:00"
+        }
+        let curentTime = Int(player.currentTime)
+        let minutes = Int(curentTime) / 60
+        let seconds = Int(curentTime) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
+    
     private func updateProgress() {
         guard let player = audioPlayer, player.isPlaying else {
             return
@@ -80,7 +91,7 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
     
     static func getAudioDuration(url: URL, completion: @escaping (TimeInterval) -> Void) {
         let asset = AVAsset(url: url)
-      
+        
         Task {
             do {
                 let duration = try await asset.load(.duration)
@@ -93,10 +104,10 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
     
     func audioDuration(for url: URL, completion: @escaping (String) -> Void) {
-            AudioPlayer.getAudioDuration(url: url) { duration in
-                let minutes = Int(duration) / 60
-                let seconds = Int(duration) % 60
-                completion(String(format: "%02d:%02d", minutes, seconds))
-            }
+        AudioPlayer.getAudioDuration(url: url) { duration in
+            let minutes = Int(duration) / 60
+            let seconds = Int(duration) % 60
+            completion(String(format: "%02d:%02d", minutes, seconds))
         }
+    }
 }
