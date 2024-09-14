@@ -66,6 +66,7 @@ struct PlayerSheet: View {
                 Player(audioURL: audioURL)
                     .padding()
                 
+                ButtonsTagAndNote(audioURL: audioURL)
                 Spacer()
             }
         }

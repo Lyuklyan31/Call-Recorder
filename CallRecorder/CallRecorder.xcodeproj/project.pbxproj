@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7B39C28D2C8C9D8F0099B213 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B39C28C2C8C9D8F0099B213 /* SettingView.swift */; };
 		7B39C2912C8C9EB70099B213 /* ButtonSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B39C2902C8C9EB70099B213 /* ButtonSetting.swift */; };
+		7B3FF73B2C95DCEE00559A72 /* ButtonsTagAndNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3FF73A2C95DCEE00559A72 /* ButtonsTagAndNote.swift */; };
 		7B551B212C9394FC009E4661 /* ButtonPlayerFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B551B202C9394FC009E4661 /* ButtonPlayerFavorite.swift */; };
 		7B551B232C93B1A9009E4661 /* ButtonPlayerShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B551B222C93B1A9009E4661 /* ButtonPlayerShare.swift */; };
 		7B551B262C93BF7C009E4661 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B551B252C93BF7C009E4661 /* Player.swift */; };
@@ -66,6 +67,7 @@
 /* Begin PBXFileReference section */
 		7B39C28C2C8C9D8F0099B213 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		7B39C2902C8C9EB70099B213 /* ButtonSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSetting.swift; sourceTree = "<group>"; };
+		7B3FF73A2C95DCEE00559A72 /* ButtonsTagAndNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsTagAndNote.swift; sourceTree = "<group>"; };
 		7B551B202C9394FC009E4661 /* ButtonPlayerFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPlayerFavorite.swift; sourceTree = "<group>"; };
 		7B551B222C93B1A9009E4661 /* ButtonPlayerShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPlayerShare.swift; sourceTree = "<group>"; };
 		7B551B252C93BF7C009E4661 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
@@ -288,18 +290,45 @@
 			isa = PBXGroup;
 			children = (
 				7B551B272C93C521009E4661 /* PlayerSubViews */,
-				7B9B5E2B2C8F1A56007F2325 /* ButtonsDeleteShareFavorite */,
+				7B3FF7382C95DBA700559A72 /* ButtonsDeleteShare */,
+				7B3FF73C2C95DCF700559A72 /* ButtonsTagAndNote */,
 			);
 			name = SubViews;
 			sourceTree = "<group>";
 		};
-		7B551B272C93C521009E4661 /* PlayerSubViews */ = {
+		7B3FF7382C95DBA700559A72 /* ButtonsDeleteShare */ = {
+			isa = PBXGroup;
+			children = (
+				7BAAFDB82C9123ED008B2AAF /* ButtonPlayerDelete.swift */,
+				7B551B222C93B1A9009E4661 /* ButtonPlayerShare.swift */,
+				7B551B202C9394FC009E4661 /* ButtonPlayerFavorite.swift */,
+			);
+			name = ButtonsDeleteShare;
+			sourceTree = "<group>";
+		};
+		7B3FF7392C95DCA100559A72 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
 				7B551B282C93C541009E4661 /* Progress.swift */,
 				7B551B2A2C93C5C1009E4661 /* TimePlayerInterval.swift */,
 				7B551B2C2C93CCE6009E4661 /* ButtonsOfPlayer.swift */,
+			);
+			name = SubViews;
+			sourceTree = "<group>";
+		};
+		7B3FF73C2C95DCF700559A72 /* ButtonsTagAndNote */ = {
+			isa = PBXGroup;
+			children = (
+				7B3FF73A2C95DCEE00559A72 /* ButtonsTagAndNote.swift */,
+			);
+			path = ButtonsTagAndNote;
+			sourceTree = "<group>";
+		};
+		7B551B272C93C521009E4661 /* PlayerSubViews */ = {
+			isa = PBXGroup;
+			children = (
 				7B551B252C93BF7C009E4661 /* Player.swift */,
+				7B3FF7392C95DCA100559A72 /* SubViews */,
 			);
 			name = PlayerSubViews;
 			sourceTree = "<group>";
@@ -311,16 +340,6 @@
 				7B3FF7372C95D2D100559A72 /* SubViews */,
 			);
 			path = PlayerSheet;
-			sourceTree = "<group>";
-		};
-		7B9B5E2B2C8F1A56007F2325 /* ButtonsDeleteShareFavorite */ = {
-			isa = PBXGroup;
-			children = (
-				7BAAFDB82C9123ED008B2AAF /* ButtonPlayerDelete.swift */,
-				7B551B202C9394FC009E4661 /* ButtonPlayerFavorite.swift */,
-				7B551B222C93B1A9009E4661 /* ButtonPlayerShare.swift */,
-			);
-			name = ButtonsDeleteShareFavorite;
 			sourceTree = "<group>";
 		};
 		7B9B5E2E2C8F963D007F2325 /* CallRecording */ = {
@@ -626,6 +645,7 @@
 				7B9B6AA02C8877000001D94D /* CountryCode.swift in Sources */,
 				7B9B6AA42C89CF2F0001D94D /* PhoneNumberTextField.swift in Sources */,
 				7B9B5E352C8F979E007F2325 /* TabBarIphones.swift in Sources */,
+				7B3FF73B2C95DCEE00559A72 /* ButtonsTagAndNote.swift in Sources */,
 				7BABC34D2C8D368D0047F65A /* OnMyiPhone.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

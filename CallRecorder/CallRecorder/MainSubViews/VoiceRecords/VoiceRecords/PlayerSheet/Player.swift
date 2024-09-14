@@ -22,7 +22,6 @@ struct Player: View {
                         Progress(audioURL: audioURL)
                         TimePlayerInterval(audioURL: audioURL)
                         ButtonsOfPlayer(audioURL: audioURL)
-                       
                         
                         Spacer()
                     }
