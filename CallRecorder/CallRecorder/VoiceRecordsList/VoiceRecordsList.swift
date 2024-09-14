@@ -37,4 +37,5 @@ struct VoiceRecordsList: View {
 #Preview {
     VoiceRecordsList()
         .environmentObject(AudioRecorder())
+        .environmentObject(AudioPlayer())
 }

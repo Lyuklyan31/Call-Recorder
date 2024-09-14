@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct TimeIntervall: View {
+struct TimePlayerInterval: View {
     @State private var audioDuration: String = "00:00"
     @EnvironmentObject var audioPlayer: AudioPlayer
     var audioURL: URL
@@ -8,14 +8,16 @@ struct TimeIntervall: View {
     var body: some View {
         VStack {
             HStack {
+                Text(audioPlayer.currentTime())
+                    .foregroundColor(.primaryExtraDark.opacity(0.5))
+                    .font(.system(size: 12, weight: .medium))
+                
+                Spacer()
+                
                 Text(audioDuration)
                     .foregroundColor(.primaryExtraDark.opacity(0.5))
                     .font(.system(size: 12, weight: .medium))
-                Spacer()
                 
-                Text(audioPlayer.curentTime())
-                    .foregroundColor(.primaryExtraDark.opacity(0.5))
-                    .font(.system(size: 12, weight: .medium))
             }
             .padding(.top, 4)
             .padding(.horizontal)
@@ -31,6 +33,6 @@ struct TimeIntervall: View {
 }
 
 #Preview {
-    TimeIntervall(audioURL: URL(string: "https://www.example.com/audiofile.m4a")!)
+    TimePlayerInterval(audioURL: URL(string: "https://www.example.com/audiofile.m4a")!)
         .environmentObject(AudioPlayer())
 }

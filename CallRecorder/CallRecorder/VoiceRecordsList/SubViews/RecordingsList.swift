@@ -8,7 +8,11 @@ struct RecordingsList: View {
     @Binding var selection: Int
     
     var body: some View {
-        if audioRecorder.recordings.isEmpty {
+        let recordings = selection == 1
+            ? audioRecorder.recordings.filter { $0.isFavorite }
+            : audioRecorder.recordings
+        
+        if recordings.isEmpty {
             Spacer()
             if selection == 0 {
                 Image(.microphoneForIsEmpty)
@@ -33,12 +37,11 @@ struct RecordingsList: View {
             Spacer()
         } else {
             List {
-                ForEach(audioRecorder.recordings.indices, id: \.self) { index in
-                    let recording = audioRecorder.recordings[index]
+                ForEach(recordings, id: \.fileURL) { recording in
                     RecordingRow(audioURL: recording.fileURL, selectedRecording: $selectedRecording, showSheet: $showSheet)
                         .swipeActions(edge: .trailing) {
                             ButtonDelete(action: {
-                                delete(at: IndexSet(integer: index))
+                                delete(recording: recording)
                             })
                             ShareLink(item: recording.fileURL, preview: SharePreview(recording.fileURL.lastPathComponent, image: Image("microphone"))) {
                                 Image(.shareForSwipe)
@@ -50,7 +53,7 @@ struct RecordingsList: View {
             .listStyle(.plain)
             .sheet(isPresented: $showSheet) {
                 if let selectedRecording = selectedRecording {
-                    RecordingDetailsSheet(audioURL: selectedRecording)
+                    MiniPlayerView(audioURL: selectedRecording)
                         .presentationDetents([.fraction(0.12)])
                 }
             }
@@ -65,12 +68,8 @@ struct RecordingsList: View {
         }
     }
     
-    func delete(at offsets: IndexSet) {
-        var urlsToDelete = [URL]()
-        for index in offsets {
-            urlsToDelete.append(audioRecorder.recordings[index].fileURL)
-        }
-        audioRecorder.deleteRecording(urlsToDelete: urlsToDelete)
+    func delete(recording: RecordingDataModel) {
+        audioRecorder.deleteRecording(urlsToDelete: [recording.fileURL])
         audioRecorder.fetchRecording()
     }
 }
@@ -87,6 +86,8 @@ struct RecordingRow: View {
     var body: some View {
         let creationDate = getFileDate(for: audioURL)
         let formattedDate = creationDate?.formattedDate() ?? "Unknown date"
+       
+        let isFavorite = audioRecorder.recordings.first(where: { $0.fileURL == audioURL })?.isFavorite ?? false
         
         Button {
             selectedRecording = audioURL
@@ -94,9 +95,13 @@ struct RecordingRow: View {
             HStack {
                 Image(.microphoneRec)
                 VStack(alignment: .leading) {
-                    Text(audioURL.deletingPathExtension().lastPathComponent)
-                        .foregroundColor(.primary)
-                        .font(.system(size: 17, weight: .regular))
+                    HStack {
+                        Text(audioURL.deletingPathExtension().lastPathComponent)
+                            .foregroundColor(.primary)
+                            .font(.system(size: 17, weight: .regular))
+                        
+                       
+                    }
                     Text(formattedDate)
                         .padding(.bottom, 8)
                         .font(.system(size: 15, weight: .regular))
@@ -104,6 +109,14 @@ struct RecordingRow: View {
                 }
                 
                 Spacer()
+                
+                if  isFavorite {
+                    Image(.favoriteFill)
+                        .foregroundColor(.yellow)
+                        
+                }
+                    
+                
                 Text(audioDuration)
                     .font(.system(size: 17, weight: .regular))
                     .foregroundColor(.primaryExtraDark.opacity(0.5))
@@ -124,7 +137,9 @@ struct RecordingRow: View {
     }
 }
 
+
 #Preview {
     RecordingsList(selection: .constant(0))
         .environmentObject(AudioRecorder())
+        .environmentObject(AudioPlayer())
 }
