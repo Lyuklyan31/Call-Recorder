@@ -42,5 +42,6 @@ struct MainContentView: View {
 #Preview {
     MainContentView()
         .environmentObject(AudioRecorder())
+        .environmentObject(AudioPlayer())
         .environmentObject(WavesViewModel())
 }

@@ -34,7 +34,7 @@ struct VoiceRecordingView: View {
                     .padding(.bottom, 181)
                 
                 ZStack {
-                    Waves()
+                    WaveView()
                     VStack {
                         Spacer()
                         ButtonsPlayStopResset(viewModel: viewModel)

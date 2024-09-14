@@ -1,7 +1,7 @@
 import SwiftUI
 import AVFoundation
 
-struct Waves: View {
+struct WaveView: View {
     @EnvironmentObject var audioManager: WavesViewModel
     
     var body: some View {
@@ -76,6 +76,6 @@ struct Waves: View {
 }
 
 #Preview {
-    Waves()
+    WaveView()
         .environmentObject(WavesViewModel())
 }

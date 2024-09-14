@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ChoosingStore: View {
+struct ChoosingStorage: View {
     
     @State private var iCloudChoose = false
     @State private var iPhoneChoose = false
@@ -73,6 +73,6 @@ struct ChoosingStore: View {
 }
 
 #Preview {
-    ChoosingStore()
+    ChoosingStorage()
         .environmentObject(AudioRecorder())
 }

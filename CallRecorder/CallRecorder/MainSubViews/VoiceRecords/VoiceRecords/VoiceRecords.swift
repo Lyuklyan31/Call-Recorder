@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct VoiceRecordsList: View {
+struct VoiceRecords: View {
     
     @State private var selection = 0
     
@@ -35,7 +35,7 @@ struct VoiceRecordsList: View {
 }
 
 #Preview {
-    VoiceRecordsList()
+    VoiceRecords()
         .environmentObject(AudioRecorder())
         .environmentObject(AudioPlayer())
 }

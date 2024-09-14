@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-struct RecordButton: View {
+struct VoiceRecordingButton: View {
     var body: some View {
         NavigationLink {
-            ChoosingStore()
+            ChoosingStorage()
         } label: {
             ZStack {
                 Circle()
@@ -39,5 +39,5 @@ struct RecordButton: View {
 }
 
 #Preview {
-    RecordButton()
+    VoiceRecordingButton()
 }

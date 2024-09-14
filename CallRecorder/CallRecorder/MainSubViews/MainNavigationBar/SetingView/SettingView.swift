@@ -19,17 +19,17 @@ struct SettingView: View {
             
             VStack {
                 NavigationBarSubView(title: "Settings")
-                ButtonSetting(image: "shareApp", text: "Share App", destination: Waves())
+                ButtonSetting(image: "shareApp", text: "Share App", destination: WaveView())
                 
-                ButtonSetting(image: "restorePurchases", text: "Restore Purchases", destination: Waves())
+                ButtonSetting(image: "restorePurchases", text: "Restore Purchases", destination: WaveView())
                 
-                ButtonSetting(image: "rateUs", text: "Rate Us", destination: Waves())
+                ButtonSetting(image: "rateUs", text: "Rate Us", destination: WaveView())
                 
-                ButtonSetting(image: "contactUs", text: "Contact Us", destination: Waves())
+                ButtonSetting(image: "contactUs", text: "Contact Us", destination: WaveView())
                 
-                ButtonSetting(image: "termsOfUse", text: "Terms of Use", destination: Waves())
+                ButtonSetting(image: "termsOfUse", text: "Terms of Use", destination: WaveView())
                 
-                ButtonSetting(image: "privacyPolicy", text: "Privacy Policy", destination: Waves())
+                ButtonSetting(image: "privacyPolicy", text: "Privacy Policy", destination: WaveView())
                 Spacer()
                     .navigationBarBackButtonHidden()
             }

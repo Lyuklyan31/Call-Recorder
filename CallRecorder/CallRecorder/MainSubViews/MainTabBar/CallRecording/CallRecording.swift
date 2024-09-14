@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CallButton: View {
+struct CallRecording: View {
     
     @Binding var showAlert: Bool
     
@@ -44,5 +44,5 @@ struct CallButton: View {
 }
 
 #Preview {
-    CallButton(showAlert: .constant(false))
+    CallRecording(showAlert: .constant(false))
 }

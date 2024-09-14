@@ -5,6 +5,7 @@ struct MiniPlayerView: View {
     // MARK: - Properties
     @State private var showPlayerSheet = false
     @EnvironmentObject var audioPlayer: AudioPlayer
+    @Environment(\.dismiss) var dismiss
     var audioURL: URL
     
     // MARK: - Body
@@ -91,6 +92,11 @@ struct MiniPlayerView: View {
         .sheet(isPresented: $showPlayerSheet) {
             PlayerSheet(showSheet: $showPlayerSheet, audioURL: audioURL)
                 .presentationDetents([.fraction(0.6)])
+        }
+        .onChange(of: showPlayerSheet) { newValue in
+            if newValue == false {
+                dismiss()
+            }
         }
         .onDisappear {
             self.audioPlayer.resetPlayback()

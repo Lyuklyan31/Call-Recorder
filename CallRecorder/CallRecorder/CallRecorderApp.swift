@@ -14,6 +14,7 @@ struct CallRecorderApp: App {
             MainContentView()
                 .environmentObject(AudioRecorder())
                 .environmentObject(WavesViewModel())
+                .environmentObject(AudioPlayer())
         }
     }
 }

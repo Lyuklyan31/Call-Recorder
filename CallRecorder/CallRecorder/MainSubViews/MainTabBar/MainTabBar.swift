@@ -13,10 +13,10 @@ struct MainTabBar: View {
     var body: some View {
         ZStack {
             TabView(selection: $selectedTab) {
-                CallButton(showAlert: $showAlert)
+                CallRecording(showAlert: $showAlert)
                     .tag(0)
                     
-                RecordButton()
+                VoiceRecordingButton()
                     .tag(1)
             }
             .tabViewStyle(.page)
