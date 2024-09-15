@@ -10,6 +10,7 @@ import SwiftUI
 struct VoiceRecords: View {
     
     @State private var selection = 0
+    @State private var selectionTag = 0
     
     var body: some View {
         ZStack {
@@ -25,7 +26,7 @@ struct VoiceRecords: View {
                     
                 SegmnetVoiceRecords(selection: $selection)
                 
-                ButtonsAllWorkHome()
+                ButtonsAllWorkHome(selectedButton: selectionTag)
                 
                 RecordingsList(selection: $selection)
                     .navigationBarBackButtonHidden()

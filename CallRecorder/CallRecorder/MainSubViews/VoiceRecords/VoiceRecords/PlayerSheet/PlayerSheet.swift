@@ -3,9 +3,11 @@ import SwiftUI
 struct PlayerSheet: View {
     
     @Binding var showSheet: Bool
+    @State private var showTagSheet = false
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var audioRecorder: AudioRecorder
     @EnvironmentObject var audioPlayer: AudioPlayer
+    
     var audioURL: URL
     
     @State private var isActive = false
@@ -66,10 +68,14 @@ struct PlayerSheet: View {
                 Player(audioURL: audioURL)
                     .padding()
                 
-                ButtonsTagAndNote(audioURL: audioURL)
+                ButtonsTagAndNote(audioURL: audioURL, showTagSheet: $showTagSheet)
                 Spacer()
             }
         }
+        .sheet(isPresented: $showTagSheet) {
+            TagSheet(audioURL: audioURL)
+        }
+        
         .onTapGesture {
             dismiss()
         }

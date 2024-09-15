@@ -10,13 +10,14 @@ import SwiftUI
 struct ButtonsTagAndNote: View {
     @EnvironmentObject var audioPlayer: AudioPlayer
     var audioURL: URL
+    @Binding var showTagSheet: Bool
     
     var body: some View {
         HStack {
             Spacer()
-            
+           
             Button {
-                
+                showTagSheet = true
             } label: {
                 VStack {
                     Image(.tag)
@@ -45,6 +46,6 @@ struct ButtonsTagAndNote: View {
 }
 
 #Preview {
-    ButtonsTagAndNote(audioURL: URL(string: "https://www.example.com/audiofile.m4a")!)
+    ButtonsTagAndNote(audioURL: URL(string: "https://www.example.com/audiofile.m4a")!, showTagSheet: .constant(false))
         .environmentObject(AudioRecorder())
 }

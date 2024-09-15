@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B1668912C95EDFF004CC4F1 /* TagSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1668902C95EDFF004CC4F1 /* TagSheet.swift */; };
 		7B39C28D2C8C9D8F0099B213 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B39C28C2C8C9D8F0099B213 /* SettingView.swift */; };
 		7B39C2912C8C9EB70099B213 /* ButtonSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B39C2902C8C9EB70099B213 /* ButtonSetting.swift */; };
 		7B3FF73B2C95DCEE00559A72 /* ButtonsTagAndNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3FF73A2C95DCEE00559A72 /* ButtonsTagAndNote.swift */; };
@@ -16,6 +17,8 @@
 		7B551B292C93C541009E4661 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B551B282C93C541009E4661 /* Progress.swift */; };
 		7B551B2B2C93C5C1009E4661 /* TimePlayerInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B551B2A2C93C5C1009E4661 /* TimePlayerInterval.swift */; };
 		7B551B2D2C93CCE6009E4661 /* ButtonsOfPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B551B2C2C93CCE6009E4661 /* ButtonsOfPlayer.swift */; };
+		7B7C3DFE2C9714B8004BA353 /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7C3DFD2C9714B8004BA353 /* TagButton.swift */; };
+		7B7C3E002C9719B8004BA353 /* CreateTagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7C3DFF2C9719B8004BA353 /* CreateTagButton.swift */; };
 		7B9B5E292C8F1971007F2325 /* PlayerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B5E282C8F1971007F2325 /* PlayerSheet.swift */; };
 		7B9B5E2D2C8F1A97007F2325 /* CallRecorderAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B5E2C2C8F1A97007F2325 /* CallRecorderAlert.swift */; };
 		7B9B5E312C8F9662007F2325 /* IPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B5E302C8F9662007F2325 /* IPhone.swift */; };
@@ -65,6 +68,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7B1668902C95EDFF004CC4F1 /* TagSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSheet.swift; sourceTree = "<group>"; };
 		7B39C28C2C8C9D8F0099B213 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		7B39C2902C8C9EB70099B213 /* ButtonSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSetting.swift; sourceTree = "<group>"; };
 		7B3FF73A2C95DCEE00559A72 /* ButtonsTagAndNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsTagAndNote.swift; sourceTree = "<group>"; };
@@ -74,6 +78,8 @@
 		7B551B282C93C541009E4661 /* Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
 		7B551B2A2C93C5C1009E4661 /* TimePlayerInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePlayerInterval.swift; sourceTree = "<group>"; };
 		7B551B2C2C93CCE6009E4661 /* ButtonsOfPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsOfPlayer.swift; sourceTree = "<group>"; };
+		7B7C3DFD2C9714B8004BA353 /* TagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
+		7B7C3DFF2C9719B8004BA353 /* CreateTagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTagButton.swift; sourceTree = "<group>"; };
 		7B9B5E282C8F1971007F2325 /* PlayerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSheet.swift; sourceTree = "<group>"; };
 		7B9B5E2C2C8F1A97007F2325 /* CallRecorderAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecorderAlert.swift; sourceTree = "<group>"; };
 		7B9B5E302C8F9662007F2325 /* IPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPhone.swift; sourceTree = "<group>"; };
@@ -243,6 +249,7 @@
 		7B3FF7312C95CD4300559A72 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				7BABC3482C8D31FC0047F65A /* ChoosingStorage */,
 				7B9B6ABA2C8A5AC40001D94D /* VoiceRecordingView.swift */,
 				7B9B6AC22C8A6B840001D94D /* Timer.swift */,
 			);
@@ -320,6 +327,7 @@
 			isa = PBXGroup;
 			children = (
 				7B3FF73A2C95DCEE00559A72 /* ButtonsTagAndNote.swift */,
+				7B7C3DFB2C971489004BA353 /* TagSheet */,
 			);
 			path = ButtonsTagAndNote;
 			sourceTree = "<group>";
@@ -331,6 +339,24 @@
 				7B3FF7392C95DCA100559A72 /* SubViews */,
 			);
 			name = PlayerSubViews;
+			sourceTree = "<group>";
+		};
+		7B7C3DFB2C971489004BA353 /* TagSheet */ = {
+			isa = PBXGroup;
+			children = (
+				7B1668902C95EDFF004CC4F1 /* TagSheet.swift */,
+				7B7C3DFC2C971495004BA353 /* SubViews */,
+			);
+			path = TagSheet;
+			sourceTree = "<group>";
+		};
+		7B7C3DFC2C971495004BA353 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B7C3DFD2C9714B8004BA353 /* TagButton.swift */,
+				7B7C3DFF2C9719B8004BA353 /* CreateTagButton.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 		7B9B5E2A2C8F1A48007F2325 /* PlayerSheet */ = {
@@ -480,7 +506,6 @@
 		7B9B6ABD2C8A60F50001D94D /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
-				7BABC3482C8D31FC0047F65A /* ChoosingStorage */,
 				7B3FF7332C95CDFE00559A72 /* Wave */,
 				7B9B6AC02C8A61530001D94D /* ButtonsPlayStopResset.swift */,
 			);
@@ -631,10 +656,13 @@
 				7B9B6AB42C8A4B560001D94D /* VoiceRecords.swift in Sources */,
 				7B9B5E292C8F1971007F2325 /* PlayerSheet.swift in Sources */,
 				7B9B6AC12C8A61530001D94D /* ButtonsPlayStopResset.swift in Sources */,
+				7B7C3DFE2C9714B8004BA353 /* TagButton.swift in Sources */,
 				7B9B6AA22C887AAC0001D94D /* CountryCodeViewModel.swift in Sources */,
 				7BABC34F2C8DF5D70047F65A /* MiniPlayer.swift in Sources */,
 				7B9B5E372C8F97F3007F2325 /* SwipeProgress.swift in Sources */,
+				7B7C3E002C9719B8004BA353 /* CreateTagButton.swift in Sources */,
 				7B551B232C93B1A9009E4661 /* ButtonPlayerShare.swift in Sources */,
+				7B1668912C95EDFF004CC4F1 /* TagSheet.swift in Sources */,
 				7B9B6AA82C8A21CE0001D94D /* ConfirmOTPcodeView.swift in Sources */,
 				7B9B6A932C87C72B0001D94D /* VoiceRecordsButton.swift in Sources */,
 				7B551B2B2C93C5C1009E4661 /* TimePlayerInterval.swift in Sources */,
