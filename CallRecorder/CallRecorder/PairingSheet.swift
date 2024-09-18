@@ -13,7 +13,7 @@ struct PairingSheet<SheetContent: View>: ViewModifier {
     @State private var detent: PresentationDetent
     
     private var detents: Set<PresentationDetent> {
-        [defaultDetent] 
+        [.fraction(0.6)]
     }
     
     func body(content: Content) -> some View {

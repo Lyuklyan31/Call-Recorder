@@ -16,6 +16,7 @@ class AudioRecorder: NSObject, ObservableObject {
         super.init()
         fetchRecording()
         loadTags()
+        loadFavorites()
     }
     
     func tagsForRecording(url: URL) -> [String] {

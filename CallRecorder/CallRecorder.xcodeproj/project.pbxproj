@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		048374692C9B6FF500256978 /* PairingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048374682C9B6FF500256978 /* PairingSheet.swift */; };
 		0483746D2C9B7E1900256978 /* MakeBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483746C2C9B7E1900256978 /* MakeBackgroundView.swift */; };
+		048374722C9B974C00256978 /* CropRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048374712C9B974C00256978 /* CropRecord.swift */; };
 		7B1668912C95EDFF004CC4F1 /* TagSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1668902C95EDFF004CC4F1 /* TagSheet.swift */; };
 		7B39C28D2C8C9D8F0099B213 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B39C28C2C8C9D8F0099B213 /* SettingView.swift */; };
 		7B39C2912C8C9EB70099B213 /* ButtonSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B39C2902C8C9EB70099B213 /* ButtonSetting.swift */; };
@@ -72,6 +73,7 @@
 /* Begin PBXFileReference section */
 		048374682C9B6FF500256978 /* PairingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingSheet.swift; sourceTree = "<group>"; };
 		0483746C2C9B7E1900256978 /* MakeBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeBackgroundView.swift; sourceTree = "<group>"; };
+		048374712C9B974C00256978 /* CropRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropRecord.swift; sourceTree = "<group>"; };
 		7B1668902C95EDFF004CC4F1 /* TagSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSheet.swift; sourceTree = "<group>"; };
 		7B39C28C2C8C9D8F0099B213 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		7B39C2902C8C9EB70099B213 /* ButtonSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSetting.swift; sourceTree = "<group>"; };
@@ -144,6 +146,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		048374702C9B970B00256978 /* CropRecords */ = {
+			isa = PBXGroup;
+			children = (
+				048374712C9B974C00256978 /* CropRecord.swift */,
+			);
+			path = CropRecords;
+			sourceTree = "<group>";
+		};
 		7B39C28E2C8C9D970099B213 /* SetingView */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,6 +333,7 @@
 				7B551B282C93C541009E4661 /* Progress.swift */,
 				7B551B2A2C93C5C1009E4661 /* TimePlayerInterval.swift */,
 				7B551B2C2C93CCE6009E4661 /* ButtonsOfPlayer.swift */,
+				048374702C9B970B00256978 /* CropRecords */,
 			);
 			name = SubViews;
 			sourceTree = "<group>";
@@ -682,6 +693,7 @@
 				7B9B6AA42C89CF2F0001D94D /* PhoneNumberTextField.swift in Sources */,
 				7B9B5E352C8F979E007F2325 /* TabBarIphones.swift in Sources */,
 				7B3FF73B2C95DCEE00559A72 /* ButtonsTagAndNote.swift in Sources */,
+				048374722C9B974C00256978 /* CropRecord.swift in Sources */,
 				7BABC34D2C8D368D0047F65A /* OnMyiPhone.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

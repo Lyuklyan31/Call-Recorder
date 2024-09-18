@@ -1,55 +1,57 @@
 import SwiftUI
 
 struct ChoosingTagButtons: View {
-    @State private var selectedButtons: Set<Int> = [0]
+    @State private var selectedButtons: Set<String> = ["All"]
     @ObservedObject private var tags = TagsManager()
+    var onTagSelectionChange: ((Set<String>) -> Void)?
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 Button {
-                    selectedButtons = [0]
+                    selectedButtons = ["All"]
+                    onTagSelectionChange?(selectedButtons)
                 } label: {
                     Text("All")
-                        .foregroundColor(selectedButtons.contains(0) ? .white : .black)
+                        .foregroundColor(selectedButtons.contains("All") ? .white : .black)
                         .padding()
                         .frame(height: 36)
                         .background(RoundedRectangle(cornerRadius: 12)
-                            .fill(selectedButtons.contains(0) ? Color.pink : Color.white))
+                            .fill(selectedButtons.contains("All") ? Color.pink : Color.white))
                 }
                 
                 Button {
-                    toggleTag(1)
+                    toggleTag("Work")
                 } label: {
                     Text("Work")
-                        .foregroundColor(selectedButtons.contains(1) ? .white : .black)
+                        .foregroundColor(selectedButtons.contains("Work") ? .white : .black)
                         .padding()
                         .frame(height: 36)
                         .background(RoundedRectangle(cornerRadius: 12)
-                            .fill(selectedButtons.contains(1) ? Color.pink : Color.white))
+                            .fill(selectedButtons.contains("Work") ? Color.pink : Color.white))
                 }
                 
                 Button {
-                    toggleTag(2)
+                    toggleTag("Home")
                 } label: {
                     Text("Home")
-                        .foregroundColor(selectedButtons.contains(2) ? .white : .black)
+                        .foregroundColor(selectedButtons.contains("Home") ? .white : .black)
                         .padding()
                         .frame(height: 36)
                         .background(RoundedRectangle(cornerRadius: 12)
-                            .fill(selectedButtons.contains(2) ? Color.pink : Color.white))
+                            .fill(selectedButtons.contains("Home") ? Color.pink : Color.white))
                 }
                 
-                ForEach(tags.tags.indices, id: \.self) { index in
+                ForEach(tags.tags, id: \.self) { tag in
                     Button {
-                        toggleTag(index + 3)
+                        toggleTag(tag)
                     } label: {
-                        Text(tags.tags[index])
-                            .foregroundColor(selectedButtons.contains(index + 3) ? .white : .black)
+                        Text(tag)
+                            .foregroundColor(selectedButtons.contains(tag) ? .white : .black)
                             .padding()
                             .frame(height: 36)
                             .background(RoundedRectangle(cornerRadius: 12)
-                                .fill(selectedButtons.contains(index + 3) ? Color.pink : Color.white))
+                                .fill(selectedButtons.contains(tag) ? Color.pink : Color.white))
                     }
                 }
                 
@@ -59,9 +61,9 @@ struct ChoosingTagButtons: View {
         .padding()
     }
     
-    private func toggleTag(_ tag: Int) {
-        if selectedButtons.contains(0) {
-            selectedButtons.remove(0)
+    private func toggleTag(_ tag: String) {
+        if selectedButtons.contains("All") {
+            selectedButtons.remove("All")
         }
         
         if selectedButtons.contains(tag) {
@@ -71,11 +73,9 @@ struct ChoosingTagButtons: View {
         }
         
         if selectedButtons.isEmpty {
-            selectedButtons = [0]
+            selectedButtons = ["All"]
         }
+        
+        onTagSelectionChange?(selectedButtons)
     }
-}
-
-#Preview {
-    ChoosingTagButtons()
 }

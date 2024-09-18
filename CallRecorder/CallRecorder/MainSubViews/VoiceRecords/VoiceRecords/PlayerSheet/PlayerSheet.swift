@@ -20,12 +20,7 @@ struct PlayerSheet: View {
         let creationDate = getFileDate(for: audioURL)
         let formattedDate = creationDate?.formattedDate() ?? "Unknown date"
         ZStack {
-            LinearGradient(
-                gradient: Gradient(colors: [.backraundWhite, .backraundPink]),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .edgesIgnoringSafeArea(.all)
+            MakeBackgroundView()
             
             VStack {
                 HStack {

@@ -10,23 +10,15 @@ import SwiftUI
 struct VoiceRecords: View {
     
     @State private var selection = 0
-    @State private var selectionTag = 0
     
     var body: some View {
         ZStack {
-            LinearGradient(
-                gradient: Gradient(colors: [.backraundWhite, .backraundPink]),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .edgesIgnoringSafeArea(.all)
+            MakeBackgroundView()
             
             VStack {
                 NavigationBarSubView(title: "Voice Records")
                     
                 SegmnetVoiceRecords(selection: $selection)
-                
-                ChoosingTagButtons()
                 
                 RecordingsList(selection: $selection)
                     .navigationBarBackButtonHidden()

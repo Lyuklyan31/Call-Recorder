@@ -19,32 +19,9 @@ struct MiniPlayerView: View {
         let formattedDate = creationDate?.formattedDate() ?? "Unknown date"
         
         ZStack {
-            LinearGradient(
-                gradient: Gradient(colors: [.backraundWhite, .backraundPink]),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .edgesIgnoringSafeArea(.all)
+            MakeBackgroundView()
             
-            if audioPlayer.isPlaying || audioPlayer.isPaused {
-                VStack {
-                    ZStack(alignment: .leading) {
-                        Capsule()
-                            .foregroundColor(.primaryExtraDark.opacity(0.1))
-                            .frame(height: 4)
-                            .padding(.top, 3.36)
-                            .padding(.horizontal, 1)
-                        
-                        Capsule()
-                            .foregroundColor(.customPink)
-                            .frame(width: CGFloat(audioPlayer.progress * UIScreen.main.bounds.width), height: 4)
-                            .padding(.top, 3.36)
-                            .padding(.horizontal, 1)
-                            .animation(.linear(duration: 0.1), value: audioPlayer.progress)
-                    }
-                    Spacer()
-                }
-            }
+            
             Button {
                 showPlayerSheet.toggle()
             } label: {
@@ -91,6 +68,27 @@ struct MiniPlayerView: View {
                         }
                     }
                     .padding()
+                }
+            }
+            .overlay {
+                if audioPlayer.isPlaying || audioPlayer.isPaused {
+                    VStack {
+                        ZStack(alignment: .leading) {
+                            Capsule()
+                                .foregroundColor(.primaryExtraDark.opacity(0.1))
+                                .frame(height: 5)
+                                .padding(.top, 1)
+                                .padding(.horizontal, 1)
+                            
+                            Capsule()
+                                .foregroundColor(.customPink)
+                                .frame(width: CGFloat(audioPlayer.progress * UIScreen.main.bounds.width), height: 5)
+                                .padding(.top, 1)
+                                .padding(.horizontal, 1)
+                                .animation(.linear(duration: 0.1), value: audioPlayer.progress)
+                        }
+                        Spacer()
+                    }
                 }
             }
         }

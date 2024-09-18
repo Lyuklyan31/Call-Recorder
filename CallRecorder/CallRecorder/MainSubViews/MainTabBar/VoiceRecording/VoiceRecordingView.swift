@@ -13,12 +13,7 @@ struct VoiceRecordingView: View {
     
     var body: some View {
         ZStack {
-            LinearGradient(
-                gradient: Gradient(colors: [.backraundWhite, .backraundPink]),
-                startPoint: .top,
-                endPoint: .bottom
-            )
-            .edgesIgnoringSafeArea(.all)
+            MakeBackgroundView()
             
             VStack {
                 NavigationBarSubView(title: "Voice Recording")
