@@ -15,6 +15,51 @@ class AudioRecorder: NSObject, ObservableObject {
     override init() {
         super.init()
         fetchRecording()
+        loadTags()
+    }
+    
+    func tagsForRecording(url: URL) -> [String] {
+        if let index = recordings.firstIndex(where: { $0.fileURL == url }) {
+            return recordings[index].tags
+        }
+        return []
+    }
+    
+    private func saveTags() {
+        let tagsDict = recordings.reduce(into: [String: [String]]()) { result, recording in
+            result[recording.fileURL.absoluteString] = recording.tags
+        }
+        UserDefaults.standard.set(tagsDict, forKey: "RecordingTags")
+    }
+    
+    func addTag(to url: URL, tag: String) {
+        if let index = recordings.firstIndex(where: { $0.fileURL == url }) {
+            if !recordings[index].tags.contains(tag) {
+                recordings[index].tags.append(tag)
+                saveTags()
+            }
+        }
+    }
+
+
+    func removeTag(from url: URL, tag: String) {
+        if let index = recordings.firstIndex(where: { $0.fileURL == url }) {
+            if let tagIndex = recordings[index].tags.firstIndex(of: tag) {
+                recordings[index].tags.remove(at: tagIndex)
+                saveTags()
+            }
+        }
+    }
+
+    private func loadTags() {
+        let savedTags = UserDefaults.standard.dictionary(forKey: "RecordingTags") as? [String: [String]] ?? [:]
+        
+        for (urlString, tags) in savedTags {
+            if let url = URL(string: urlString),
+               let index = recordings.firstIndex(where: { $0.fileURL == url }) {
+                recordings[index].tags = tags
+            }
+        }
     }
 
     func loadFavorites() {
@@ -95,14 +140,19 @@ class AudioRecorder: NSObject, ObservableObject {
             documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         }
 
-        let directoryContents = try! fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)
-        for audio in directoryContents {
-            let creationDate = getFileDate(for: audio) ?? Date()
-            let recording = RecordingDataModel(fileURL: audio, createdAt: creationDate)
-            recordings.append(recording)
+        do {
+            let directoryContents = try fileManager.contentsOfDirectory(at: documentDirectory, includingPropertiesForKeys: nil)
+            for audio in directoryContents {
+                let creationDate = getFileDate(for: audio) ?? Date()
+                let recording = RecordingDataModel(fileURL: audio, createdAt: creationDate)
+                recordings.append(recording)
+            }
+            recordings.sort(by: { $0.createdAt.compare($1.createdAt) == .orderedAscending })
+        } catch {
+            print("Failed to fetch recordings: \(error)")
         }
-        recordings.sort(by: { $0.createdAt.compare($1.createdAt) == .orderedAscending })
     }
+
 
     func resetRecording() {
         let fileManager = FileManager.default
@@ -136,12 +186,16 @@ class AudioRecorder: NSObject, ObservableObject {
     }
 
     func stopRecording() {
-        if audioRecorder.isRecording {
-            audioRecorder.stop()
-            recording = false
-            fetchRecording()
+        guard let recorder = audioRecorder, recorder.isRecording else {
+            print("No recording in progress or audioRecorder is nil")
+            return
         }
+
+        recorder.stop()
+        recording = false
+        fetchRecording()
     }
+
     
     func renameRecording(oldURL: URL, newName: String) {
             let fileManager = FileManager.default

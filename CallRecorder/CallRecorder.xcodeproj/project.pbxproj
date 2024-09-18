@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		048374692C9B6FF500256978 /* PairingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048374682C9B6FF500256978 /* PairingSheet.swift */; };
+		0483746D2C9B7E1900256978 /* MakeBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483746C2C9B7E1900256978 /* MakeBackgroundView.swift */; };
 		7B1668912C95EDFF004CC4F1 /* TagSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1668902C95EDFF004CC4F1 /* TagSheet.swift */; };
 		7B39C28D2C8C9D8F0099B213 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B39C28C2C8C9D8F0099B213 /* SettingView.swift */; };
 		7B39C2912C8C9EB70099B213 /* ButtonSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B39C2902C8C9EB70099B213 /* ButtonSetting.swift */; };
@@ -47,7 +49,7 @@
 		7B9B6AB12C8A3E970001D94D /* OTPLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AB02C8A3E970001D94D /* OTPLine.swift */; };
 		7B9B6AB42C8A4B560001D94D /* VoiceRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AB32C8A4B560001D94D /* VoiceRecords.swift */; };
 		7B9B6AB72C8A4C970001D94D /* SegmnetVoiceRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AB62C8A4C970001D94D /* SegmnetVoiceRecords.swift */; };
-		7B9B6AB92C8A4F1C0001D94D /* ButtonsAllWorkHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AB82C8A4F1C0001D94D /* ButtonsAllWorkHome.swift */; };
+		7B9B6AB92C8A4F1C0001D94D /* ChoosingTagButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AB82C8A4F1C0001D94D /* ChoosingTagButtons.swift */; };
 		7B9B6ABB2C8A5AC40001D94D /* VoiceRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ABA2C8A5AC40001D94D /* VoiceRecordingView.swift */; };
 		7B9B6ABF2C8A61080001D94D /* WaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ABE2C8A61080001D94D /* WaveView.swift */; };
 		7B9B6AC12C8A61530001D94D /* ButtonsPlayStopResset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AC02C8A61530001D94D /* ButtonsPlayStopResset.swift */; };
@@ -68,6 +70,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		048374682C9B6FF500256978 /* PairingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingSheet.swift; sourceTree = "<group>"; };
+		0483746C2C9B7E1900256978 /* MakeBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeBackgroundView.swift; sourceTree = "<group>"; };
 		7B1668902C95EDFF004CC4F1 /* TagSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSheet.swift; sourceTree = "<group>"; };
 		7B39C28C2C8C9D8F0099B213 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		7B39C2902C8C9EB70099B213 /* ButtonSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSetting.swift; sourceTree = "<group>"; };
@@ -109,7 +113,7 @@
 		7B9B6AB02C8A3E970001D94D /* OTPLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPLine.swift; sourceTree = "<group>"; };
 		7B9B6AB32C8A4B560001D94D /* VoiceRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecords.swift; sourceTree = "<group>"; };
 		7B9B6AB62C8A4C970001D94D /* SegmnetVoiceRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmnetVoiceRecords.swift; sourceTree = "<group>"; };
-		7B9B6AB82C8A4F1C0001D94D /* ButtonsAllWorkHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsAllWorkHome.swift; sourceTree = "<group>"; };
+		7B9B6AB82C8A4F1C0001D94D /* ChoosingTagButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingTagButtons.swift; sourceTree = "<group>"; };
 		7B9B6ABA2C8A5AC40001D94D /* VoiceRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecordingView.swift; sourceTree = "<group>"; };
 		7B9B6ABE2C8A61080001D94D /* WaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
 		7B9B6AC02C8A61530001D94D /* ButtonsPlayStopResset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsPlayStopResset.swift; sourceTree = "<group>"; };
@@ -406,6 +410,7 @@
 			isa = PBXGroup;
 			children = (
 				7B9B6A682C87A6740001D94D /* CallRecorderApp.swift */,
+				048374682C9B6FF500256978 /* PairingSheet.swift */,
 				7B9B6AAA2C8A26C40001D94D /* SubViews */,
 				7B9B6ACF2C8B306A0001D94D /* Recording */,
 				7B9B6A7F2C87B2390001D94D /* MainContentView.swift */,
@@ -468,6 +473,7 @@
 			isa = PBXGroup;
 			children = (
 				7B9B6A992C87C9E60001D94D /* NavigationBarSubView.swift */,
+				0483746C2C9B7E1900256978 /* MakeBackgroundView.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -487,7 +493,7 @@
 			children = (
 				7B9B6AB62C8A4C970001D94D /* SegmnetVoiceRecords.swift */,
 				7B9B6ADE2C8BD3DF0001D94D /* RecordingsList.swift */,
-				7B9B6AB82C8A4F1C0001D94D /* ButtonsAllWorkHome.swift */,
+				7B9B6AB82C8A4F1C0001D94D /* ChoosingTagButtons.swift */,
 				7BAAFDB42C90FF94008B2AAF /* ButtonDelete.swift */,
 			);
 			path = SubViews;
@@ -621,7 +627,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B9B6A9C2C8860CC0001D94D /* ChooseCountryDialCode.swift in Sources */,
-				7B9B6AB92C8A4F1C0001D94D /* ButtonsAllWorkHome.swift in Sources */,
+				7B9B6AB92C8A4F1C0001D94D /* ChoosingTagButtons.swift in Sources */,
 				7B9B6A8D2C87BD670001D94D /* MainNavigationBar.swift in Sources */,
 				7B551B262C93BF7C009E4661 /* Player.swift in Sources */,
 				7B9B6A892C87B65A0001D94D /* VoiceRecordingButton.swift in Sources */,
@@ -655,6 +661,7 @@
 				7B39C28D2C8C9D8F0099B213 /* SettingView.swift in Sources */,
 				7B9B6AB42C8A4B560001D94D /* VoiceRecords.swift in Sources */,
 				7B9B5E292C8F1971007F2325 /* PlayerSheet.swift in Sources */,
+				0483746D2C9B7E1900256978 /* MakeBackgroundView.swift in Sources */,
 				7B9B6AC12C8A61530001D94D /* ButtonsPlayStopResset.swift in Sources */,
 				7B7C3DFE2C9714B8004BA353 /* TagButton.swift in Sources */,
 				7B9B6AA22C887AAC0001D94D /* CountryCodeViewModel.swift in Sources */,
@@ -670,6 +677,7 @@
 				7B9B6ADF2C8BD3DF0001D94D /* RecordingsList.swift in Sources */,
 				7B9B6AA62C89D7A20001D94D /* ContinueButton.swift in Sources */,
 				7B9B6AB12C8A3E970001D94D /* OTPLine.swift in Sources */,
+				048374692C9B6FF500256978 /* PairingSheet.swift in Sources */,
 				7B9B6AA02C8877000001D94D /* CountryCode.swift in Sources */,
 				7B9B6AA42C89CF2F0001D94D /* PhoneNumberTextField.swift in Sources */,
 				7B9B5E352C8F979E007F2325 /* TabBarIphones.swift in Sources */,
@@ -809,7 +817,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CallRecorder/Preview Content\"";
-				DEVELOPMENT_TEAM = HT476QBRPD;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need access to your microphone to conduct recording sessions";
@@ -818,12 +826,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.andrii.boichuk.CallRecorder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oleh.liuklian.CallRecorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -840,7 +849,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CallRecorder/Preview Content\"";
-				DEVELOPMENT_TEAM = HT476QBRPD;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need access to your microphone to conduct recording sessions";
@@ -849,12 +858,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.andrii.boichuk.CallRecorder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oleh.liuklian.CallRecorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

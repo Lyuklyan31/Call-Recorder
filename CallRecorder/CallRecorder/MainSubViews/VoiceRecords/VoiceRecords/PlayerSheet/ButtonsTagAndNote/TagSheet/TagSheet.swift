@@ -29,15 +29,13 @@ class TagsManager: ObservableObject {
 
 struct TagSheet: View {
     @Environment(\.dismiss) var dismiss
-    @EnvironmentObject var audioPlayer: AudioPlayer
-    
+    @EnvironmentObject var audioRecorder: AudioRecorder
     var audioURL: URL
     
     @ObservedObject private var tags = TagsManager()
     
-    @State private var tagHome = false
-    @State private var tagWork = false
-    @State private var choseTag = false
+    @State private var selectedTags: Set<String> = []
+    
     @State private var newTag = ""
     
     var body: some View {
@@ -71,17 +69,56 @@ struct TagSheet: View {
                     .padding(.top, 32)
                     .padding(.bottom)
                 
-                TagButton(chooseTag: $tagHome, title: "Home")
-                TagButton(chooseTag: $tagWork, title: "Work")
+                TagButton(isSelected: Binding(
+                    get: { selectedTags.contains("Home") },
+                    set: { isSelected in
+                        if isSelected {
+                            if selectedTags.count < 2 {
+                                selectedTags.insert("Home")
+                                audioRecorder.addTag(to: audioURL, tag: "Home")
+                            }
+                        } else {
+                            selectedTags.remove("Home")
+                            audioRecorder.removeTag(from: audioURL, tag: "Home")
+                        }
+                    }
+                ), title: "Home", action: {})
+                
+                TagButton(isSelected: Binding(
+                    get: { selectedTags.contains("Work") },
+                    set: { isSelected in
+                        if isSelected {
+                            if selectedTags.count < 2 {
+                                selectedTags.insert("Work")
+                                audioRecorder.addTag(to: audioURL, tag: "Work")
+                            }
+                        } else {
+                            selectedTags.remove("Work")
+                            audioRecorder.removeTag(from: audioURL, tag: "Work")
+                        }
+                    }
+                ), title: "Work", action: {})
                 
                 ForEach(tags.tags, id: \.self) { tag in
-                    TagButton(chooseTag: $choseTag, title: tag)
+                    TagButton(isSelected: Binding(
+                        get: { selectedTags.contains(tag) },
+                        set: { isSelected in
+                            if isSelected {
+                                if selectedTags.count < 2 {
+                                    selectedTags.insert(tag)
+                                    audioRecorder.addTag(to: audioURL, tag: tag)
+                                }
+                            } else {
+                                selectedTags.remove(tag)
+                                audioRecorder.removeTag(from: audioURL, tag: tag)
+                            }
+                        }
+                    ), title: tag, action: {})
                 }
                 
                 CreateTagButton(newTag: $newTag) {
                     if !newTag.isEmpty && newTag.count <= 15 {
                         tags.tags.append(newTag)
-                        print(tags)
                         newTag = ""
                     }
                 }
@@ -90,6 +127,12 @@ struct TagSheet: View {
                 Spacer()
             }
             .padding()
+            .onAppear {
+                // Initialize selectedTags based on existing tags for the audio URL
+                if let existingTags = audioRecorder.recordings.first(where: { $0.fileURL == audioURL })?.tags {
+                    selectedTags = Set(existingTags)
+                }
+            }
         }
     }
 }

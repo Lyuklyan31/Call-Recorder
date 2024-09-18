@@ -1,20 +1,18 @@
-//
-//  RecordingDataModel.swift
-//  CallRecorder
-//
-//  Created by Andrii Boichuk on 06.09.2024.
-//
-
 import Foundation
 
 struct RecordingDataModel {
     var fileURL: URL
     let createdAt: Date
     var isFavorite: Bool = false
-    var tag: String = ""
+    var tags: [String] = []
     
     var fileName: String {
         return fileURL.deletingPathExtension().lastPathComponent
     }
+    
+    mutating func addTag(_ tag: String) {
+        if !tags.contains(tag) {
+            tags.append(tag)
+        }
+    }
 }
-

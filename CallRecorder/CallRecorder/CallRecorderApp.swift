@@ -1,10 +1,3 @@
-//
-//  CallRecorderApp.swift
-//  CallRecorder
-//
-//  Created by Andrii Boichuk on 03.09.2024.
-//
-
 import SwiftUI
 
 @main

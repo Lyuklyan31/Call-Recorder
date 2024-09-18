@@ -26,7 +26,7 @@ struct VoiceRecords: View {
                     
                 SegmnetVoiceRecords(selection: $selection)
                 
-                ButtonsAllWorkHome(selectedButton: selectionTag)
+                ChoosingTagButtons()
                 
                 RecordingsList(selection: $selection)
                     .navigationBarBackButtonHidden()

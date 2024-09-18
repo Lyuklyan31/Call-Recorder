@@ -4,6 +4,11 @@ struct MiniPlayerView: View {
     
     // MARK: - Properties
     @State private var showPlayerSheet = false
+    @State private var detent: PresentationDetent = .large
+    private var detents: Set<PresentationDetent> {
+        [.medium, .large]
+    }
+
     @EnvironmentObject var audioPlayer: AudioPlayer
     @Environment(\.dismiss) var dismiss
     var audioURL: URL
@@ -89,10 +94,21 @@ struct MiniPlayerView: View {
                 }
             }
         }
-        .sheet(isPresented: $showPlayerSheet) {
-            PlayerSheet(showSheet: $showPlayerSheet, audioURL: audioURL)
-                .presentationDetents([.fraction(0.6)])
-        }
+        .modifier(
+            PairingSheet(
+                isShowing: $showPlayerSheet,
+                isExpandedByDefault: false,
+                defaultDetent: .medium,
+                title: "Pairing Sheet",
+                closeAction: {
+                    
+                },
+                sheetContent: {
+                    PlayerSheet(showSheet: $showPlayerSheet, audioURL: audioURL)
+                }
+            )
+        )
+        
         .onChange(of: showPlayerSheet) { newValue in
             if newValue == false {
                 dismiss()
@@ -106,5 +122,6 @@ struct MiniPlayerView: View {
 
 #Preview {
     MiniPlayerView(audioURL: URL(string: "https://www.example.com/audiofile.m4a")!)
+        .environmentObject(AudioRecorder())
         .environmentObject(AudioPlayer())
 }

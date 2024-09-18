@@ -1,36 +1,32 @@
-//
-//  TagButton.swift
-//  CallRecorder
-//
-//  Created by Andrii Boichuk on 15.09.2024.
-//
 
 import SwiftUI
 
 struct TagButton: View {
-    @Binding var chooseTag: Bool
-    @State var title: String
+    @Binding var isSelected: Bool
+    var title: String
+    var action: () -> Void
     
     var body: some View {
         Button {
-            chooseTag.toggle()
+            action()
+            isSelected.toggle()
         } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 24)
                     .frame(height: 72)
                     .foregroundColor(.white)
                 HStack {
-                    if chooseTag == true {
+                    if isSelected {
                         Image(.checkMarkCustom)
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 24,height: 24)
+                            .frame(width: 24, height: 24)
                             .padding(.leading, 24)
                     } else {
                         Image(.circleChoosing)
                             .resizable()
                             .scaledToFit()
-                            .frame(width: 24,height: 24)
+                            .frame(width: 24, height: 24)
                             .padding(.leading, 24)
                     }
                     
@@ -41,7 +37,7 @@ struct TagButton: View {
                     
                     Spacer()
                 }
-                if chooseTag == true {
+                if isSelected {
                     RoundedRectangle(cornerRadius: 24)
                         .stroke(lineWidth: 2)
                         .frame(height: 72)
@@ -54,5 +50,6 @@ struct TagButton: View {
 }
 
 #Preview {
-    TagButton(chooseTag: .constant(true), title: "Home")
+    TagButton(isSelected: .constant(true), title: "Home", action: {})
+        .environmentObject(AudioRecorder())
 }

@@ -14,6 +14,8 @@ struct PlayerSheet: View {
     @State private var newName = ""
     @State private var originalName = ""
 
+    @State private var recording: RecordingDataModel?
+    
     var body: some View {
         let creationDate = getFileDate(for: audioURL)
         let formattedDate = creationDate?.formattedDate() ?? "Unknown date"
@@ -62,6 +64,20 @@ struct PlayerSheet: View {
                             Image(.editingPencil)
                         }
                     }
+                    
+                    let tags = audioRecorder.tagsForRecording(url: audioURL)
+                    VStack {
+                        if !tags.isEmpty {
+                            HStack(spacing: 8) {
+                                ForEach(tags, id: \.self) { tag in
+                                    Text(tag)
+                                        .padding(.horizontal)
+                                        .padding(.vertical, 4)
+                                        .background(Capsule().foregroundColor(.customPink.opacity(0.1)))
+                                }
+                            }
+                        }
+                    }
                 }
                 .padding(.top, 8)
                 
@@ -72,13 +88,11 @@ struct PlayerSheet: View {
                 Spacer()
             }
         }
+       
         .sheet(isPresented: $showTagSheet) {
             TagSheet(audioURL: audioURL)
         }
         
-        .onTapGesture {
-            dismiss()
-        }
         .onDisappear {
             audioPlayer.resetPlayback()
         }
