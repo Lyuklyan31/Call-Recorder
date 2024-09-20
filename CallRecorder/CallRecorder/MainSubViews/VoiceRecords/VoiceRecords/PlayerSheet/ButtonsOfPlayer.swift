@@ -63,7 +63,7 @@ struct ButtonsOfPlayer: View {
             Spacer()
             
             NavigationLink {
-                CropRecord(audioURL: audioURL)
+//                CropRecord(audioURL: audioURL)
             } label: {
                 Image(.scisor)
             }

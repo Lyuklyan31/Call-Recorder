@@ -7,6 +7,7 @@
 
 // Extension for formatting Date
 import Foundation
+import SwiftUI
 
 extension Date {
     func formattedDate() -> String {
@@ -15,3 +16,4 @@ extension Date {
         return dateFormatter.string(from: self)
     }
 }
+

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		045D3E5D2C9CF1F100F56B08 /* ClipFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045D3E5C2C9CF1F000F56B08 /* ClipFrame.swift */; };
 		048374692C9B6FF500256978 /* PairingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048374682C9B6FF500256978 /* PairingSheet.swift */; };
 		0483746D2C9B7E1900256978 /* MakeBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483746C2C9B7E1900256978 /* MakeBackgroundView.swift */; };
 		048374722C9B974C00256978 /* CropRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048374712C9B974C00256978 /* CropRecord.swift */; };
@@ -71,6 +72,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		045D3E5C2C9CF1F000F56B08 /* ClipFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipFrame.swift; sourceTree = "<group>"; };
 		048374682C9B6FF500256978 /* PairingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingSheet.swift; sourceTree = "<group>"; };
 		0483746C2C9B7E1900256978 /* MakeBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeBackgroundView.swift; sourceTree = "<group>"; };
 		048374712C9B974C00256978 /* CropRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropRecord.swift; sourceTree = "<group>"; };
@@ -146,10 +148,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		045D3E5E2C9CF1F800F56B08 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				045D3E5C2C9CF1F000F56B08 /* ClipFrame.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 		048374702C9B970B00256978 /* CropRecords */ = {
 			isa = PBXGroup;
 			children = (
 				048374712C9B974C00256978 /* CropRecord.swift */,
+				045D3E5E2C9CF1F800F56B08 /* SubViews */,
 			);
 			path = CropRecords;
 			sourceTree = "<group>";
@@ -666,6 +677,7 @@
 				7B9B6ADD2C8B3D410001D94D /* WavesViewModel.swift in Sources */,
 				7B9B6AD72C8B31210001D94D /* Helper.swift in Sources */,
 				7B9B6ADB2C8B3C500001D94D /* AudioPlayer.swift in Sources */,
+				045D3E5D2C9CF1F100F56B08 /* ClipFrame.swift in Sources */,
 				7BAAFDB52C90FF94008B2AAF /* ButtonDelete.swift in Sources */,
 				7B9B6AAF2C8A3E2A0001D94D /* ConfirmOTPViewModel.swift in Sources */,
 				7B9B6A952C87C9700001D94D /* CallSetupView.swift in Sources */,

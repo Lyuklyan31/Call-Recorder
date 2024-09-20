@@ -1,10 +1,3 @@
-//
-//  CropRecord.swift
-//  CallRecorder
-//
-//  Created by Mac on 19.09.2024.
-//
-
 import SwiftUI
 
 struct CropRecord: View {
@@ -14,7 +7,10 @@ struct CropRecord: View {
     var body: some View {
         VStack {
             NavigationBarSubView(title: "Crop Record")
+                
+            Spacer()
         }
+        .navigationBarBackButtonHidden()
     }
 }
 
