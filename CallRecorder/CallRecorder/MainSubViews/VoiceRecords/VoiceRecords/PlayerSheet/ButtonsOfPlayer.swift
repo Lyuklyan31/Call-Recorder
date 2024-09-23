@@ -10,69 +10,75 @@ import SwiftUI
 struct ButtonsOfPlayer: View {
     @EnvironmentObject var audioPlayer: AudioPlayer
     var audioURL: URL
-    
+    @State private var showPlayerSheet = false
     var body: some View {
-        HStack {
-            Button {
-                
-            } label: {
-                Text("1x")
-                    .foregroundColor(.primaryExtraDark.opacity(0.5))
-                    .font(.system(size: 17, weight: .regular))
-                
-            }
-            .padding()
-            
-            Spacer()
-            
-            Button {
-                
-            } label: {
-                Image(.backButton10Sec)
-            }
-            .padding()
-            
-            Button {
-                if audioPlayer.isPlaying {
-                    self.audioPlayer.pausePlayback()
-                } else {
-                    self.audioPlayer.startPlayback(audio: self.audioURL)
+        
+            HStack {
+                Button {
+                    
+                } label: {
+                    Text("1x")
+                        .foregroundColor(.primaryExtraDark.opacity(0.5))
+                        .font(.system(size: 17, weight: .regular))
+                    
                 }
-            } label: {
-                if audioPlayer.isPlaying {
-                    Image(.buttonStopForPlayer)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 64, height: 64)
-                } else {
-                    Image(.buttonPlayForPlayer)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 64, height: 64)
-                }
-            }
-            
-            Button {
+                .padding()
                 
-            } label: {
-                Image(.forvardButton10Sec)
+                Spacer()
+                
+                Button {
+                    
+                } label: {
+                    Image(.backButton10Sec)
+                }
+                .padding()
+                
+                Button {
+                    if audioPlayer.isPlaying {
+                        self.audioPlayer.pausePlayback()
+                    } else {
+                        self.audioPlayer.startPlayback(audio: self.audioURL)
+                    }
+                } label: {
+                    if audioPlayer.isPlaying {
+                        Image(.buttonStopForPlayer)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 64, height: 64)
+                    } else {
+                        Image(.buttonPlayForPlayer)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 64, height: 64)
+                    }
+                }
+                
+                Button {
+                    
+                } label: {
+                    Image(.forvardButton10Sec)
+                }
+                .padding()
+                
+                
+                Spacer()
+                
+                Button {
+                    showPlayerSheet = true
+                } label: {
+                    Image(.scisor)
+                }
+                .padding(.trailing)
+                .fullScreenCover(isPresented: $showPlayerSheet) {
+                    CropRecord(audioURL: audioURL, showSheet: $showPlayerSheet)
+                }
+                
+                
+                
             }
-            .padding()
-            
-            
-            Spacer()
-            
-            NavigationLink {
-//                CropRecord(audioURL: audioURL)
-            } label: {
-                Image(.scisor)
-            }
-            .padding(.trailing)
-            
-         
-        }
-        .padding(.top, 8)
-        .padding(.horizontal)
+            .padding(.top, 8)
+            .padding(.horizontal)
+        
     }
 }
 

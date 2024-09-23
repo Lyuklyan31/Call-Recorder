@@ -1,76 +1,90 @@
-//
-//  ClipFrame.swift
-//  CallRecorder
-//
-//  Created by Mac on 20.09.2024.
-//
-
 import SwiftUI
 
 struct ClipFrame: View {
-    @State private var offsetLeft = CGSize.zero
-    @State private var offsetRight = CGSize.zero
+    @State private var leftOffset: CGFloat = 8
+    @State private var rightOffset: CGFloat = 8
+    let minWidth: CGFloat = 60
+    let maxWidth = UIScreen.main.bounds.width - 16
+    let sideLimit: CGFloat = 8
+    @State private var lastLeftOffset: CGFloat = 0
+    @State private var lastRightOffset: CGFloat = 0
+    let sensitivity: CGFloat = 1.5
     
-//    @State private var lineWidth = CGSize.zero
     var body: some View {
-        
-        HStack {
-            Rectangle()
-                .frame(width: 24, height: 129)
-                .cornerRadius(16, corners: [.topLeft, .bottomLeft])
-                .foregroundColor(.blue)
-                .overlay {
-                    Image(.chevronLeft)
-                }
-                .offset(x: offsetLeft.width, y: 0)
-                .gesture(
-                    DragGesture()
-                        .onChanged { gesture in
-                            offsetLeft = gesture.translation
-                        }
+        ZStack {
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(Color.blue, lineWidth: 4)
+                .frame(width: maxWidth - leftOffset - rightOffset, height: 129)
+                .overlay(
+                    HStack {
+                        Rectangle()
+                            .frame(width: 24, height: 129)
+                            .cornerRadius(12, corners: [.topLeft, .bottomLeft])
+                            .foregroundColor(.blue)
+                            .overlay {
+                                Image(systemName: "chevron.left")
+                                    .foregroundColor(.white)
+                            }
+                            .gesture(
+                                DragGesture()
+                                    .onChanged { gesture in
+                                        let newLeftOffset = lastLeftOffset + gesture.translation.width * sensitivity
+                                        if newLeftOffset >= sideLimit && (maxWidth - newLeftOffset - rightOffset) >= minWidth {
+                                            withAnimation(.easeOut(duration: 0.1)) {
+                                                leftOffset = newLeftOffset
+                                            }
+                                        }
+                                    }
+                                    .onEnded { gesture in
+                                        lastLeftOffset = leftOffset
+                                        withAnimation(.spring()) {
+                                            if (maxWidth - leftOffset - rightOffset) < minWidth {
+                                                leftOffset = maxWidth - rightOffset - minWidth
+                                            }
+                                        }
+                                    }
+                            )
+                        
+                        Spacer()
+
+                        Rectangle()
+                            .frame(width: 24, height: 129)
+                            .cornerRadius(12, corners: [.topRight, .bottomRight])
+                            .foregroundColor(.blue)
+                            .overlay {
+                                Image(systemName: "chevron.right")
+                                    .foregroundColor(.white)
+                            }
+                            .gesture(
+                                DragGesture()
+                                    .onChanged { gesture in
+                                        let newRightOffset = lastRightOffset - gesture.translation.width * sensitivity
+                                        if newRightOffset >= sideLimit && (maxWidth - leftOffset - newRightOffset) >= minWidth {
+                                            withAnimation(.easeOut(duration: 0.1)) {
+                                                rightOffset = newRightOffset
+                                            }
+                                        }
+                                    }
+                                    .onEnded { gesture in
+                                        lastRightOffset = rightOffset
+                                        withAnimation(.spring()) {
+                                            if (maxWidth - leftOffset - rightOffset) < minWidth {
+                                                rightOffset = maxWidth - leftOffset - minWidth
+                                            }
+                                        }
+                                    }
+                            )
+                    }
                 )
-                .offset(x: 8)
-            
-            Spacer()
-            
-            VStack {
-                Rectangle()
-                    .frame(height: 4)
-                    .foregroundColor(.blue)
                 
-                Spacer()
-                
-                Rectangle()
-                    .frame(height: 4)
-                    .foregroundColor(.blue)
-            }
-            .frame(height: 129)
-            
-            Spacer()
-            
-            Rectangle()
-                .frame(width: 24, height: 129)
-                .cornerRadius(16, corners: [.topRight, .bottomRight])
-                .foregroundColor(.blue)
-                .overlay {
-                    Image(.chevronRight)
-                }
-                .offset(x: offsetRight.width, y: 0)
-                .gesture(
-                    DragGesture()
-                        .onChanged { gesture in
-                            offsetRight = gesture.translation
-                        }
-                )
-                .offset(x: -8)
         }
-        .padding()
+        .offset(x: (leftOffset - rightOffset) / 2)
     }
 }
 
 extension View {
     func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-        clipShape( RoundedCorner(radius: radius, corners: corners) )
+        clipShape(RoundedCorner(radius: radius, corners: corners))
     }
 }
 
@@ -87,7 +101,6 @@ struct RoundedCorner: Shape {
         return Path(path.cgPath)
     }
 }
-
 
 #Preview {
     ClipFrame()
