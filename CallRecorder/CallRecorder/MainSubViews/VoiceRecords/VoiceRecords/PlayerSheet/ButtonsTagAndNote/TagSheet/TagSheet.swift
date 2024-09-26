@@ -1,32 +1,39 @@
 import SwiftUI
 
+// MARK: - TagsManager: Handles saving/loading tags
 class TagsManager: ObservableObject {
     
+    // MARK: - Singleton Instance
     static let shared = TagsManager()
     
+    // MARK: - UserDefaults Key
     private let tagsKey = "savedTags"
     
+    // MARK: - Published Tags Array
     @Published var tags: [String] = [] {
         didSet {
-            saveTags()
+            saveTags()  // Automatically save when tags are updated
         }
     }
     
+    // MARK: - Initializer: Load tags from storage
     init() {
         self.tags = loadTags()
     }
     
+    // MARK: - Save Tags
     private func saveTags() {
         UserDefaults.standard.set(tags, forKey: tagsKey)
     }
     
+    // MARK: - Load Tags
     private func loadTags() -> [String] {
         return UserDefaults.standard.stringArray(forKey: tagsKey) ?? []
     }
 }
 
 
-
+// MARK: - TagSheet View: UI for managing tags
 struct TagSheet: View {
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var audioRecorder: AudioRecorder
@@ -35,14 +42,15 @@ struct TagSheet: View {
     @ObservedObject private var tags = TagsManager()
     
     @State private var selectedTags: Set<String> = []
-    
     @State private var newTag = ""
     
     var body: some View {
         ZStack {
-            MakeBackgroundView()
+            MakeBackgroundView()  // Custom background
             
             VStack {
+                
+                // MARK: - Header: Manage Tags Title and Dismiss Button
                 ZStack {
                     Text("Manage Tags")
                         .font(.system(size: 24, weight: .semibold))
@@ -51,19 +59,21 @@ struct TagSheet: View {
                     HStack {
                         Spacer()
                         Button {
-                            dismiss()
+                            dismiss()  // Close the tag sheet
                         } label: {
                             Image(.dismissButton)
                         }
                     }
                 }
                 
+                // MARK: - Instructions
                 Text("You can pick up to 2 tags")
                     .font(.system(size: 15, weight: .regular))
                     .foregroundColor(.primaryExtraDark.opacity(0.5))
                     .padding(.top, 32)
                     .padding(.bottom)
                 
+                // MARK: - Predefined Tags
                 TagButton(isSelected: Binding(
                     get: { selectedTags.contains("Home") },
                     set: { isSelected in
@@ -82,11 +92,9 @@ struct TagSheet: View {
                 TagButton(isSelected: Binding(
                     get: { selectedTags.contains("Work") },
                     set: { isSelected in
-                        if isSelected {
-                            if selectedTags.count < 2 {
-                                selectedTags.insert("Work")
-                                audioRecorder.addTag(to: audioURL, tag: "Work")
-                            }
+                        if selectedTags.count < 2 {
+                            selectedTags.insert("Work")
+                            audioRecorder.addTag(to: audioURL, tag: "Work")
                         } else {
                             selectedTags.remove("Work")
                             audioRecorder.removeTag(from: audioURL, tag: "Work")
@@ -94,6 +102,7 @@ struct TagSheet: View {
                     }
                 ), title: "Work", action: {})
                 
+                // MARK: - Dynamic Tags from TagsManager
                 ForEach(tags.tags, id: \.self) { tag in
                     TagButton(isSelected: Binding(
                         get: { selectedTags.contains(tag) },
@@ -111,6 +120,7 @@ struct TagSheet: View {
                     ), title: tag, action: {})
                 }
                 
+                // MARK: - Add New Tag Button
                 CreateTagButton(newTag: $newTag) {
                     if !newTag.isEmpty && newTag.count <= 15 {
                         tags.tags.append(newTag)
@@ -123,7 +133,7 @@ struct TagSheet: View {
             }
             .padding()
             .onAppear {
-                // Initialize selectedTags based on existing tags for the audio URL
+                // MARK: - Initialize Selected Tags
                 if let existingTags = audioRecorder.recordings.first(where: { $0.fileURL == audioURL })?.tags {
                     selectedTags = Set(existingTags)
                 }

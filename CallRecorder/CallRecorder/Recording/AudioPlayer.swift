@@ -5,17 +5,21 @@ import AVFoundation
 
 class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
     
+    // MARK: - Published Properties
     @Published var isPlaying = false
     @Published var isPaused = false
     @Published var progress: Double = 0.0
     
+    // MARK: - Private Properties
     private var audioPlayer: AVAudioPlayer?
     private var timer: Timer?
     
+    // MARK: - Initializer
     override init() {
         super.init()
     }
     
+    // MARK: - Timer Management
     private func startTimer() {
         stopTimer()
         timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
@@ -28,6 +32,7 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
         timer = nil
     }
     
+    // MARK: - Playback Control
     func startPlayback(audio: URL) {
         let playbackSession = AVAudioSession.sharedInstance()
         
@@ -82,6 +87,14 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
         player.currentTime = min(newTime, player.duration)
     }
     
+    func seekBack(seconds: TimeInterval = 10) {
+        guard let player = audioPlayer else { return }
+        let newTime = player.currentTime - seconds
+        player.currentTime = max(newTime, 0)
+    }
+
+    
+    // MARK: - Playback Information
     func currentTime() -> String {
         guard let player = audioPlayer else {
             return "00:00"
@@ -97,6 +110,7 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
         progress = player.currentTime / player.duration
     }
     
+    // MARK: - AVAudioPlayerDelegate
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         if flag {
             isPlaying = false
@@ -105,6 +119,7 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
         }
     }
     
+    // MARK: - Static Methods
     static func getAudioDuration(url: URL, completion: @escaping (TimeInterval) -> Void) {
         let asset = AVAsset(url: url)
         

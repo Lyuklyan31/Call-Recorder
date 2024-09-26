@@ -3,15 +3,19 @@ import SwiftUI
 import Combine
 import AVFoundation
 
+// MARK: - AudioRecorder Class
 class AudioRecorder: NSObject, ObservableObject {
 
+    // MARK: - Published Properties
     @Published var iCloudStore = false
     @Published var onMyPhonestore = false
     @Published var recordings = [RecordingDataModel]()
     @Published var recording = false
 
-    var audioRecorder: AVAudioRecorder!
+    // MARK: - Private Properties
+    private var audioRecorder: AVAudioRecorder!
 
+    // MARK: - Initializer
     override init() {
         super.init()
         fetchRecording()
@@ -19,6 +23,7 @@ class AudioRecorder: NSObject, ObservableObject {
         loadFavorites()
     }
     
+    // MARK: - Tag Management
     func tagsForRecording(url: URL) -> [String] {
         if let index = recordings.firstIndex(where: { $0.fileURL == url }) {
             return recordings[index].tags
@@ -42,7 +47,6 @@ class AudioRecorder: NSObject, ObservableObject {
         }
     }
 
-
     func removeTag(from url: URL, tag: String) {
         if let index = recordings.firstIndex(where: { $0.fileURL == url }) {
             if let tagIndex = recordings[index].tags.firstIndex(of: tag) {
@@ -63,6 +67,7 @@ class AudioRecorder: NSObject, ObservableObject {
         }
     }
 
+    // MARK: - Favorites Management
     func loadFavorites() {
         let savedFavorites = UserDefaults.standard.stringArray(forKey: "FavoriteRecordings") ?? []
         for urlString in savedFavorites {
@@ -78,6 +83,7 @@ class AudioRecorder: NSObject, ObservableObject {
         UserDefaults.standard.set(favoriteURLs, forKey: "FavoriteRecordings")
     }
 
+    // MARK: - Recording Management
     func startRecording() {
         let recordingSession = AVAudioSession.sharedInstance()
 
@@ -154,7 +160,6 @@ class AudioRecorder: NSObject, ObservableObject {
         }
     }
 
-
     func resetRecording() {
         let fileManager = FileManager.default
 
@@ -197,34 +202,41 @@ class AudioRecorder: NSObject, ObservableObject {
         fetchRecording()
     }
 
-    
     func renameRecording(oldURL: URL, newName: String) {
-            let fileManager = FileManager.default
+        let fileManager = FileManager.default
 
-            guard !newName.isEmpty else {
-                print("New name cannot be empty")
-                return
+        guard !newName.isEmpty else {
+            print("New name cannot be empty")
+            return
+        }
+
+        let newURL = oldURL.deletingLastPathComponent()
+            .appendingPathComponent(newName)
+            .appendingPathExtension(oldURL.pathExtension)
+
+        do {
+            try fileManager.moveItem(at: oldURL, to: newURL)
+            
+            if let index = recordings.firstIndex(where: { $0.fileURL == oldURL }) {
+                recordings[index].fileURL = newURL
             }
-
-            let newURL = oldURL.deletingLastPathComponent()
-                .appendingPathComponent(newName)
-                .appendingPathExtension(oldURL.pathExtension)
-
-            do {
-                try fileManager.moveItem(at: oldURL, to: newURL)
-                
-                if let index = recordings.firstIndex(where: { $0.fileURL == oldURL }) {
-                    recordings[index].fileURL = newURL
-                    
-                }
-                
-                print("File renamed to: \(newURL)")
-            } catch {
-                print("Failed to rename file: \(error)")
-            }
+            
+            print("File renamed to: \(newURL)")
+        } catch {
+            print("Failed to rename file: \(error)")
+        }
         
         fetchRecording()
+    }
+
+    // MARK: - Helper Methods
+    private func getFileDate(for url: URL) -> Date? {
+        do {
+            let attributes = try FileManager.default.attributesOfItem(atPath: url.path)
+            return attributes[.creationDate] as? Date
+        } catch {
+            print("Failed to retrieve file attributes: \(error)")
+            return nil
         }
-    
-    
+    }
 }
