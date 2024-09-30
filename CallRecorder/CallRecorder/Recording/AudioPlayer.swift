@@ -1,6 +1,4 @@
 import Foundation
-import SwiftUI
-import Combine
 import AVFoundation
 
 class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
@@ -11,8 +9,12 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
     @Published var progress: Double = 0.0
     
     // MARK: - Private Properties
-    private var audioPlayer: AVAudioPlayer?
+    var audioPlayer: AVAudioPlayer?
     private var timer: Timer?
+    
+    var duration: TimeInterval {
+        audioPlayer?.duration ?? 0
+    }
     
     // MARK: - Initializer
     override init() {
@@ -33,6 +35,17 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
     
     // MARK: - Playback Control
+    func initializeAudioPlayer(with audio: URL) {
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOf: audio)
+            audioPlayer?.delegate = self
+            audioPlayer?.prepareToPlay()
+            print("Audio player initialized and ready to play.")
+        } catch let error {
+            print("Failed to initialize audio player with error: \(error.localizedDescription)")
+        }
+    }
+
     func startPlayback(audio: URL) {
         let playbackSession = AVAudioSession.sharedInstance()
         
@@ -59,14 +72,14 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
             print("Playback failed with error: \(error.localizedDescription)")
         }
     }
-    
+
     func pausePlayback() {
         audioPlayer?.pause()
         isPlaying = false
         isPaused = true
         stopTimer()
     }
-    
+
     func stopPlayback() {
         audioPlayer?.stop()
         isPlaying = false
@@ -74,26 +87,25 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
         stopTimer()
         progress = 0.0
     }
-    
+
     func resetPlayback() {
         stopPlayback()
         progress = 0.0
         audioPlayer?.currentTime = 0
     }
-    
+
     func seekForward(seconds: TimeInterval = 10) {
         guard let player = audioPlayer else { return }
         let newTime = player.currentTime + seconds
         player.currentTime = min(newTime, player.duration)
     }
-    
+
     func seekBack(seconds: TimeInterval = 10) {
         guard let player = audioPlayer else { return }
         let newTime = player.currentTime - seconds
         player.currentTime = max(newTime, 0)
     }
 
-    
     // MARK: - Playback Information
     func currentTime() -> String {
         guard let player = audioPlayer else {
@@ -104,12 +116,51 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
         let seconds = currentTime % 60
         return String(format: "%02d:%02d", minutes, seconds)
     }
-    
-    private func updateProgress() {
+
+    func remainingTime() -> String {
+        guard let player = audioPlayer else { return "00:00" }
+        let remaining = player.duration - player.currentTime
+        let minutes = Int(remaining) / 60
+        let seconds = Int(remaining) % 60
+        return String(format: "%02d:%02d", minutes, seconds)
+    }
+
+    func updateProgress() {
         guard let player = audioPlayer else { return }
         progress = player.currentTime / player.duration
     }
-    
+
+    // MARK: - Update Current Time
+    func updateCurrentTime(with offset: CGFloat, maxWidth: CGFloat, leftOffset: CGFloat, rightOffset: CGFloat) {
+        guard let player = audioPlayer else { return }
+        
+        let totalWidth = maxWidth - leftOffset - rightOffset
+        
+        // Додаємо захист, щоб не ділили на нуль
+        guard totalWidth > 0 else { return }
+
+        let adjustedOffset = min(max(offset - leftOffset, 0), totalWidth)
+
+        // Новий час на основі зміщення по всій ширині
+        let newTime = (adjustedOffset / totalWidth) * player.duration
+
+        // Оновлюємо поточний час
+        player.currentTime = min(max(newTime, 0), player.duration)
+    }
+
+    // MARK: - Play from Current Time
+    func playFromCurrentTime() {
+        guard let player = audioPlayer else { return }
+        
+        // Start playback from the current time
+        if !isPlaying {
+            player.play()
+            isPlaying = true
+            isPaused = false
+            startTimer()
+        }
+    }
+
     // MARK: - AVAudioPlayerDelegate
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         if flag {

@@ -27,6 +27,7 @@ struct NavigationBarSubView: View {
                 }
             }
         }
+        .padding(.horizontal)
     }
 }
 

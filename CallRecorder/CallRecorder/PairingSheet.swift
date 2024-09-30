@@ -13,8 +13,19 @@ struct PairingSheet<SheetContent: View>: ViewModifier {
     @State private var detent: PresentationDetent
     
     private var detents: Set<PresentationDetent> {
-        [.fraction(0.6)]
-    }
+            let screenHeight = UIScreen.main.bounds.height
+            let detentValue: CGFloat
+            
+            if screenHeight <= 568 {
+                detentValue = 0.8
+            } else if screenHeight <= 736 {
+                detentValue = 0.7
+            } else {
+                detentValue = 0.6 
+            }
+            
+            return [.fraction(detentValue)]
+        }
     
     func body(content: Content) -> some View {
         content

@@ -23,23 +23,14 @@ struct CropRecord: View {
                     .font(.system(size: 15, weight: .regular))
                     .foregroundColor(.primaryExtraDark.opacity(0.5))
                     .padding(.bottom, 100)
-               
-               
-                    Image(.voiceLine)
-                        .resizable()
-                        .scaledToFit()
-                        .padding()
-                        .overlay {
-                           
-                            ClipFrame(audioURL: audioURL)
-                                
-                            
-                        }
+                
+                ClipFrame(audioURL: audioURL)
+                
                 TimePlayerInterval(audioURL: audioURL)
                 
                 Button {
                     if audioPlayer.isPlaying {
-                        self.audioPlayer.pausePlayback()
+                        audioPlayer.playFromCurrentTime()
                     } else {
                         self.audioPlayer.startPlayback(audio: self.audioURL)
                     }
@@ -80,8 +71,6 @@ struct CropRecord: View {
                     Spacer()
                 }
                 .padding(.bottom, 66)
-                        
-               
             }
             .navigationBarBackButtonHidden()
         }
