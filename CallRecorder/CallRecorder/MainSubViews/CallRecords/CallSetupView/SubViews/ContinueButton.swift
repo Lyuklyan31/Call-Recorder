@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct ContinueButton: View {
-    @Binding var amountNumbers: Int?
+
+    @ObservedObject var viewModel: ConfirmOTPViewModel
     
+    @Binding var selectedDialCode: String?
     var body: some View {
         VStack {
             NavigationLink {
-                ConfirmOTPcodeView(phoneNumber: $amountNumbers)
+                ConfirmOTPcodeView(selectedDialCode: $selectedDialCode, viewModel: viewModel)
             } label: {
                 RoundedRectangle(cornerRadius: 24)
                     .frame(height: 56)
@@ -22,13 +24,13 @@ struct ContinueButton: View {
                         Text("Continue")
                             .foregroundColor(.white)
                     }
-                    .opacity((String(amountNumbers ?? 0).count > 8) ? 1.0 : 0.5)
+                    .opacity((String(viewModel.phoneNumber).count > 8) ? 1.0 : 0.5)
             }
-            .disabled(String(amountNumbers ?? 0).count < 8)
+            .disabled(String(viewModel.phoneNumber).count < 8)
         }
     }
 }
 
 #Preview {
-    ContinueButton(amountNumbers: .constant(10))
+    ContinueButton(viewModel: ConfirmOTPViewModel(), selectedDialCode: .constant("+380"))
 }

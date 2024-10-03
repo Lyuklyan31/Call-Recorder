@@ -9,7 +9,8 @@ import SwiftUI
 
 struct PhoneNumberTextField: View {
     @Binding var selectionDialCode: String?
-    @Binding var phoneNumber: Int?
+    var contentType: UITextContentType = .telephoneNumber
+    @ObservedObject var viewModel: ConfirmOTPViewModel
     
     var body: some View {
         HStack(spacing: 4) {
@@ -26,15 +27,16 @@ struct PhoneNumberTextField: View {
                 .foregroundColor(.white)
                 .frame(height: 56)
                 .overlay {
-                    TextField("00000", value: $phoneNumber, format: .number)
+                    TextField("00000", text: $viewModel.phoneNumber)
+                        .textContentType(contentType)
                         .keyboardType(.numberPad)
                         .padding()
-                        .animation(.easeInOut(duration: 0.08), value: phoneNumber)
+                        .animation(.easeInOut(duration: 0.08), value: viewModel.phoneNumber)
                 }
         }
     }
 }
 
 #Preview {
-    PhoneNumberTextField(selectionDialCode: .constant("380"), phoneNumber: .constant(380))
+    PhoneNumberTextField(selectionDialCode: .constant("+380"), viewModel: ConfirmOTPViewModel())
 }

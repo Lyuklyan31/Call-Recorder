@@ -74,6 +74,9 @@ struct CropRecord: View {
             }
             .navigationBarBackButtonHidden()
         }
+        .onAppear {
+            audioPlayer.initializeAudioPlayer(with: audioURL)
+        }
     }
 }
 

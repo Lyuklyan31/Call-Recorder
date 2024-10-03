@@ -19,7 +19,7 @@ struct ClipFrame: View {
         ZStack {
             Image(.voiceLine)
                 .resizable()
-                .padding(.horizontal, 30)
+                .padding(.horizontal, 35)
                 .frame(height: 129)
                 .scaledToFit()
             
@@ -114,26 +114,22 @@ struct ClipFrame: View {
         }
     }
 
-    // Повертає зсув плейхеда по ширині лінії на основі прогресу
     private func getPlayheadOffset() -> CGFloat {
-        let availableWidth = maxWidth - 64 // Ширина лінії відтворення
+        let availableWidth = maxWidth - 64
         let playheadPosition = CGFloat(audioPlayer.progress) * availableWidth
         
         return min(max(playheadPosition, 0), availableWidth)
     }
 
-    // Оновлює поточний час плеєра на основі зміщення
     private func updateAudioPlayerTime() {
         let audioDuration = audioPlayer.duration
-        let totalWidth = maxWidth - 32
+        let totalWidth = maxWidth - 64
         
       
         let secondsWidth = audioDuration > 0 ? totalWidth / audioDuration : 0
         
-        // Новий час на основі зміщення лівого боку
         let newTime = leftOffset / secondsWidth
         
-        // Оновлення поточного часу аудіоплеєра
         audioPlayer.audioPlayer?.currentTime = min(max(newTime, 0), audioDuration)
     }
 }

@@ -12,6 +12,8 @@ struct SettingView: View {
         ZStack {
             MakeBackgroundView()
             
+            
+            
             VStack {
                 NavigationBarSubView(title: "Settings")
                 ButtonSetting(image: "shareApp", text: "Share App", destination: WaveView())
@@ -26,6 +28,17 @@ struct SettingView: View {
                 
                 ButtonSetting(image: "privacyPolicy", text: "Privacy Policy", destination: WaveView())
                 Spacer()
+                Button {
+                    Task {
+                        do {
+                            try AuthennticationManager.shared.signOut()
+                        } catch {
+                            print(error)
+                        }
+                    }
+                } label: {
+                    Text("Singout")
+                }
                     .navigationBarBackButtonHidden()
             }
         }

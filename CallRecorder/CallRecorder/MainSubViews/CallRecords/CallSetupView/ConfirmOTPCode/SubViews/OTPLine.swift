@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import Combine
 
 struct OTPLine: View {
-    @ObservedObject var viewModel = ConfirmOTPViewModel()
+    @ObservedObject var viewModel: ConfirmOTPViewModel
     @State var isFocused = false
+    @Environment(\.dismiss) var dismiss
     
     let textBoxWidth = UIScreen.main.bounds.width / 8
     let textBoxHeight = UIScreen.main.bounds.width / 8
@@ -23,40 +25,72 @@ struct OTPLine: View {
     
     var body: some View {
         VStack {
-            ZStack {
-                HStack(spacing: spaceBetweenBoxes) {
-                    otpText(text: viewModel.otp1)
-                    otpText(text: viewModel.otp2)
-                    otpText(text: viewModel.otp3)
-                    otpText(text: viewModel.otp4)
-                    otpText(text: viewModel.otp5)
-                    otpText(text: viewModel.otp6)
+            VStack {
+                ZStack {
+                    HStack(spacing: spaceBetweenBoxes) {
+                        otpText(text: viewModel.otp1)
+                        otpText(text: viewModel.otp2)
+                        otpText(text: viewModel.otp3)
+                        otpText(text: viewModel.otp4)
+                        otpText(text: viewModel.otp5)
+                        otpText(text: viewModel.otp6)
+                    }
+                    
+                    TextField("", text: $viewModel.otpField)
+                        .frame(width: isFocused ? 0 : textFieldOriginalWidth, height: textBoxHeight)
+                        .disabled(viewModel.isTextFieldDisabled)
+                        .textContentType(.oneTimeCode)
+                        .foregroundColor(.clear)
+                        .accentColor(.clear)
+                        .background(Color.clear)
+                        .keyboardType(.numberPad)
+                        .onReceive(Just(viewModel.otpField)) { _ in
+                            if viewModel.otpField.count == 6 {
+                                Task {
+                                    do {
+                                        try await viewModel.signIn()
+                                    } catch {
+                                        print(error)
+                                    }
+                                }
+                            }
+                        }
                 }
-                
-                TextField("", text: $viewModel.otpField)
-                    .frame(width: isFocused ? 0 : textFieldOriginalWidth, height: textBoxHeight)
-                    .disabled(viewModel.isTextFieldDisabled)
-                    .textContentType(.oneTimeCode)
-                    .foregroundColor(.clear)
-                    .accentColor(.clear)
-                    .background(Color.clear)
-                    .keyboardType(.numberPad)
+            }
+            .padding(.bottom, 48)
+            
+            if viewModel.timerIsRunning {
+                Text("Resend SMS after...\(viewModel.remainingTime)")
+                    .foregroundColor(.primaryExtraDark.opacity(0.5))
+            } else {
+                Button(role: .destructive) {
+                    viewModel.startTimer()
+                    Task {
+                        do {
+                            try await viewModel.sendVerificationCode(phoneNumber: viewModel.selectedDialCode + viewModel.phoneNumber)
+                        } catch {
+                            print(error.localizedDescription)
+                        }
+                    }
+                } label: {
+                    Text("Resend SMS")
+                }
             }
         }
-        .padding(.bottom, 48)
-        
-        if viewModel.timerIsRunning {
-            Text("Resend SMS after...\(viewModel.remainingTime)")
-                .foregroundColor(.primaryExtraDark.opacity(0.5))
-        } else {
-            Button(role: .destructive) {
-                viewModel.startTimer()
-            } label: {
-                Text("Resend SMS")
+        .onAppear {
+            if viewModel.otpField.count == 6 {
+                Task {
+                    do {
+                        try await viewModel.signIn()
+                        viewModel.selectedDialCode = ""
+                        viewModel.phoneNumber = ""
+                    } catch {
+                        print(error)
+                    }
+                }
             }
         }
     }
-    
     private func otpText(text: String) -> some View {
         let displayText = text.isEmpty ? "0" : text
         let textColor = text.isEmpty ? Color.gray : Color.black
@@ -79,5 +113,5 @@ struct OTPLine: View {
 }
 
 #Preview {
-    OTPLine()
+    OTPLine(viewModel: ConfirmOTPViewModel())
 }

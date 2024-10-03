@@ -18,7 +18,6 @@ struct Player: View {
                 .foregroundColor(.white)
                 .overlay {
                     VStack {
-                        
                         Progress(audioURL: audioURL)
                         TimePlayerInterval(audioURL: audioURL)
                         ButtonsOfPlayer(audioURL: audioURL)

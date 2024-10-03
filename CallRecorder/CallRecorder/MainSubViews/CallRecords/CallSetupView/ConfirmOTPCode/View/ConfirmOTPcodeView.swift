@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct ConfirmOTPcodeView: View {
-    @Binding var phoneNumber: Int?
-   
+    @Binding var selectedDialCode: String?
+    @ObservedObject var viewModel: ConfirmOTPViewModel
     var body: some View {
+        let fullPhoneNumber = viewModel.selectedDialCode + viewModel.phoneNumber
         ZStack {
             MakeBackgroundView()
             
@@ -21,7 +22,7 @@ struct ConfirmOTPcodeView: View {
                 Text("We’ve sent a code by SMS to phone number")
                     .foregroundColor(.primaryExtraDark.opacity(0.5))
                 
-                Text(String(phoneNumber ?? 0))
+                Text(fullPhoneNumber)
                     .foregroundColor(.primaryExtraDark.opacity(0.5))
                 
                 Button(role: .destructive) {
@@ -35,7 +36,7 @@ struct ConfirmOTPcodeView: View {
                     .font(.system(size: 28))
                     .bold()
                 
-                OTPLine()
+                OTPLine(viewModel: viewModel)
                 
                 Spacer()
                     .navigationBarBackButtonHidden()
@@ -45,5 +46,5 @@ struct ConfirmOTPcodeView: View {
 }
 
 #Preview {
-    ConfirmOTPcodeView(phoneNumber: .constant(+380986684323))
+    ConfirmOTPcodeView(selectedDialCode: .constant("+380"), viewModel: ConfirmOTPViewModel())
 }

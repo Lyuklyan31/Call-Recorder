@@ -6,16 +6,35 @@
 //
 
 import SwiftUI
+import FirebaseCore
+import FirebaseAuth
 
 final class ConfirmOTPViewModel: ObservableObject {
+    
+    @Published var codeCountry = [CountryData]()
+    
+    init() {
+      loadData()
+    }
+    
+    func loadData() {
+        guard let countryCodeData = Bundle.main.url(forResource: "countryCode", withExtension: "json") else {
+            print("country.json file not found")
+            return
+        }
+        
+        let data = try? Data(contentsOf: countryCodeData)
+        let code = try? JSONDecoder().decode([CountryData].self, from: data!)
+        self.codeCountry = code!
+    }
     
     @Published var remainingTime: Int = 60
     @Published var timer: Timer?
     @Published var timerIsRunning: Bool = false
     
     @Published var verificationID: String = ""
-    @Published var phoneNumber: String = "+380"
-    
+    @Published var phoneNumber: String = ""
+    @Published var selectedDialCode: String = "+380"
     
     @Published var borderColor: Color = .black
     @Published var isTextFieldDisabled = false
@@ -31,6 +50,51 @@ final class ConfirmOTPViewModel: ObservableObject {
             }
         }
     }
+    
+    func sendVerificationCode(phoneNumber: String) async throws {
+            Auth.auth().settings?.isAppVerificationDisabledForTesting = true
+            
+           return try await withCheckedThrowingContinuation { continuation in
+                PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
+                    if let error = error {
+                        continuation.resume(throwing: error)
+                        return
+                    }
+                    
+                    guard let verificationID = verificationID else {
+                        continuation.resume(throwing: URLError(.badServerResponse))
+                        return
+                    }
+                    
+                    self.verificationID = verificationID
+                    self.phoneNumber = phoneNumber
+                    continuation.resume(returning: ())
+                }
+            }
+        }
+        
+    func signIn() async throws {
+            guard !otpField.isEmpty || !verificationID.isEmpty else {
+                print("No verification or verificationID found")
+                return
+            }
+        
+            let authDataResult = try await AuthennticationManager.shared.signInWithPhone(verificationID: verificationID, verificationCODE: otpField)
+            let user = DBUser(auth: authDataResult)
+            
+            do {
+                if try await UserManager.shared.userExists(userId: user.userId) {
+                    try await UserManager.shared.updateUser(user: user)
+                } else {
+                    try await UserManager.shared.createNewUser(user: user)
+                }
+                
+                try await UserManager.shared.updateUserProfilePhoneNumber(userId: user.userId, phoneNumber: phoneNumber)
+                
+            } catch {
+                print("Error saving user info to Firestore: \(error.localizedDescription)")
+            }
+        }
     
     func startTimer() {
         print("Starting timer...")

@@ -2,16 +2,18 @@ import SwiftUI
 
 struct RecordingsList: View {
     
+    // MARK: - Properties
     @EnvironmentObject var audioRecorder: AudioRecorder
     @State private var selectedRecording: URL?
     @State private var showSheet = false
     @Binding var selection: Int
     @State private var selectedTags: Set<String> = ["All"]
     
+    // MARK: - Body
     var body: some View {
         let recordings = selection == 1
-        ? audioRecorder.recordings.filter { $0.isFavorite }
-        : audioRecorder.recordings
+            ? audioRecorder.recordings.filter { $0.isFavorite }
+            : audioRecorder.recordings
         
         let filteredRecordings = recordings.filter { recording in
             if selectedTags.contains("All") {
@@ -19,75 +21,85 @@ struct RecordingsList: View {
             }
             return !selectedTags.isDisjoint(with: Set(recording.tags))
         }
-            VStack {
-                ChoosingTagButtons { tags in
-                    self.selectedTags = tags
-                }
+        
+        VStack {
+            // MARK: - Tag Selection
+            ChoosingTagButtons { tags in
+                self.selectedTags = tags
+            }
+            
+            if filteredRecordings.isEmpty {
+                Spacer()
                 
-                if filteredRecordings.isEmpty {
-                    Spacer()
-                    if selection == 0 {
-                        Image(.microphoneForIsEmpty)
-                            .padding(.bottom, 16)
-                        Text("You have no Starred Records")
-                            .font(.system(size: 19, weight: .medium))
-                            .padding(.bottom, 4)
-                        Text("Star recordings to display them in this section")
-                            .foregroundColor(.primaryExtraDark.opacity(0.5))
-                            .font(.system(size: 15, weight: .regular))
-                    } else {
-                        Image(.phoneForIsEmpty)
-                            .padding(.bottom, 16)
-                        Text("You have no Records")
-                            .font(.system(size: 19, weight: .medium))
-                            .padding(.bottom, 4)
-                        Text("Records will appear here after calls are made")
-                            .foregroundColor(.primaryExtraDark.opacity(0.5))
-                            .font(.system(size: 15, weight: .regular))
-                    }
-                    Spacer()
-                    Spacer()
+                // MARK: - Empty State
+                if selection == 0 {
+                    Image(.microphoneForIsEmpty)
+                        .padding(.bottom, 16)
+                    Text("You have no Starred Records")
+                        .font(.system(size: 19, weight: .medium))
+                        .padding(.bottom, 4)
+                    Text("Star recordings to display them in this section")
+                        .foregroundColor(.primaryExtraDark.opacity(0.5))
+                        .font(.system(size: 15, weight: .regular))
                 } else {
-                    List {
-                        ForEach(filteredRecordings, id: \.fileURL) { recording in
-                            RecordingRow(audioURL: recording.fileURL, selectedRecording: $selectedRecording, showSheet: $showSheet)
-                                .swipeActions(edge: .trailing) {
-                                    ButtonDelete(action: {
-                                        delete(recording: recording)
-                                    })
-                                    ShareLink(item: recording.fileURL, preview: SharePreview(recording.fileURL.lastPathComponent, image: Image("microphone"))) {
-                                        Image(.shareForSwipe)
-                                    }
-                                    .tint(.blue)
+                    Image(.phoneForIsEmpty)
+                        .padding(.bottom, 16)
+                    Text("You have no Records")
+                        .font(.system(size: 19, weight: .medium))
+                        .padding(.bottom, 4)
+                    Text("Records will appear here after calls are made")
+                        .foregroundColor(.primaryExtraDark.opacity(0.5))
+                        .font(.system(size: 15, weight: .regular))
+                }
+                Spacer()
+                Spacer()
+            } else {
+                // MARK: - Recordings List
+                List {
+                    ForEach(filteredRecordings, id: \.fileURL) { recording in
+                        RecordingRow(audioURL: recording.fileURL, selectedRecording: $selectedRecording, showSheet: $showSheet)
+                            .swipeActions(edge: .trailing) {
+                                ButtonDelete(action: {
+                                    delete(recording: recording)
+                                })
+                                ShareLink(item: recording.fileURL, preview: SharePreview(recording.fileURL.lastPathComponent, image: Image("microphone"))) {
+                                    Image(.shareForSwipe)
                                 }
-                        }
-                    }
-                    .listStyle(.plain)
-                    .sheet(isPresented: $showSheet) {
-                        if let selectedRecording = selectedRecording {
-                            MiniPlayerView(audioURL: selectedRecording)
-                                .presentationDetents([.fraction(0.12)])
-                        }
-                    }
-                    .onChange(of: selectedRecording) { newValue in
-                        showSheet = newValue != nil
-                    }
-                    .onChange(of: showSheet) { newValue in
-                        if !newValue {
-                            selectedRecording = nil
-                        }
+                                .tint(.blue)
+                            }
                     }
                 }
+                .listStyle(.plain)
+                .sheet(isPresented: $showSheet) {
+                    if let selectedRecording = selectedRecording {
+                        MiniPlayerView(audioURL: selectedRecording)
+                            .presentationDetents([.fraction(0.12)])
+                            .onDisappear {
+                                self.selectedRecording = nil
+                            }
+                    }
+                }
+                .onChange(of: selectedRecording) { newValue in
+                    print(selectedRecording as Any)
+                    showSheet = newValue != nil
+                }
+//                .onChange(of: showSheet) { newValue in
+//                    if !newValue {
+//                        selectedRecording = nil
+//                    }
+//                }
             }
         }
+    }
     
+    // MARK: - Delete Function
     func delete(recording: RecordingDataModel) {
         audioRecorder.deleteRecording(urlsToDelete: [recording.fileURL])
         audioRecorder.fetchRecording()
     }
 }
 
-
+// MARK: - RecordingRow
 struct RecordingRow: View {
     @EnvironmentObject var audioRecorder: AudioRecorder
     var audioURL: URL
@@ -97,6 +109,7 @@ struct RecordingRow: View {
     
     @State private var audioDuration: String = "00:00"
     
+    // MARK: - Body
     var body: some View {
         let creationDate = getFileDate(for: audioURL)
         let formattedDate = creationDate?.formattedDate() ?? "Unknown date"
@@ -138,10 +151,9 @@ struct RecordingRow: View {
                 
                 Spacer()
                 
-                if  isFavorite {
+                if isFavorite {
                     Image(.favoriteFill)
                         .foregroundColor(.yellow)
-                        
                 }
                 
                 Text(audioDuration)
@@ -164,7 +176,7 @@ struct RecordingRow: View {
     }
 }
 
-
+// MARK: - Preview
 #Preview {
     RecordingsList(selection: .constant(0))
         .environmentObject(AudioRecorder())

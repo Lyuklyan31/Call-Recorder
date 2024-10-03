@@ -55,24 +55,24 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
             try playbackSession.overrideOutputAudioPort(AVAudioSession.PortOverride.speaker)
         } catch let error {
             print("Audio session setup failed with error: \(error.localizedDescription)")
+            return
         }
         
         do {
-            if let player = audioPlayer {
-                player.play()
-            } else {
-                audioPlayer = try AVAudioPlayer(contentsOf: audio)
-                audioPlayer?.delegate = self
-                audioPlayer?.play()
-            }
+            audioPlayer = try AVAudioPlayer(contentsOf: audio)
+            audioPlayer?.delegate = self
+            audioPlayer?.play()
+            
             isPlaying = true
             isPaused = false
             startTimer()
+            
+            print("Playing audio from: \(audio.absoluteString)")
         } catch let error {
             print("Playback failed with error: \(error.localizedDescription)")
         }
     }
-
+    
     func pausePlayback() {
         audioPlayer?.pause()
         isPlaying = false
@@ -136,23 +136,19 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
         
         let totalWidth = maxWidth - leftOffset - rightOffset
         
-        // Додаємо захист, щоб не ділили на нуль
         guard totalWidth > 0 else { return }
 
         let adjustedOffset = min(max(offset - leftOffset, 0), totalWidth)
 
-        // Новий час на основі зміщення по всій ширині
         let newTime = (adjustedOffset / totalWidth) * player.duration
 
-        // Оновлюємо поточний час
         player.currentTime = min(max(newTime, 0), player.duration)
     }
 
     // MARK: - Play from Current Time
     func playFromCurrentTime() {
         guard let player = audioPlayer else { return }
-        
-        // Start playback from the current time
+       
         if !isPlaying {
             player.play()
             isPlaying = true
@@ -164,12 +160,15 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
     // MARK: - AVAudioPlayerDelegate
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
         if flag {
-            isPlaying = false
-            progress = 0.0
-            stopTimer()
+            progress = 1.0
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self.isPlaying = false
+                self.progress = 0.0
+                self.stopTimer()
+            }
         }
     }
-    
+
     // MARK: - Static Methods
     static func getAudioDuration(url: URL, completion: @escaping (TimeInterval) -> Void) {
         let asset = AVAsset(url: url)

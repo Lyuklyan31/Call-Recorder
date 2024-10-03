@@ -20,8 +20,6 @@ struct MiniPlayerView: View {
         
         ZStack {
             MakeBackgroundView()
-            
-            
             Button {
                 showPlayerSheet.toggle()
             } label: {

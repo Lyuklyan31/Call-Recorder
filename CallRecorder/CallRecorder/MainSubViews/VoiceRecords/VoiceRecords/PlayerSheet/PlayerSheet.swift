@@ -90,6 +90,7 @@ struct PlayerSheet: View {
             }
             
             .onDisappear {
+                audioPlayer.initializeAudioPlayer(with: audioURL)
                 audioPlayer.resetPlayback()
             }
             .alert("Edit Name", isPresented: $isActive) {
