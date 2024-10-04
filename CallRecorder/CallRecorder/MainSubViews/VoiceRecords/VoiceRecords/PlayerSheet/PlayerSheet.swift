@@ -2,13 +2,14 @@ import SwiftUI
 
 struct PlayerSheet: View {
     
-    @Binding var showSheet: Bool
+    @Binding var showMiniPlayer: Bool 
     @State private var showTagSheet = false
+    
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var audioRecorder: AudioRecorder
     @EnvironmentObject var audioPlayer: AudioPlayer
     
-    var audioURL: URL
+    @Binding var audioURL: URL!
     
     @State private var isActive = false
     @State private var newName = ""
@@ -34,6 +35,9 @@ struct PlayerSheet: View {
                         Spacer()
                         
                         Button {
+                            DispatchQueue.main.async {
+                                showMiniPlayer = true
+                            }
                             audioPlayer.resetPlayback()
                             dismiss()
                         } label: {
@@ -93,6 +97,8 @@ struct PlayerSheet: View {
                 audioPlayer.initializeAudioPlayer(with: audioURL)
                 audioPlayer.resetPlayback()
             }
+            
+            
             .alert("Edit Name", isPresented: $isActive) {
                 TextField("Placeholder", text: $newName)
                     .textInputAutocapitalization(.never)
@@ -109,16 +115,19 @@ struct PlayerSheet: View {
     private func saveNewName() {
         guard !newName.isEmpty, newName != originalName else { return }
         audioRecorder.renameRecording(oldURL: audioURL, newName: newName)
-        showSheet = false
-        dismiss()
+        audioURL = audioURL.deletingLastPathComponent()
+                .appendingPathComponent(newName)
+                .appendingPathExtension(audioURL.pathExtension)
+//        showSheet = false
+//        dismiss()
     }
 }
 
 
-#Preview {
-    PlayerSheet(showSheet: .constant(false), audioURL: URL(string: "https://www.example.com/audiofile.m4a")!)
-        .environmentObject(AudioRecorder())
-        .environmentObject(AudioPlayer())
-}
-
-
+//#Preview {
+//    PlayerSheet(showSheet: .constant(false), audioURL: URL(string: "https://www.example.com/audiofile.m4a")!)
+//        .environmentObject(AudioRecorder())
+//        .environmentObject(AudioPlayer())
+//}
+//
+//

@@ -1,10 +1,3 @@
-//
-//  buttonDelete.swift
-//  CallRecorder
-//
-//  Created by Andrii Boichuk on 11.09.2024.
-//
-
 import SwiftUI
 
 struct ButtonPlayerDelete: View {

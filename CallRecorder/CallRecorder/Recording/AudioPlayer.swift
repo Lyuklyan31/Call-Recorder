@@ -183,12 +183,4 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
             }
         }
     }
-    
-    func audioDuration(for url: URL, completion: @escaping (String) -> Void) {
-        AudioPlayer.getAudioDuration(url: url) { duration in
-            let minutes = Int(duration) / 60
-            let seconds = Int(duration) % 60
-            completion(String(format: "%02d:%02d", minutes, seconds))
-        }
-    }
 }

@@ -7,7 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0429CEA22CB04B9600B23018 /* TagsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429CEA12CB04B9600B23018 /* TagsManager.swift */; };
 		045D3E5D2C9CF1F100F56B08 /* ClipFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045D3E5C2C9CF1F000F56B08 /* ClipFrame.swift */; };
+		0466C0812CB028D5005123FB /* RecordingRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0466C0802CB028D5005123FB /* RecordingRow.swift */; };
 		0475754C2CADDF53004C227F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0475754B2CADDF53004C227F /* GoogleService-Info.plist */; };
 		0475EC9B2CADF0B000F170A3 /* AuthennticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0475EC9A2CADF0B000F170A3 /* AuthennticationManager.swift */; };
 		0475EC9E2CADF18500F170A3 /* DBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0475EC9D2CADF18500F170A3 /* DBUser.swift */; };
@@ -74,7 +76,6 @@
 		7B9B6ADB2C8B3C500001D94D /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ADA2C8B3C500001D94D /* AudioPlayer.swift */; };
 		7B9B6ADD2C8B3D410001D94D /* WavesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ADC2C8B3D410001D94D /* WavesViewModel.swift */; };
 		7B9B6ADF2C8BD3DF0001D94D /* RecordingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ADE2C8BD3DF0001D94D /* RecordingsList.swift */; };
-		7BAAFDB52C90FF94008B2AAF /* ButtonDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAAFDB42C90FF94008B2AAF /* ButtonDelete.swift */; };
 		7BAAFDB92C9123ED008B2AAF /* ButtonPlayerDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAAFDB82C9123ED008B2AAF /* ButtonPlayerDelete.swift */; };
 		7BABC3472C8D308D0047F65A /* ChoosingStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABC3462C8D308D0047F65A /* ChoosingStorage.swift */; };
 		7BABC34B2C8D323F0047F65A /* ICloudDriveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABC34A2C8D323F0047F65A /* ICloudDriveButton.swift */; };
@@ -83,7 +84,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0429CEA12CB04B9600B23018 /* TagsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsManager.swift; sourceTree = "<group>"; };
 		045D3E5C2C9CF1F000F56B08 /* ClipFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipFrame.swift; sourceTree = "<group>"; };
+		0466C0802CB028D5005123FB /* RecordingRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingRow.swift; sourceTree = "<group>"; };
 		0475754B2CADDF53004C227F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		0475EC9A2CADF0B000F170A3 /* AuthennticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthennticationManager.swift; sourceTree = "<group>"; };
 		0475EC9D2CADF18500F170A3 /* DBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBUser.swift; sourceTree = "<group>"; };
@@ -146,7 +149,6 @@
 		7B9B6ADA2C8B3C500001D94D /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		7B9B6ADC2C8B3D410001D94D /* WavesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavesViewModel.swift; sourceTree = "<group>"; };
 		7B9B6ADE2C8BD3DF0001D94D /* RecordingsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsList.swift; sourceTree = "<group>"; };
-		7BAAFDB42C90FF94008B2AAF /* ButtonDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonDelete.swift; sourceTree = "<group>"; };
 		7BAAFDB82C9123ED008B2AAF /* ButtonPlayerDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPlayerDelete.swift; sourceTree = "<group>"; };
 		7BABC3462C8D308D0047F65A /* ChoosingStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingStorage.swift; sourceTree = "<group>"; };
 		7BABC34A2C8D323F0047F65A /* ICloudDriveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICloudDriveButton.swift; sourceTree = "<group>"; };
@@ -412,6 +414,7 @@
 			isa = PBXGroup;
 			children = (
 				7B1668902C95EDFF004CC4F1 /* TagSheet.swift */,
+				0429CEA12CB04B9600B23018 /* TagsManager.swift */,
 				7B7C3DFC2C971495004BA353 /* SubViews */,
 			);
 			path = TagSheet;
@@ -475,7 +478,6 @@
 			children = (
 				0475ECB22CAE0E1700F170A3 /* Info.plist */,
 				7B9B6A682C87A6740001D94D /* CallRecorderApp.swift */,
-				048374682C9B6FF500256978 /* PairingSheet.swift */,
 				0475EC9C2CADF0B400F170A3 /* FireBase */,
 				7B9B6AAA2C8A26C40001D94D /* SubViews */,
 				7B9B6ACF2C8B306A0001D94D /* Recording */,
@@ -539,6 +541,7 @@
 		7B9B6AAA2C8A26C40001D94D /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				048374682C9B6FF500256978 /* PairingSheet.swift */,
 				7B9B6A992C87C9E60001D94D /* NavigationBarSubView.swift */,
 				0483746C2C9B7E1900256978 /* MakeBackgroundView.swift */,
 			);
@@ -560,8 +563,8 @@
 			children = (
 				7B9B6AB62C8A4C970001D94D /* SegmnetVoiceRecords.swift */,
 				7B9B6ADE2C8BD3DF0001D94D /* RecordingsList.swift */,
+				0466C0802CB028D5005123FB /* RecordingRow.swift */,
 				7B9B6AB82C8A4F1C0001D94D /* ChoosingTagButtons.swift */,
-				7BAAFDB42C90FF94008B2AAF /* ButtonDelete.swift */,
 			);
 			path = SubViews;
 			sourceTree = "<group>";
@@ -729,12 +732,12 @@
 				7B9B6AD72C8B31210001D94D /* Helper.swift in Sources */,
 				7B9B6ADB2C8B3C500001D94D /* AudioPlayer.swift in Sources */,
 				045D3E5D2C9CF1F100F56B08 /* ClipFrame.swift in Sources */,
-				7BAAFDB52C90FF94008B2AAF /* ButtonDelete.swift in Sources */,
 				7B9B6AAF2C8A3E2A0001D94D /* ConfirmOTPViewModel.swift in Sources */,
 				7B9B6A952C87C9700001D94D /* CallSetupView.swift in Sources */,
 				7B39C28D2C8C9D8F0099B213 /* SettingView.swift in Sources */,
 				7B9B6AB42C8A4B560001D94D /* VoiceRecords.swift in Sources */,
 				7B9B5E292C8F1971007F2325 /* PlayerSheet.swift in Sources */,
+				0429CEA22CB04B9600B23018 /* TagsManager.swift in Sources */,
 				0483746D2C9B7E1900256978 /* MakeBackgroundView.swift in Sources */,
 				7B9B6AC12C8A61530001D94D /* ButtonsPlayStopResset.swift in Sources */,
 				7B7C3DFE2C9714B8004BA353 /* TagButton.swift in Sources */,
@@ -742,6 +745,7 @@
 				7BABC34F2C8DF5D70047F65A /* MiniPlayer.swift in Sources */,
 				7B9B5E372C8F97F3007F2325 /* SwipeProgress.swift in Sources */,
 				7B7C3E002C9719B8004BA353 /* CreateTagButton.swift in Sources */,
+				0466C0812CB028D5005123FB /* RecordingRow.swift in Sources */,
 				7B551B232C93B1A9009E4661 /* ButtonPlayerShare.swift in Sources */,
 				7B1668912C95EDFF004CC4F1 /* TagSheet.swift in Sources */,
 				04B9D17D2CA6116000B318D4 /* PlayHeadCrop.swift in Sources */,

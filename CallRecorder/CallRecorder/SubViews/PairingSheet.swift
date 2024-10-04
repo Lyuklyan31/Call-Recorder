@@ -29,8 +29,9 @@ struct PairingSheet<SheetContent: View>: ViewModifier {
     
     func body(content: Content) -> some View {
         content
-            .blur(radius: isShowing ? 3.0 : 0)
-            .sheet(isPresented: $isShowing) {
+            .sheet(isPresented: $isShowing, onDismiss: {
+                closeAction?()
+            }) {
                 VStack {
                     sheetContent
                 }
@@ -41,12 +42,13 @@ struct PairingSheet<SheetContent: View>: ViewModifier {
                     }
                 }
                 .presentationDetents(detents, selection: $detent)
-                .presentationDragIndicator(.hidden) 
+                .presentationDragIndicator(.hidden)
                 .presentationBackground(Color.white)
                 .presentationBackgroundInteraction(.enabled)
             }
             .animation(.easeInOut, value: isShowing)
     }
+
     
     init(isShowing: Binding<Bool>,
          isExpandedByDefault: Bool,

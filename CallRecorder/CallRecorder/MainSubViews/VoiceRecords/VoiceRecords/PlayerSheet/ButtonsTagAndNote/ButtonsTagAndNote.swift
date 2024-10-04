@@ -1,9 +1,3 @@
-//
-//  ButtonTag.swift
-//  CallRecorder
-//
-//  Created by Andrii Boichuk on 14.09.2024.
-//
 
 import SwiftUI
 

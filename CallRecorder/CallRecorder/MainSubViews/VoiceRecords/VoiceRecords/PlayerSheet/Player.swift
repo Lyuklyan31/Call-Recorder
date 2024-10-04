@@ -1,10 +1,3 @@
-//
-//  PlayerView.swift
-//  CallRecorder
-//
-//  Created by Andrii Boichuk on 13.09.2024.
-//
-
 import SwiftUI
 
 struct Player: View {

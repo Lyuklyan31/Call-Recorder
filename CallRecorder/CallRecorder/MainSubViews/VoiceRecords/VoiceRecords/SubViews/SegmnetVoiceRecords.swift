@@ -1,20 +1,17 @@
-//
-//  SegmnetVoiceRecords.swift
-//  CallRecorder
-//
-//  Created by Andrii Boichuk on 05.09.2024.
-//
-
 import SwiftUI
 
-struct SegmnetVoiceRecords: View {
+// MARK: - SegmentVoiceRecords
+struct SegmentVoiceRecords: View {
+    
+    // MARK: - Properties
     @Binding var selection: Int
+    
+    // MARK: - Body
     var body: some View {
         VStack {
-            Picker("What is your favorite color?", selection: $selection) {
+            Picker("Voice Records", selection: $selection) {
                 Text("All").tag(0)
                 Text("Starred").tag(1)
-                
             }
             .pickerStyle(.segmented)
             .padding(.horizontal)
@@ -22,6 +19,7 @@ struct SegmnetVoiceRecords: View {
     }
 }
 
+// MARK: - Preview
 #Preview {
-    SegmnetVoiceRecords(selection: .constant(0))
+    SegmentVoiceRecords(selection: .constant(0))
 }

@@ -5,12 +5,20 @@ struct RecordingsList: View {
     // MARK: - Properties
     @EnvironmentObject var audioRecorder: AudioRecorder
     @State private var selectedRecording: URL?
-    @State private var showSheet = false
+    @State private var showingPlayer = false
     @Binding var selection: Int
+    @Binding var showMiniPlayer: Bool 
+    
     @State private var selectedTags: Set<String> = ["All"]
+    
+    @State private var detent: PresentationDetent = .large
+    private var detents: Set<PresentationDetent> {
+        [.medium, .large]
+    }
     
     // MARK: - Body
     var body: some View {
+        // Get filtered recordings based on selection and tags
         let recordings = selection == 1
             ? audioRecorder.recordings.filter { $0.isFavorite }
             : audioRecorder.recordings
@@ -25,70 +33,84 @@ struct RecordingsList: View {
         VStack {
             // MARK: - Tag Selection
             ChoosingTagButtons { tags in
-                self.selectedTags = tags
+                withAnimation {
+                    self.selectedTags = tags
+                }
             }
             
             if filteredRecordings.isEmpty {
                 Spacer()
-                
-                // MARK: - Empty State
-                if selection == 0 {
-                    Image(.microphoneForIsEmpty)
-                        .padding(.bottom, 16)
-                    Text("You have no Starred Records")
-                        .font(.system(size: 19, weight: .medium))
-                        .padding(.bottom, 4)
-                    Text("Star recordings to display them in this section")
-                        .foregroundColor(.primaryExtraDark.opacity(0.5))
-                        .font(.system(size: 15, weight: .regular))
-                } else {
-                    Image(.phoneForIsEmpty)
-                        .padding(.bottom, 16)
-                    Text("You have no Records")
-                        .font(.system(size: 19, weight: .medium))
-                        .padding(.bottom, 4)
-                    Text("Records will appear here after calls are made")
-                        .foregroundColor(.primaryExtraDark.opacity(0.5))
-                        .font(.system(size: 15, weight: .regular))
-                }
+                emptyStateView()
                 Spacer()
                 Spacer()
             } else {
-                // MARK: - Recordings List
+                // MARK: - Animated Recordings List
                 List {
                     ForEach(filteredRecordings, id: \.fileURL) { recording in
-                        RecordingRow(audioURL: recording.fileURL, selectedRecording: $selectedRecording, showSheet: $showSheet)
+                        RecordingRow(audioURL: recording.fileURL, selectedRecording: $selectedRecording, showSheet: $showingPlayer)
                             .swipeActions(edge: .trailing) {
-                                ButtonDelete(action: {
-                                    delete(recording: recording)
-                                })
+                                Button(role: .destructive) { delete(recording: recording) } label: { Image(.trashForSwipe) }
                                 ShareLink(item: recording.fileURL, preview: SharePreview(recording.fileURL.lastPathComponent, image: Image("microphone"))) {
                                     Image(.shareForSwipe)
                                 }
                                 .tint(.blue)
                             }
                     }
+                    .transition(.opacity)
                 }
                 .listStyle(.plain)
-                .sheet(isPresented: $showSheet) {
-                    if let selectedRecording = selectedRecording {
-                        MiniPlayerView(audioURL: selectedRecording)
-                            .presentationDetents([.fraction(0.12)])
-                            .onDisappear {
-                                self.selectedRecording = nil
+                .modifier(
+                    PairingSheet(
+                        isShowing: $showingPlayer,
+                        isExpandedByDefault: false,
+                        defaultDetent: .medium,
+                        title: "Pairing Sheet",
+                        closeAction: {
+                            DispatchQueue.main.async {
+                                showMiniPlayer = true
                             }
-                    }
-                }
+                        },
+                        sheetContent: {
+                            PlayerSheet(showMiniPlayer: $showMiniPlayer, audioURL: $selectedRecording)
+                        }
+                    )
+                )
                 .onChange(of: selectedRecording) { newValue in
-                    print(selectedRecording as Any)
-                    showSheet = newValue != nil
+                    showingPlayer = newValue != nil
                 }
-//                .onChange(of: showSheet) { newValue in
-//                    if !newValue {
-//                        selectedRecording = nil
-//                    }
-//                }
             }
+            
+            if showMiniPlayer {
+                ZStack {
+                    MiniPlayerView(audioURL: $selectedRecording, showPlayerSheet: $showingPlayer)
+                        .transition(.slide)
+                }
+            }
+        }
+        .animation(.easeInOut, value: selection)
+    }
+    
+    // MARK: - Empty State View
+    @ViewBuilder
+    private func emptyStateView() -> some View {
+        if selection == 0 {
+            Image(.microphoneForIsEmpty)
+                .padding(.bottom, 16)
+            Text("You have no Starred Records")
+                .font(.system(size: 19, weight: .medium))
+                .padding(.bottom, 4)
+            Text("Star recordings to display them in this section")
+                .foregroundColor(.primaryExtraDark.opacity(0.5))
+                .font(.system(size: 15, weight: .regular))
+        } else {
+            Image(.phoneForIsEmpty)
+                .padding(.bottom, 16)
+            Text("You have no Records")
+                .font(.system(size: 19, weight: .medium))
+                .padding(.bottom, 4)
+            Text("Records will appear here after calls are made")
+                .foregroundColor(.primaryExtraDark.opacity(0.5))
+                .font(.system(size: 15, weight: .regular))
         }
     }
     
@@ -97,88 +119,4 @@ struct RecordingsList: View {
         audioRecorder.deleteRecording(urlsToDelete: [recording.fileURL])
         audioRecorder.fetchRecording()
     }
-}
-
-// MARK: - RecordingRow
-struct RecordingRow: View {
-    @EnvironmentObject var audioRecorder: AudioRecorder
-    var audioURL: URL
-    
-    @Binding var selectedRecording: URL?
-    @Binding var showSheet: Bool
-    
-    @State private var audioDuration: String = "00:00"
-    
-    // MARK: - Body
-    var body: some View {
-        let creationDate = getFileDate(for: audioURL)
-        let formattedDate = creationDate?.formattedDate() ?? "Unknown date"
-       
-        let isFavorite = audioRecorder.recordings.first(where: { $0.fileURL == audioURL })?.isFavorite ?? false
-        
-        Button {
-            selectedRecording = audioURL
-        } label: {
-            HStack {
-                Image(.microphoneRec)
-                    .padding(.trailing, 8)
-                VStack(alignment: .leading) {
-                    HStack {
-                        Text(audioURL.deletingPathExtension().lastPathComponent)
-                            .foregroundColor(.primary)
-                            .font(.system(size: 17, weight: .regular))
-                    }
-                    
-                    Text(formattedDate)
-                        .padding(.bottom, 2)
-                        .font(.system(size: 15, weight: .regular))
-                        .foregroundColor(.primaryExtraDark.opacity(0.5))
-                    
-                    let tags = audioRecorder.tagsForRecording(url: audioURL)
-                    VStack {
-                        if !tags.isEmpty {
-                            HStack(spacing: 8) {
-                                ForEach(tags, id: \.self) { tag in
-                                    Text(tag)
-                                        .padding(.horizontal)
-                                        .padding(.vertical, 4)
-                                        .background(Capsule().foregroundColor(.customPink.opacity(0.1)))
-                                }
-                            }
-                        }
-                    }
-                }
-                
-                Spacer()
-                
-                if isFavorite {
-                    Image(.favoriteFill)
-                        .foregroundColor(.yellow)
-                }
-                
-                Text(audioDuration)
-                    .font(.system(size: 17, weight: .regular))
-                    .foregroundColor(.primaryExtraDark.opacity(0.5))
-            }
-        }
-        .onChange(of: selectedRecording) { newValue in
-            if newValue == audioURL {
-                showSheet = true
-            }
-        }
-        .onAppear {
-            AudioPlayer.getAudioDuration(url: audioURL) { duration in
-                let minutes = Int(duration) / 60
-                let seconds = Int(duration) % 60
-                audioDuration = String(format: "%02d:%02d", minutes, seconds)
-            }
-        }
-    }
-}
-
-// MARK: - Preview
-#Preview {
-    RecordingsList(selection: .constant(0))
-        .environmentObject(AudioRecorder())
-        .environmentObject(AudioPlayer())
 }
