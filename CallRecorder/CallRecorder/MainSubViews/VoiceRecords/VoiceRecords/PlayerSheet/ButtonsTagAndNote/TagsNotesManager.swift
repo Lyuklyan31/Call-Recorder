@@ -1,55 +1,51 @@
-
 import Foundation
 
-// MARK: - TagsManager: Handles saving/loading tags
+// MARK: - TagsNotesManager: Handles saving/loading tags and notes
 class TagsNotesManager: ObservableObject {
     
     // MARK: - Singleton Instance
     static let shared = TagsNotesManager()
     
-    // MARK: - UserDefaults Key
-    private let notesKey = "savedTags"
+    // MARK: - UserDefaults Keys
+    private let notesKey = "savedNotes"  // Changed the key to avoid conflict
+    private let tagsKey = "savedTags"
     
-    // MARK: - Published Tags Array
+    // MARK: - Published Notes Array
     @Published var notes: [String] = [] {
         didSet {
-            saveNote()
+            saveNotes()
         }
     }
     
-    // MARK: - Initializer: Load tags from storage
-    init() {
-        self.notes = loadTags()
-        self.tags = loadTags()
-    }
-    
-    // MARK: - Save
-    private func saveNote() {
-        UserDefaults.standard.set(notes, forKey: notesKey)
-    }
-    
-    // MARK: - Load
-    private func loadNotes() -> [String] {
-        return UserDefaults.standard.stringArray(forKey: notesKey) ?? []
-    }
-    
-    
-    // MARK: - UserDefaults Key
-    private let tagsKey = "savedTags"
-    
-    // MARK: - Published Array
+    // MARK: - Published Tags Array
     @Published var tags: [String] = [] {
         didSet {
             saveTags()
         }
     }
     
-    // MARK: - Save
+    // MARK: - Initializer: Load notes and tags from storage
+    init() {
+        self.notes = loadNotes()
+        self.tags = loadTags()
+    }
+    
+    // MARK: - Save Notes
+    private func saveNotes() {
+        UserDefaults.standard.set(notes, forKey: notesKey)
+    }
+    
+    // MARK: - Load Notes
+    private func loadNotes() -> [String] {
+        return UserDefaults.standard.stringArray(forKey: notesKey) ?? []
+    }
+    
+    // MARK: - Save Tags
     private func saveTags() {
         UserDefaults.standard.set(tags, forKey: tagsKey)
     }
     
-    // MARK: - Load
+    // MARK: - Load Tags
     private func loadTags() -> [String] {
         return UserDefaults.standard.stringArray(forKey: tagsKey) ?? []
     }

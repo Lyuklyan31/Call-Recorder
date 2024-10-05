@@ -6,7 +6,7 @@ struct TagSheet: View {
     @EnvironmentObject var audioRecorder: AudioRecorder
     var audioURL: URL
     
-    @ObservedObject private var tags = TagsNotesManager()
+    @ObservedObject var tags: TagsNotesManager
     
     @State private var selectedTags: Set<String> = []
     @State private var newTag = ""
@@ -112,6 +112,6 @@ struct TagSheet: View {
 }
 
 #Preview {
-    TagSheet(audioURL: URL(string: "https://www.example.com/audiofile.m4a")!)
+    TagSheet(audioURL: URL(string: "https://www.example.com/audiofile.m4a")!, tags: TagsNotesManager())
         .environmentObject(AudioRecorder())
 }

@@ -22,4 +22,9 @@ class AppDelegate: NSObject, UIApplicationDelegate {
     FirebaseApp.configure()
     return true
   }
+    
+    //MARK: Phone Auth Needs to Intialize Remote Notifcations
+        func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) async -> UIBackgroundFetchResult {
+            return .noData
+        }
 }

@@ -5,6 +5,7 @@ struct RecordingDataModel {
     let createdAt: Date
     var isFavorite: Bool = false
     var tags: [String] = []
+    var notes: [String] = []
     
     var fileName: String {
         return fileURL.deletingPathExtension().lastPathComponent

@@ -2,12 +2,12 @@ import SwiftUI
 
 struct PlayerSheet: View {
     
-    @Binding var showMiniPlayer: Bool 
-    @State private var showTagSheet = false
+    @Binding var showMiniPlayer: Bool
     
     @Environment(\.dismiss) var dismiss
     @EnvironmentObject var audioRecorder: AudioRecorder
     @EnvironmentObject var audioPlayer: AudioPlayer
+    @ObservedObject private var tagsNotesManager = TagsNotesManager()
     
     @Binding var audioURL: URL!
     
@@ -65,6 +65,20 @@ struct PlayerSheet: View {
                             }
                         }
                         
+                        let notes = audioRecorder.notesForRecording(url: audioURL)
+                        VStack {
+                            if !notes.isEmpty {
+                                HStack(spacing: 8) {
+                                    ForEach(notes, id: \.self) { note in
+                                        Text(note)
+                                            .foregroundColor(.blue)
+                                            .padding(.horizontal)
+                                            
+                                    }
+                                }
+                            }
+                        }
+                        
                         let tags = audioRecorder.tagsForRecording(url: audioURL)
                         VStack {
                             if !tags.isEmpty {
@@ -84,13 +98,9 @@ struct PlayerSheet: View {
                     Player(audioURL: audioURL)
                         .padding()
                     
-                    ButtonsTagAndNote(audioURL: audioURL, showTagSheet: $showTagSheet)
+                    ButtonsTagAndNote(tagsNotes: tagsNotesManager, audioURL: audioURL)
                     Spacer()
                 }
-            }
-            
-            .sheet(isPresented: $showTagSheet) {
-                TagSheet(audioURL: audioURL)
             }
             
             .onDisappear {

@@ -3,12 +3,13 @@ import SwiftUI
 
 struct ButtonsTagAndNote: View {
     @EnvironmentObject var audioPlayer: AudioPlayer
+    @EnvironmentObject var audioRecorder: AudioRecorder
     @State private var showAddNoteAlert: Bool = false
-    @State private var noteText: String = ""
-    @ObservedObject private var tags = TagsNotesManager()
+    @State private var newNote: String = ""
+    @ObservedObject var tagsNotes: TagsNotesManager
     
     var audioURL: URL
-    @Binding var showTagSheet: Bool
+    @State private var showTagSheet: Bool = false
     
     var body: some View {
         HStack {
@@ -41,24 +42,28 @@ struct ButtonsTagAndNote: View {
             Spacer()
         }
         .alert("Add Note", isPresented: $showAddNoteAlert) {
-            TextField("Placeholder", text: $noteText)
+            TextField("Placeholder", text: $newNote)
                 .textInputAutocapitalization(.never)
             
             Button("Cancel", role: .cancel) { showAddNoteAlert = false }
             Button("Save", role: .none) {
-                if !noteText.isEmpty && noteText.count <= 80 {
-//                    tags.tags.append(newTag)
-//                    newTag = ""
+                if !newNote.isEmpty && newNote.count <= 80 {
+                    tagsNotes.notes.append(newNote)
+                    newNote = ""
+                    audioRecorder.addNote(to: audioURL, note: newNote)
                 }
             }
             
         } message: {
-            Text("\(noteText.count)/80 characters")
+            Text("\(newNote.count)/80 characters")
+        }
+        .sheet(isPresented: $showTagSheet) {
+            TagSheet(audioURL: audioURL, tags: tagsNotes)
         }
     }
 }
 
 #Preview {
-    ButtonsTagAndNote(audioURL: URL(string: "https://www.example.com/audiofile.m4a")!, showTagSheet: .constant(false))
+    ButtonsTagAndNote(tagsNotes: TagsNotesManager(), audioURL: URL(string: "https://www.example.com/audiofile.m4a")!)
         .environmentObject(AudioRecorder())
 }

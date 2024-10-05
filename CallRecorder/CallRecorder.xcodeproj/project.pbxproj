@@ -365,7 +365,6 @@
 			isa = PBXGroup;
 			children = (
 				7B551B272C93C521009E4661 /* PlayerSubViews */,
-				7B3FF7382C95DBA700559A72 /* ButtonsDeleteShare */,
 				7B3FF73C2C95DCF700559A72 /* ButtonsTagAndNote */,
 			);
 			name = SubViews;
@@ -384,6 +383,7 @@
 		7B3FF7392C95DCA100559A72 /* SubViews */ = {
 			isa = PBXGroup;
 			children = (
+				7B3FF7382C95DBA700559A72 /* ButtonsDeleteShare */,
 				7B551B282C93C541009E4661 /* Progress.swift */,
 				7B551B2A2C93C5C1009E4661 /* TimePlayerInterval.swift */,
 				7B551B2C2C93CCE6009E4661 /* ButtonsOfPlayer.swift */,
