@@ -103,10 +103,8 @@ struct PlayerSheet: View {
                 TextField("Placeholder", text: $newName)
                     .textInputAutocapitalization(.never)
                 
-                Button("Cancel", role: .cancel) { }
-                Button("Save", role: .none) {
-                    saveNewName()
-                }
+                Button("Cancel", role: .cancel) { isActive = false }
+                Button("Save", role: .none) { saveNewName() }
             } message: {
                 Text("Enter a new name for this record")
             }
@@ -118,16 +116,5 @@ struct PlayerSheet: View {
         audioURL = audioURL.deletingLastPathComponent()
                 .appendingPathComponent(newName)
                 .appendingPathExtension(audioURL.pathExtension)
-//        showSheet = false
-//        dismiss()
     }
 }
-
-
-//#Preview {
-//    PlayerSheet(showSheet: .constant(false), audioURL: URL(string: "https://www.example.com/audiofile.m4a")!)
-//        .environmentObject(AudioRecorder())
-//        .environmentObject(AudioPlayer())
-//}
-//
-//

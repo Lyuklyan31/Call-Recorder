@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0429CEA22CB04B9600B23018 /* TagsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0429CEA12CB04B9600B23018 /* TagsManager.swift */; };
+		042D7F572CB0CE7F0022FCC3 /* TagsNotesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D7F562CB0CE7F0022FCC3 /* TagsNotesManager.swift */; };
 		045D3E5D2C9CF1F100F56B08 /* ClipFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045D3E5C2C9CF1F000F56B08 /* ClipFrame.swift */; };
 		0466C0812CB028D5005123FB /* RecordingRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0466C0802CB028D5005123FB /* RecordingRow.swift */; };
 		0475754C2CADDF53004C227F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0475754B2CADDF53004C227F /* GoogleService-Info.plist */; };
@@ -84,7 +84,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		0429CEA12CB04B9600B23018 /* TagsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsManager.swift; sourceTree = "<group>"; };
+		042D7F562CB0CE7F0022FCC3 /* TagsNotesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsNotesManager.swift; sourceTree = "<group>"; };
 		045D3E5C2C9CF1F000F56B08 /* ClipFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipFrame.swift; sourceTree = "<group>"; };
 		0466C0802CB028D5005123FB /* RecordingRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingRow.swift; sourceTree = "<group>"; };
 		0475754B2CADDF53004C227F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -396,6 +396,7 @@
 			isa = PBXGroup;
 			children = (
 				7B3FF73A2C95DCEE00559A72 /* ButtonsTagAndNote.swift */,
+				042D7F562CB0CE7F0022FCC3 /* TagsNotesManager.swift */,
 				7B7C3DFB2C971489004BA353 /* TagSheet */,
 			);
 			path = ButtonsTagAndNote;
@@ -414,7 +415,6 @@
 			isa = PBXGroup;
 			children = (
 				7B1668902C95EDFF004CC4F1 /* TagSheet.swift */,
-				0429CEA12CB04B9600B23018 /* TagsManager.swift */,
 				7B7C3DFC2C971495004BA353 /* SubViews */,
 			);
 			path = TagSheet;
@@ -726,6 +726,7 @@
 				7B9B5E312C8F9662007F2325 /* IPhone.swift in Sources */,
 				7B551B2D2C93CCE6009E4661 /* ButtonsOfPlayer.swift in Sources */,
 				7B9B6A912C87C5400001D94D /* CallRecordsButton.swift in Sources */,
+				042D7F572CB0CE7F0022FCC3 /* TagsNotesManager.swift in Sources */,
 				7B9B6AD12C8B307E0001D94D /* RecordingDataModel.swift in Sources */,
 				7BABC3472C8D308D0047F65A /* ChoosingStorage.swift in Sources */,
 				7B9B6ADD2C8B3D410001D94D /* WavesViewModel.swift in Sources */,
@@ -737,7 +738,6 @@
 				7B39C28D2C8C9D8F0099B213 /* SettingView.swift in Sources */,
 				7B9B6AB42C8A4B560001D94D /* VoiceRecords.swift in Sources */,
 				7B9B5E292C8F1971007F2325 /* PlayerSheet.swift in Sources */,
-				0429CEA22CB04B9600B23018 /* TagsManager.swift in Sources */,
 				0483746D2C9B7E1900256978 /* MakeBackgroundView.swift in Sources */,
 				7B9B6AC12C8A61530001D94D /* ButtonsPlayStopResset.swift in Sources */,
 				7B7C3DFE2C9714B8004BA353 /* TagButton.swift in Sources */,

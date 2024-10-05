@@ -6,7 +6,7 @@ struct TagSheet: View {
     @EnvironmentObject var audioRecorder: AudioRecorder
     var audioURL: URL
     
-    @ObservedObject private var tags = TagsManager()
+    @ObservedObject private var tags = TagsNotesManager()
     
     @State private var selectedTags: Set<String> = []
     @State private var newTag = ""
@@ -15,7 +15,7 @@ struct TagSheet: View {
         ZStack {
             MakeBackgroundView()  // Custom background
             
-            ScrollView {  // Wrap content in a ScrollView
+            ScrollView {
                 VStack {
                     
                     // MARK: - Header: Manage Tags Title and Dismiss Button
@@ -27,7 +27,7 @@ struct TagSheet: View {
                         HStack {
                             Spacer()
                             Button {
-                                dismiss()  // Close the tag sheet
+                                dismiss()
                             } label: {
                                 Image(.dismissButton)
                             }

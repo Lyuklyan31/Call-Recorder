@@ -87,7 +87,6 @@ struct MiniPlayerView: View {
             }
            
         }
-        .frame(height: 93)
-        .presentationDetents([.fraction(0.12)])
+        .frame(height: UIScreen.main.bounds.height * 0.09)
     }
 }

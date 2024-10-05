@@ -3,6 +3,10 @@ import SwiftUI
 
 struct ButtonsTagAndNote: View {
     @EnvironmentObject var audioPlayer: AudioPlayer
+    @State private var showAddNoteAlert: Bool = false
+    @State private var noteText: String = ""
+    @ObservedObject private var tags = TagsNotesManager()
+    
     var audioURL: URL
     @Binding var showTagSheet: Bool
     
@@ -24,7 +28,7 @@ struct ButtonsTagAndNote: View {
             Spacer()
             
             Button {
-                
+                showAddNoteAlert = true
             } label: {
                 VStack {
                     Image(.note)
@@ -35,6 +39,21 @@ struct ButtonsTagAndNote: View {
             }
             
             Spacer()
+        }
+        .alert("Add Note", isPresented: $showAddNoteAlert) {
+            TextField("Placeholder", text: $noteText)
+                .textInputAutocapitalization(.never)
+            
+            Button("Cancel", role: .cancel) { showAddNoteAlert = false }
+            Button("Save", role: .none) {
+                if !noteText.isEmpty && noteText.count <= 80 {
+//                    tags.tags.append(newTag)
+//                    newTag = ""
+                }
+            }
+            
+        } message: {
+            Text("\(noteText.count)/80 characters")
         }
     }
 }

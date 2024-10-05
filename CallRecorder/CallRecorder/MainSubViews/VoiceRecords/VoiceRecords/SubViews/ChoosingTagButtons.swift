@@ -5,7 +5,7 @@ struct ChoosingTagButtons: View {
     
     // MARK: - Properties
     @State private var selectedButtons: Set<String> = ["All"]
-    @ObservedObject private var tags =  TagsManager()
+    @ObservedObject private var tags =  TagsNotesManager()
     var onTagSelectionChange: ((Set<String>) -> Void)?
     
     // MARK: - Body

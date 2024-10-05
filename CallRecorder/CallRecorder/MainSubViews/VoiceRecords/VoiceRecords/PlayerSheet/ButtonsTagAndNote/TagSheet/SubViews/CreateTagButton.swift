@@ -27,9 +27,7 @@ struct CreateTagButton: View {
             TextField("Enter tag", text: $newTag)
                 .textInputAutocapitalization(.never)
             
-            Button("Cancel", role: .cancel) {
-                isActive = false
-            }
+            Button("Cancel", role: .cancel) { isActive = false }
             
             Button("Save", role: .none) {
                 if !newTag.isEmpty {
@@ -38,7 +36,7 @@ struct CreateTagButton: View {
                 }
             }
         } message: {
-            Text("0/15 characters")
+            Text("\(newTag.count)/15 characters")
         }
     }
 }

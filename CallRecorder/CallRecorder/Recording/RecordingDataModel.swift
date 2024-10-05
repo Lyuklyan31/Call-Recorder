@@ -9,10 +9,4 @@ struct RecordingDataModel {
     var fileName: String {
         return fileURL.deletingPathExtension().lastPathComponent
     }
-    
-//    mutating func addTag(_ tag: String) {
-//        if !tags.contains(tag) {
-//            tags.append(tag)
-//        }
-//    }
 }
