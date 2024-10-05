@@ -7,7 +7,7 @@ class TagsNotesManager: ObservableObject {
     static let shared = TagsNotesManager()
     
     // MARK: - UserDefaults Keys
-    private let notesKey = "savedNotes"  // Changed the key to avoid conflict
+    private let notesKey = "savedNotes"
     private let tagsKey = "savedTags"
     
     // MARK: - Published Notes Array

@@ -71,7 +71,7 @@ struct PlayerSheet: View {
                                 HStack(spacing: 8) {
                                     ForEach(notes, id: \.self) { note in
                                         Text(note)
-                                            .foregroundColor(.blue)
+                                            
                                             .padding(.horizontal)
                                             
                                     }
@@ -85,6 +85,7 @@ struct PlayerSheet: View {
                                 HStack(spacing: 8) {
                                     ForEach(tags, id: \.self) { tag in
                                         Text(tag)
+                                            .foregroundColor(.primaryExtraDark.opacity(0.8))
                                             .padding(.horizontal)
                                             .padding(.vertical, 4)
                                             .background(Capsule().foregroundColor(.customPink.opacity(0.1)))

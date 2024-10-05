@@ -19,95 +19,9 @@ class AudioRecorder: NSObject, ObservableObject {
     override init() {
         super.init()
         fetchRecording()
-        loadTags()
         loadFavorites()
+        loadTags()
         loadNotes()
-    }
-    
-    // MARK: - Notes Management
-    func notesForRecording(url: URL) -> [String] {
-        if let index = recordings.firstIndex(where: { $0.fileURL == url }) {
-            return recordings[index].notes
-        }
-        return []
-    }
-    
-    private func notesTags() {
-        let notesDict = recordings.reduce(into: [String: [String]]()) { result, recording in
-            result[recording.fileURL.absoluteString] = recording.notes
-        }
-        UserDefaults.standard.set(notesDict, forKey: "RecordingNotes")
-    }
-    
-    private func saveNote() {
-        let notesDict = recordings.reduce(into: [String: [String]]()) { result, recording in
-            result[recording.fileURL.absoluteString] = recording.notes
-        }
-        UserDefaults.standard.set(notesDict, forKey: "RecordingNotes")
-    }
-    
-    func addNote(to url: URL, note: String) {
-        if let index = recordings.firstIndex(where: { $0.fileURL == url }) {
-            if !recordings[index].notes.contains(note) {
-                recordings[index].notes.append(note)
-                saveNote()
-            }
-        }
-    }
-    
-    private func loadNotes() {
-        let savedNotes = UserDefaults.standard.dictionary(forKey: "RecordingNotes") as? [String: [String]] ?? [:]
-        
-        for (urlString, notes) in savedNotes {
-            if let url = URL(string: urlString),
-               let index = recordings.firstIndex(where: { $0.fileURL == url }) {
-                recordings[index].notes = notes
-            }
-        }
-    }
-    
-    // MARK: - Tag Management
-    func tagsForRecording(url: URL) -> [String] {
-        if let index = recordings.firstIndex(where: { $0.fileURL == url }) {
-            return recordings[index].tags
-        }
-        return []
-    }
-    
-    private func saveTags() {
-        let tagsDict = recordings.reduce(into: [String: [String]]()) { result, recording in
-            result[recording.fileURL.absoluteString] = recording.tags
-        }
-        UserDefaults.standard.set(tagsDict, forKey: "RecordingTags")
-    }
-    
-    func addTag(to url: URL, tag: String) {
-        if let index = recordings.firstIndex(where: { $0.fileURL == url }) {
-            if !recordings[index].tags.contains(tag) {
-                recordings[index].tags.append(tag)
-                saveTags()
-            }
-        }
-    }
-
-    func removeTag(from url: URL, tag: String) {
-        if let index = recordings.firstIndex(where: { $0.fileURL == url }) {
-            if let tagIndex = recordings[index].tags.firstIndex(of: tag) {
-                recordings[index].tags.remove(at: tagIndex)
-                saveTags()
-            }
-        }
-    }
-
-    private func loadTags() {
-        let savedTags = UserDefaults.standard.dictionary(forKey: "RecordingTags") as? [String: [String]] ?? [:]
-        
-        for (urlString, tags) in savedTags {
-            if let url = URL(string: urlString),
-               let index = recordings.firstIndex(where: { $0.fileURL == url }) {
-                recordings[index].tags = tags
-            }
-        }
     }
 
     // MARK: - Favorites Management
@@ -280,6 +194,95 @@ class AudioRecorder: NSObject, ObservableObject {
         } catch {
             print("Failed to retrieve file attributes: \(error)")
             return nil
+        }
+    }
+}
+
+// MARK: - Notes Management
+extension AudioRecorder {
+    
+    // Retrieve notes for a specific recording
+    func notesForRecording(url: URL) -> [String] {
+        if let index = recordings.firstIndex(where: { $0.fileURL == url }) {
+            return recordings[index].notes
+        }
+        return []
+    }
+    
+    // Save notes for all recordings to UserDefaults
+    private func saveNote() {
+        let notesDict = recordings.reduce(into: [String: [String]]()) { result, recording in
+            result[recording.fileURL.absoluteString] = recording.notes
+        }
+        UserDefaults.standard.set(notesDict, forKey: "RecordingNotes")
+    }
+    
+    // Add a note to a specific recording and save it
+    func addNote(to url: URL, note: String) {
+        if let index = recordings.firstIndex(where: { $0.fileURL == url }) {
+            if !recordings[index].notes.contains(note) {
+                recordings[index].notes.append(note)
+                saveNote()
+            }
+        }
+    }
+    
+    // Load saved notes for all recordings from UserDefaults
+    private func loadNotes() {
+        let savedNotes = UserDefaults.standard.dictionary(forKey: "RecordingNotes") as? [String: [String]] ?? [:]
+        
+        for (urlString, notes) in savedNotes {
+            if let url = URL(string: urlString),
+               let index = recordings.firstIndex(where: { $0.fileURL == url }) {
+                recordings[index].notes = notes
+            }
+        }
+    }
+}
+
+// MARK: - Tag Management
+extension AudioRecorder {
+    
+    func tagsForRecording(url: URL) -> [String] {
+        if let index = recordings.firstIndex(where: { $0.fileURL == url }) {
+            return recordings[index].tags
+        }
+        return []
+    }
+    
+    private func saveTags() {
+        let tagsDict = recordings.reduce(into: [String: [String]]()) { result, recording in
+            result[recording.fileURL.absoluteString] = recording.tags
+        }
+        UserDefaults.standard.set(tagsDict, forKey: "RecordingTags")
+    }
+    
+    func addTag(to url: URL, tag: String) {
+        if let index = recordings.firstIndex(where: { $0.fileURL == url }) {
+            if !recordings[index].tags.contains(tag) {
+                recordings[index].tags.append(tag)
+                saveTags()
+            }
+        }
+    }
+
+    func removeTag(from url: URL, tag: String) {
+        if let index = recordings.firstIndex(where: { $0.fileURL == url }) {
+            if let tagIndex = recordings[index].tags.firstIndex(of: tag) {
+                recordings[index].tags.remove(at: tagIndex)
+                saveTags()
+            }
+        }
+    }
+
+    private func loadTags() {
+        let savedTags = UserDefaults.standard.dictionary(forKey: "RecordingTags") as? [String: [String]] ?? [:]
+        
+        for (urlString, tags) in savedTags {
+            if let url = URL(string: urlString),
+               let index = recordings.firstIndex(where: { $0.fileURL == url }) {
+                recordings[index].tags = tags
+            }
         }
     }
 }

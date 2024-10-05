@@ -17,11 +17,11 @@ struct PairingSheet<SheetContent: View>: ViewModifier {
             let detentValue: CGFloat
             
             if screenHeight <= 568 {
-                detentValue = 0.8
+                detentValue = 0.9
             } else if screenHeight <= 736 {
-                detentValue = 0.7
+                detentValue = 0.8
             } else {
-                detentValue = 0.6 
+                detentValue = 0.7
             }
             
             return [.fraction(detentValue)]

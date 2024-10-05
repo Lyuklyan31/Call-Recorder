@@ -49,10 +49,11 @@ struct ButtonsTagAndNote: View {
             Button("Save", role: .none) {
                 if !newNote.isEmpty && newNote.count <= 80 {
                     tagsNotes.notes.append(newNote)
-                    newNote = ""
                     audioRecorder.addNote(to: audioURL, note: newNote)
+                    newNote = ""
                 }
             }
+            .disabled(newNote.count > 80)
             
         } message: {
             Text("\(newNote.count)/80 characters")
