@@ -1,10 +1,10 @@
 import SwiftUI
 
 struct ClipFrame: View {
-    @State private var leftOffset: CGFloat = 20
-    @State private var rightOffset: CGFloat = 20
+    @State private var leftOffset: CGFloat = 0
+    @State private var rightOffset: CGFloat = 0
     let minWidth: CGFloat = 60
-    let maxWidth = UIScreen.main.bounds.width
+    @State private var maxWidth: CGFloat = 0
     let sideLimit: CGFloat = 20
     @State private var lastLeftOffset: CGFloat = 0
     @State private var lastRightOffset: CGFloat = 0
@@ -19,86 +19,47 @@ struct ClipFrame: View {
         ZStack {
             Image(.voiceLine)
                 .resizable()
-                .padding(.horizontal, 35)
-                .frame(height: 129)
                 .scaledToFit()
+                .padding(.horizontal, 24)
             
             PlayHeadCrop(leftOffset: $leftOffset, audioURL: audioURL)
                 .offset(y: -90)
                 .offset(x: getPlayheadOffset())
                 .animation(.easeInOut(duration: 0.3), value: audioPlayer.progress)
 
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(Color.blue, lineWidth: 4)
-                .frame(width: maxWidth - leftOffset - rightOffset, height: 129)
-                .overlay(
-                    HStack {
-                        Rectangle()
-                            .frame(width: 24, height: 129)
-                            .cornerRadius(12, corners: [.topLeft, .bottomLeft])
-                            .foregroundColor(.blue)
-                            .overlay {
-                                Image(systemName: "chevron.left")
-                                    .foregroundColor(.white)
-                            }
-                            .gesture(
-                                DragGesture()
-                                    .onChanged { gesture in
-                                        let newLeftOffset = lastLeftOffset + gesture.translation.width * sensitivity
-                                        if newLeftOffset >= sideLimit && (maxWidth - newLeftOffset - rightOffset) >= minWidth {
-                                            withAnimation(.interactiveSpring()) {
-                                                leftOffset = newLeftOffset
-                                            }
-                                            updateAudioPlayerTime()
-                                        }
-                                    }
-                                    .onEnded { _ in
-                                        lastLeftOffset = leftOffset
-                                        audioPlayer.resetPlayback()
-                                        withAnimation(.easeOut(duration: 0.5)) {
-                                            if (maxWidth - leftOffset - rightOffset) < minWidth {
-                                                leftOffset = maxWidth - rightOffset - minWidth
-                                            }
-                                            updateAudioPlayerTime()
-                                        }
-                                    }
-                            )
-                        
-                        Spacer()
-                        
-                        Rectangle()
-                            .frame(width: 24, height: 129)
-                            .cornerRadius(12, corners: [.topRight, .bottomRight])
-                            .foregroundColor(.blue)
-                            .overlay {
-                                Image(systemName: "chevron.right")
-                                    .foregroundColor(.white)
-                            }
-                            .gesture(
-                                DragGesture()
-                                    .onChanged { gesture in
-                                        let newRightOffset = lastRightOffset - gesture.translation.width * sensitivity
-                                        if newRightOffset >= sideLimit && (maxWidth - leftOffset - newRightOffset) >= minWidth {
-                                            withAnimation(.interactiveSpring()) {
-                                                rightOffset = newRightOffset
-                                            }
-                                            updateAudioPlayerTime()
-                                        }
-                                    }
-                                    .onEnded { _ in
-                                        lastRightOffset = rightOffset
-                                        audioPlayer.resetPlayback()
-                                        withAnimation(.easeOut(duration: 0.5)) {
-                                            if (maxWidth - leftOffset - rightOffset) < minWidth {
-                                                rightOffset = maxWidth - leftOffset - minWidth
-                                            }
-                                            updateAudioPlayerTime()
-                                        }
-                                    }
-                            )
+            HStack {
+                makeClipControl(isLeft: true, offset: leftOffset, onChange: ({ newOffset in
+                    leftOffset = lastLeftOffset + newOffset
+                }), onEnded: { newOffset in
+                    lastLeftOffset = lastLeftOffset + newOffset
+                })
+                Spacer()
+                makeClipControl(isLeft: false, offset: rightOffset, onChange: ({ newOffset in
+                    rightOffset = newOffset + lastRightOffset
+                }), onEnded: { newOffset in
+                    lastRightOffset = lastRightOffset + newOffset
+                })
+            }
+            .background {
+                GeometryReader(content: { geometry in
+                    Rectangle()
+                        .fill(Color.clear)
+                        .onAppear {
+                            maxWidth = geometry.size.width
+                        }
+                })
+            }
+            .overlay {
+                Rectangle()
+                    .fill(Color.clear)
+                    .frame(maxWidth: .infinity)
+                    .overlay(alignment: .leading) {
+                        RoundedRectangle(cornerRadius: 12)
+                            .stroke(Color.blue, lineWidth: 4)
+                            .frame(width: maxWidth - leftOffset + rightOffset)
+                            .offset(x: leftOffset)
                     }
-                )
-                .offset(x: (leftOffset - rightOffset) / 2)
+            }
         }
         .onAppear {
             audioPlayer.initializeAudioPlayer(with: audioURL)
@@ -138,3 +99,93 @@ struct ClipFrame: View {
     ClipFrame(audioURL: URL(string: "https://www.example.com/audiofile.m4a")!)
         .environmentObject(AudioPlayer())
 }
+
+// MARK: - Subviews
+
+private extension ClipFrame {
+    func makeClipControl(
+        isLeft: Bool,
+        offset: CGFloat,
+        onChange: @escaping (CGFloat) -> Void,
+        onEnded: @escaping (CGFloat) -> Void
+    ) -> some View {
+        Rectangle()
+            .foregroundStyle(Color.clear)
+            .frame(width: 24, height: 129)
+            .overlay {
+                Rectangle()
+                    .cornerRadius(12, corners: isLeft ? [.topLeft, .bottomLeft] : [.topRight, .bottomRight])
+                    .foregroundColor(.blue)
+                    .overlay {
+                        Image(systemName: "chevron.\(isLeft ? "left" : "right")")
+                            .foregroundColor(.white)
+                    }
+                    .offset(x: offset)
+            }
+            .gesture(
+                DragGesture()
+                    .onChanged { gesture in
+                        onChange(gesture.translation.width)
+                    }
+                    .onEnded({ gesture in
+                        onEnded(gesture.translation.width)
+                    })
+            )
+    }
+}
+
+
+
+//                                        print("----# getsture translation - \(gesture.translation.width)")
+//                                        print("---# last left offset - \(lastLeftOffset)")
+//                                        let newLeftOffset = lastLeftOffset + gesture.translation.width * sensitivity
+//                                        print("---- new offset - \(newLeftOffset)")
+//                                        if newLeftOffset >= sideLimit && (maxWidth - newLeftOffset - rightOffset) >= minWidth {
+////                                            withAnimation(.interactiveSpring()) {
+//                                                leftOffset = gesture.translation.width
+////                                            }
+//                                            updateAudioPlayerTime()
+//                                        }
+//                                    .onEnded { _ in
+//                                        lastLeftOffset = leftOffset
+//                                        audioPlayer.resetPlayback()
+//                                        withAnimation(.easeOut(duration: 0.5)) {
+//                                            if (maxWidth - leftOffset - rightOffset) < minWidth {
+//                                                leftOffset = maxWidth - rightOffset - minWidth
+//                                            }
+//                                            updateAudioPlayerTime()
+//                                        }
+//                                    }
+
+
+
+//                Rectangle()
+//                    .frame(width: 24, height: 129)
+//                    .cornerRadius(12, corners: [.topRight, .bottomRight])
+//                    .foregroundColor(.blue)
+//                    .overlay {
+//                        Image(systemName: "chevron.right")
+//                            .foregroundColor(.white)
+//                    }
+//                    .gesture(
+//                        DragGesture()
+//                            .onChanged { gesture in
+//                                let newRightOffset = lastRightOffset - gesture.translation.width * sensitivity
+//                                if newRightOffset >= sideLimit && (maxWidth - leftOffset - newRightOffset) >= minWidth {
+//                                    withAnimation(.interactiveSpring()) {
+//                                        rightOffset = newRightOffset
+//                                    }
+//                                    updateAudioPlayerTime()
+//                                }
+//                            }
+//                            .onEnded { _ in
+//                                lastRightOffset = rightOffset
+//                                audioPlayer.resetPlayback()
+//                                withAnimation(.easeOut(duration: 0.5)) {
+//                                    if (maxWidth - leftOffset - rightOffset) < minWidth {
+//                                        rightOffset = maxWidth - leftOffset - minWidth
+//                                    }
+//                                    updateAudioPlayerTime()
+//                                }
+//                            }
+//                    )
