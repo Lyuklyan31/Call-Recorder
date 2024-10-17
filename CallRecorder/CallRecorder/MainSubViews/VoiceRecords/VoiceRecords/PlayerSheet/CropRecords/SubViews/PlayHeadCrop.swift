@@ -36,7 +36,6 @@ struct PlayHeadCrop: View {
                         }
                 }
             }
-            .offset(x: leftOffset - 16)
             Spacer()
         }
        

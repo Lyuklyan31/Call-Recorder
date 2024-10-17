@@ -22,7 +22,7 @@ struct ClipFrame: View {
             
             PlayHeadCrop(leftOffset: $leftOffset, audioURL: audioURL)
                 .offset(y: -87)
-                .offset(x: getPlayheadOffset())
+                .offset(x: getPlayheadOffset() - 16)
                 .animation(.easeInOut(duration: 0.3), value: audioPlayer.progress)
                 
             HStack {
@@ -102,29 +102,35 @@ struct ClipFrame: View {
     }
 
     private func getPlayheadOffset() -> CGFloat {
+        let mainWorkingWidth = maxWidth - 44
         
-        let availableWidth = maxWidth - leftOffset + rightOffset
-        print("maxWidth --> \(availableWidth)")
-        
-       
-        let playheadPosition = CGFloat(audioPlayer.progress) * leftOffset
-        print("playhead ----> \(playheadPosition)")
-        
-        return min(max(playheadPosition, 0), availableWidth)
+        if (audioPlayer.isPlaying) {
+            let newOffset = min(mainWorkingWidth + rightOffset, max(mainWorkingWidth * audioPlayer.progress, leftOffset))
+            stopAudioIfNeeded(newOffset: newOffset, workingOffset: mainWorkingWidth)
+            return newOffset
+        } else {
+            return leftOffset
+        }
+    }
+    
+    private func stopAudioIfNeeded(newOffset: Double, workingOffset: Double) {
+        if newOffset >= workingOffset + rightOffset && workingOffset > 0 {
+            audioPlayer.resetPlayback()
+        }
     }
 
     private func updateAudioPlayerTime() {
         let audioDuration = audioPlayer.duration
-        let totalWidth = maxWidth - 32
+        let totalWidth = maxWidth
         let secondsWidth = audioDuration > 0 ? totalWidth / audioDuration : 0
         
-        let newTime = (leftOffset - 16) / secondsWidth
+        let newTime = (leftOffset) / secondsWidth
         audioPlayer.audioPlayer?.currentTime = min(max(newTime, 0), audioDuration)
     }
     
     private func updateAudioDuration() {
         let audioDuration = audioPlayer.duration
-        let totalWidth = maxWidth - 32
+        let totalWidth = maxWidth - 48
         let secondsWidth = audioDuration > 0 ? totalWidth / audioDuration : 0
         let elapsedTimeFromRightShift = (rightOffset + 16) / secondsWidth
 
