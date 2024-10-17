@@ -6,19 +6,20 @@ struct ClipFrame: View {
     @State private var maxWidth: CGFloat = 0
     @State private var lastLeftOffset: CGFloat = 16
     @State private var lastRightOffset: CGFloat = -16
+    @State private var timer: Timer?
+    @State private var lastPlaybackTime: Double = 0
+    
     @EnvironmentObject var audioPlayer: AudioPlayer
     
     let minimumSpacing: CGFloat = 50
     var audioURL: URL
-    
-    @State private var timer: Timer?
 
     var body: some View {
         ZStack {
             Image(.voiceLine)
                 .resizable()
                 .frame(height: 129)
-                .padding(.horizontal, 36)
+                .padding(.horizontal, 32)
             
             PlayHeadCrop(leftOffset: $leftOffset, audioURL: audioURL)
                 .offset(y: -87)
@@ -30,12 +31,13 @@ struct ClipFrame: View {
                     leftOffset = max(lastLeftOffset + newOffset, 16)
                     leftOffset = min(leftOffset, maxWidth - (-rightOffset) - minimumSpacing)
                     updateAudioPlayerTime()
-                    print("left size ----> \(leftOffset)")
+                    audioPlayer.progress = 0.0
                     if audioPlayer.isPlaying {
                         audioPlayer.resetPlayback()
                     }
                 }), onEnded: { newOffset in
                     lastLeftOffset = leftOffset
+                    audioPlayer.progress = 0.0
                     if audioPlayer.isPlaying {
                         audioPlayer.resetPlayback()
                     }
@@ -89,30 +91,44 @@ struct ClipFrame: View {
         }
         .onAppear {
             audioPlayer.initializeAudioPlayer(with: audioURL)
+            audioPlayer.audioPlayer?.currentTime = lastPlaybackTime
             
             timer = Timer.scheduledTimer(withTimeInterval: 0.1, repeats: true) { _ in
-                if let player = audioPlayer.audioPlayer, player.isPlaying {
-                    audioPlayer.progress = player.currentTime / player.duration
+                if let player = audioPlayer.audioPlayer {
+                    if player.isPlaying {
+                        audioPlayer.progress = player.currentTime / player.duration
+                    } else {
+                        lastPlaybackTime = player.currentTime
+                    }
                 }
             }
         }
-        .onDisappear {
-            timer?.invalidate()
+        .onChange(of: audioPlayer.isPlaying) { newValue in
+            if !newValue {
+                shiftClipControls()
+            }
         }
+    }
+
+    private func shiftClipControls() {
+        leftOffset += 0.1
+        rightOffset -= 0.1
+        updateAudioDuration()
+        updateAudioPlayerTime()
     }
 
     private func getPlayheadOffset() -> CGFloat {
         let mainWorkingWidth = maxWidth - 44
         
-        if (audioPlayer.isPlaying) {
+        if audioPlayer.isPlaying {
             let newOffset = min(mainWorkingWidth + rightOffset, max(mainWorkingWidth * audioPlayer.progress, leftOffset))
             stopAudioIfNeeded(newOffset: newOffset, workingOffset: mainWorkingWidth)
             return newOffset
         } else {
-            return leftOffset
+            return max(mainWorkingWidth * audioPlayer.progress, leftOffset)
         }
     }
-    
+
     private func stopAudioIfNeeded(newOffset: Double, workingOffset: Double) {
         if newOffset >= workingOffset + rightOffset && workingOffset > 0 {
             audioPlayer.resetPlayback()
@@ -121,28 +137,22 @@ struct ClipFrame: View {
 
     private func updateAudioPlayerTime() {
         let audioDuration = audioPlayer.duration
-        let totalWidth = maxWidth
-        let secondsWidth = audioDuration > 0 ? totalWidth / audioDuration : 0
-        
-        let newTime = (leftOffset) / secondsWidth
+        let totalWidth = maxWidth - 32
+        let secondsPerPixel = audioDuration / totalWidth
+        let newTime = (leftOffset - 16) * secondsPerPixel
         audioPlayer.audioPlayer?.currentTime = min(max(newTime, 0), audioDuration)
     }
     
     private func updateAudioDuration() {
         let audioDuration = audioPlayer.duration
         let totalWidth = maxWidth - 48
-        let secondsWidth = audioDuration > 0 ? totalWidth / audioDuration : 0
-        let elapsedTimeFromRightShift = (rightOffset + 16) / secondsWidth
+        let secondsPerPixel = audioDuration > 0 ? totalWidth / audioDuration : 0
+        let elapsedTimeFromRightShift = (rightOffset + 16) / secondsPerPixel
 
         let remainingTime = max(audioDuration + elapsedTimeFromRightShift, 0)
 
         audioPlayer.audioDurationString = String(format: "%02d:%02d", Int(remainingTime) / 60, Int(remainingTime) % 60)
     }
-}
-
-#Preview {
-    ClipFrame(audioURL: URL(string: "https://www.example.com/audiofile.m4a")!)
-        .environmentObject(AudioPlayer())
 }
 
 // MARK: - Subviews

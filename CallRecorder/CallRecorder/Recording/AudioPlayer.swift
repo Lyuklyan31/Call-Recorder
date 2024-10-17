@@ -104,18 +104,25 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
     // Stops the playback, resets the progress, and stops the timer
     func stopPlayback() {
         audioPlayer?.stop()
-        isPlaying = false
-        isPaused = false
         stopTimer()
-        progress = 0.0
+        
+        // Use DispatchQueue to ensure UI updates are safe
+        DispatchQueue.main.async {
+            self.isPlaying = false
+            self.isPaused = false
+            self.progress = 0.0
+        }
     }
 
     // Resets the playback to the start and resets the progress
     func resetPlayback() {
         stopPlayback()
-        progress = 0.0
-        audioPlayer?.currentTime = 0
-        audioDurationString = formattedDuration(duration)
+    
+        guard let player = audioPlayer else { return }
+        DispatchQueue.main.async {
+            self.audioPlayer?.currentTime = 0
+            self.audioDurationString = self.formattedDuration(self.duration)
+        }
     }
 
     // Seeks forward by a specified number of seconds
