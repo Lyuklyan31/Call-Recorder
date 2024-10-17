@@ -5,6 +5,7 @@ struct CropRecord: View {
     @EnvironmentObject var audioPlayer: AudioPlayer
     @EnvironmentObject var audioRecorder: AudioRecorder
     var audioURL: URL
+    @State private var cropCounter = 1
     let maxWidth = UIScreen.main.bounds.width - 8
     @Binding var showSheet: Bool
     
@@ -107,9 +108,9 @@ struct CropRecord: View {
         }
         
         let startTime = player.currentTime
-        let endTime = startTime + 2.0 // Keep the last 2 seconds
+        let endTime = timeStringToDouble(audioPlayer.audioDurationString)
         
-        // Діагностичний вивід для перевірки часу
+        // Diagnostic output for checking the crop range
         print("Cropping audio from \(startTime) to \(endTime)")
         
         let asset = AVAsset(url: audioURL)
@@ -119,8 +120,11 @@ struct CropRecord: View {
         }
         
         exportSession.outputFileType = .m4a
-        let croppedAudioURL = audioURL.deletingLastPathComponent().appendingPathComponent("croppedAudio_\(UUID().uuidString).m4a")
+        let croppedAudioURL = audioURL
+            .deletingLastPathComponent()
+            .appendingPathComponent("croppedAudio_\(cropCounter).m4a") // Use counter for numbering
         
+        // Remove any existing file with the same name
         if FileManager.default.fileExists(atPath: croppedAudioURL.path) {
             try? FileManager.default.removeItem(at: croppedAudioURL)
         }
@@ -142,6 +146,7 @@ struct CropRecord: View {
                 // Add the new recording to your audio recorder or update your recordings list
                 DispatchQueue.main.async {
                     self.audioRecorder.recordings.append(newRecording) // Update your list
+                    self.cropCounter += 1 // Increment the counter for the next recording
                 }
                 
             case .failed:
@@ -153,6 +158,15 @@ struct CropRecord: View {
             default:
                 print("Unknown export status: \(exportSession.status.rawValue)")
             }
+        }
+        func timeStringToDouble(_ timeString: String) -> Double {
+            let components = timeString.split(separator: ":")
+            guard components.count == 2,
+                  let minutes = Double(components[0]),
+                  let seconds = Double(components[1]) else {
+                return 0.0
+            }
+            return (minutes * 60) + seconds
         }
     }
 }

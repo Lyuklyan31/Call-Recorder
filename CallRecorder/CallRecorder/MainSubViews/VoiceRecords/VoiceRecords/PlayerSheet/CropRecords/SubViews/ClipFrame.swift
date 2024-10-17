@@ -35,12 +35,15 @@ struct ClipFrame: View {
                     if audioPlayer.isPlaying {
                         audioPlayer.resetPlayback()
                     }
+                    updateAudioPlayerTime()
+                    updateAudioDuration()
                 }), onEnded: { newOffset in
                     lastLeftOffset = leftOffset
                     audioPlayer.progress = 0.0
                     if audioPlayer.isPlaying {
                         audioPlayer.resetPlayback()
                     }
+                    updateAudioDuration()
                     updateAudioPlayerTime()
                 })
 
