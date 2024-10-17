@@ -161,9 +161,6 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
     }
 
     func lastSeccondd() -> String {
-        guard let player = audioPlayer else {
-            return "00:00"
-        }
         let currentTime = Int(lastSeccond)
         let minutes = currentTime / 60
         let seconds = currentTime % 60

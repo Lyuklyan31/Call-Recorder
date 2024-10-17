@@ -3,13 +3,19 @@ import AVFoundation
 
 struct CropRecord: View {
     @EnvironmentObject var audioPlayer: AudioPlayer
+    @EnvironmentObject var audioRecorder: AudioRecorder
     var audioURL: URL
     let maxWidth = UIScreen.main.bounds.width - 8
     @Binding var showSheet: Bool
     
+    // Array to store cropped recordings
+    @State private var croppedRecordings: [URL] = []
+    @State private var cropCount = 0  // Counter for numbering crops
+    
     var body: some View {
         let creationDate = getFileDate(for: audioURL)
         let formattedDate = creationDate?.formattedDate() ?? "Unknown date"
+        
         ZStack {
             MakeBackgroundView()
             VStack {
@@ -67,7 +73,7 @@ struct CropRecord: View {
                     Spacer()
                     
                     Button {
-                        cropAudio() 
+                        cropAudio()
                     } label: {
                         VStack {
                             Image(.cutButton)
@@ -79,6 +85,13 @@ struct CropRecord: View {
                     Spacer()
                 }
                 .padding(.bottom, 66)
+                
+                // Display list of cropped recordings
+                List {
+                    ForEach(croppedRecordings, id: \.self) { recording in
+                        Text(recording.lastPathComponent)
+                    }
+                }
             }
             .navigationBarBackButtonHidden()
         }
@@ -93,8 +106,8 @@ struct CropRecord: View {
             return
         }
         
-        let startTime = player.currentTime  // Поточний час як початкова точка
-        let endTime = player.duration       // Кінцевий час
+        let startTime = player.currentTime
+        let endTime = startTime + 2.0 // Keep the last 2 seconds
         
         // Діагностичний вивід для перевірки часу
         print("Cropping audio from \(startTime) to \(endTime)")
@@ -106,19 +119,31 @@ struct CropRecord: View {
         }
         
         exportSession.outputFileType = .m4a
-        let croppedAudioURL = audioURL.deletingLastPathComponent().appendingPathComponent("croppedAudio.m4a")
+        let croppedAudioURL = audioURL.deletingLastPathComponent().appendingPathComponent("croppedAudio_\(UUID().uuidString).m4a")
         
         if FileManager.default.fileExists(atPath: croppedAudioURL.path) {
             try? FileManager.default.removeItem(at: croppedAudioURL)
         }
         
         exportSession.outputURL = croppedAudioURL
-        exportSession.timeRange = CMTimeRangeFromTimeToTime(start: CMTime(seconds: startTime, preferredTimescale: 600), end: CMTime(seconds: endTime, preferredTimescale: 600))
+        exportSession.timeRange = CMTimeRangeFromTimeToTime(
+            start: CMTime(seconds: startTime, preferredTimescale: 600),
+            end: CMTime(seconds: endTime, preferredTimescale: 600)
+        )
         
         exportSession.exportAsynchronously {
             switch exportSession.status {
             case .completed:
                 print("Cropped audio saved at \(croppedAudioURL)")
+                
+                // Create new recording data model with the current date
+                let newRecording = RecordingDataModel(fileURL: croppedAudioURL, createdAt: Date())
+                
+                // Add the new recording to your audio recorder or update your recordings list
+                DispatchQueue.main.async {
+                    self.audioRecorder.recordings.append(newRecording) // Update your list
+                }
+                
             case .failed:
                 if let error = exportSession.error {
                     print("Failed to crop audio with error: \(error.localizedDescription)")
