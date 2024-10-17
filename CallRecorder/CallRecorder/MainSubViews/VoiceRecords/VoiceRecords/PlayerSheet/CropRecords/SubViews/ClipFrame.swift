@@ -49,6 +49,7 @@ struct ClipFrame: View {
                 makeClipControl(isLeft: false, offset: rightOffset, onChange: ({ newOffset in
                     rightOffset = min(lastRightOffset + newOffset, -16)
                     rightOffset = max(rightOffset, -(maxWidth - leftOffset - minimumSpacing))
+                    audioPlayer.progress = 0.0
                     if audioPlayer.isPlaying {
                         audioPlayer.resetPlayback()
                     }
@@ -56,6 +57,7 @@ struct ClipFrame: View {
                     updateAudioPlayerTime()
                 }), onEnded: { newOffset in
                     lastRightOffset = rightOffset
+                    audioPlayer.progress = 0.0
                     if audioPlayer.isPlaying {
                         audioPlayer.resetPlayback()
                     }

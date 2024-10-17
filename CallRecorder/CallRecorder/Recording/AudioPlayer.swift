@@ -7,6 +7,7 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
     @Published var isPaused = false
     @Published var progress: Double = 0.0
     @Published var audioDurationString: String = "00:00"
+    @Published var lastSeccond = 0.0
     
     var audioPlayer: AVAudioPlayer?
     private var timer: Timer?
@@ -82,9 +83,9 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
         guard let player = audioPlayer else { return }
         
         if isPaused {
+            player.currentTime = lastSeccond
             player.play()
         } else {
-            player.currentTime = player.currentTime
             player.play()
         }
         
@@ -95,7 +96,9 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
 
     // Pauses the playback and stops the timer
     func pausePlayback() {
+        guard let player = audioPlayer else { return }
         audioPlayer?.pause()
+        lastSeccond = player.currentTime
         isPlaying = false
         isPaused = true
         stopTimer()
@@ -117,9 +120,7 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
     // Resets the playback to the start and resets the progress
     func resetPlayback() {
         stopPlayback()
-    
-        guard let player = audioPlayer else { return }
-        DispatchQueue.main.async {
+            DispatchQueue.main.async {
             self.audioPlayer?.currentTime = 0
             self.audioDurationString = self.formattedDuration(self.duration)
         }
@@ -157,6 +158,16 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
         } else {
             print("Unsupported rate for AVAudioPlayer. Supported rates are between 0.5x and 5x.")
         }
+    }
+
+    func lastSeccondd() -> String {
+        guard let player = audioPlayer else {
+            return "00:00"
+        }
+        let currentTime = Int(lastSeccond)
+        let minutes = currentTime / 60
+        let seconds = currentTime % 60
+        return String(format: "%02d:%02d", minutes, seconds)
     }
 
     // Returns the current playback time as a formatted string

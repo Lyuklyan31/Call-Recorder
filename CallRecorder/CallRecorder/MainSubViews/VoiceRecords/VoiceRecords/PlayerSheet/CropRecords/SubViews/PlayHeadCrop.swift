@@ -13,7 +13,7 @@ struct PlayHeadCrop: View {
                     .foregroundColor(.blue)
                     .overlay {
                         HStack(spacing: 2) {
-                            Text(audioPlayer.currentTime())
+                            Text(audioPlayer.isPaused ? audioPlayer.lastSeccondd() : audioPlayer.currentTime())
                                 .foregroundColor(.white)
                                 .font(.system(size: 12, weight: .medium))
                             
