@@ -8,7 +8,7 @@ struct PairingSheet<SheetContent: View>: ViewModifier {
     var closeAction: (() -> Void)?
     let sheetContent: SheetContent
     
-    private var defaultDetent: PresentationDetent
+    private var defaultDetent: PresentationDetent = .large
     
     @State private var detent: PresentationDetent
     

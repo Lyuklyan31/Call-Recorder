@@ -3,6 +3,7 @@ import SwiftUI
 // MARK: - RecordingRow
 struct RecordingRow: View {
     @EnvironmentObject var audioRecorder: AudioRecorder
+    @EnvironmentObject var audioPlayer: AudioPlayer
     var audioURL: URL
     
     @Binding var selectedRecording: URL?

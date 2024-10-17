@@ -7,7 +7,7 @@ struct ChoosingTagButtons: View {
     @State private var selectedButtons: Set<String> = ["All"]
     @ObservedObject private var tags =  TagsNotesManager()
     var onTagSelectionChange: ((Set<String>) -> Void)?
-    
+    @EnvironmentObject var audioPlayer: AudioPlayer
     // MARK: - Body
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {

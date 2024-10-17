@@ -4,17 +4,14 @@ struct RecordingsList: View {
     
     // MARK: - Properties
     @EnvironmentObject var audioRecorder: AudioRecorder
+    @EnvironmentObject var audioPlayer: AudioPlayer
     @State private var selectedRecording: URL?
     @State private var showingPlayer = false
     @Binding var selection: Int
     @Binding var showMiniPlayer: Bool 
     
     @State private var selectedTags: Set<String> = ["All"]
-    
-    @State private var detent: PresentationDetent = .large
-    private var detents: Set<PresentationDetent> {
-        [.medium, .large]
-    }
+
     
     // MARK: - Body
     var body: some View {

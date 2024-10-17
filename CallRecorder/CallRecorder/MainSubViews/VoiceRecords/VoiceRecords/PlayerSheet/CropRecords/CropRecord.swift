@@ -1,4 +1,5 @@
 import SwiftUI
+import AVFoundation
 
 struct CropRecord: View {
     @EnvironmentObject var audioPlayer: AudioPlayer
@@ -13,7 +14,7 @@ struct CropRecord: View {
             MakeBackgroundView()
             VStack {
                 NavigationBarSubView(title: "Crop Record")
-                    .padding(.bottom,54)
+                    .padding(.bottom, 54)
                 
                 Text(audioURL.deletingPathExtension().lastPathComponent)
                     .font(.system(size: 24, weight: .semibold))
@@ -30,15 +31,22 @@ struct CropRecord: View {
                 
                 Button {
                     if audioPlayer.isPlaying {
-                        audioPlayer.playFromCurrentTime()
+                        audioPlayer.pausePlayback()
                     } else {
-                        self.audioPlayer.startPlayback(audio: self.audioURL)
+                        audioPlayer.playFromCurrentTime()
                     }
                 } label: {
-                    Image(.buttonPlayForPlayer)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 64, height: 64)
+                    if audioPlayer.isPlaying {
+                        Image(.buttonStopForPlayer)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 64, height: 64)
+                    } else {
+                        Image(.buttonPlayForPlayer)
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 64, height: 64)
+                    }
                 }
                 
                 Spacer()
@@ -46,7 +54,7 @@ struct CropRecord: View {
                     Spacer()
                     
                     Button {
-                        
+                        audioPlayer.resetPlayback()
                     } label: {
                         VStack {
                             Image(.resetButton)
@@ -59,7 +67,7 @@ struct CropRecord: View {
                     Spacer()
                     
                     Button {
-                        
+                        cropAudio() 
                     } label: {
                         VStack {
                             Image(.cutButton)
@@ -78,9 +86,48 @@ struct CropRecord: View {
             audioPlayer.initializeAudioPlayer(with: audioURL)
         }
     }
-}
-
-#Preview {
-    CropRecord(audioURL: URL(string: "https://www.example.com/audiofile.m4a")!, showSheet: .constant(false))
-        .environmentObject(AudioPlayer())
+    
+    private func cropAudio() {
+        guard let player = audioPlayer.audioPlayer else {
+            print("Audio player is nil.")
+            return
+        }
+        
+        let startTime = player.currentTime  // Поточний час як початкова точка
+        let endTime = player.duration       // Кінцевий час
+        
+        // Діагностичний вивід для перевірки часу
+        print("Cropping audio from \(startTime) to \(endTime)")
+        
+        let asset = AVAsset(url: audioURL)
+        guard let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetAppleM4A) else {
+            print("Failed to create export session.")
+            return
+        }
+        
+        exportSession.outputFileType = .m4a
+        let croppedAudioURL = audioURL.deletingLastPathComponent().appendingPathComponent("croppedAudio.m4a")
+        
+        if FileManager.default.fileExists(atPath: croppedAudioURL.path) {
+            try? FileManager.default.removeItem(at: croppedAudioURL)
+        }
+        
+        exportSession.outputURL = croppedAudioURL
+        exportSession.timeRange = CMTimeRangeFromTimeToTime(start: CMTime(seconds: startTime, preferredTimescale: 600), end: CMTime(seconds: endTime, preferredTimescale: 600))
+        
+        exportSession.exportAsynchronously {
+            switch exportSession.status {
+            case .completed:
+                print("Cropped audio saved at \(croppedAudioURL)")
+            case .failed:
+                if let error = exportSession.error {
+                    print("Failed to crop audio with error: \(error.localizedDescription)")
+                }
+            case .cancelled:
+                print("Export session was cancelled.")
+            default:
+                print("Unknown export status: \(exportSession.status.rawValue)")
+            }
+        }
+    }
 }

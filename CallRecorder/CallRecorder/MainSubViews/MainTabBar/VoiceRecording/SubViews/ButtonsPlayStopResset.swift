@@ -41,8 +41,8 @@ struct ButtonsPlayStopResset: View {
             Spacer()
           
             Button {
-                viewModel.resetTimer()
-                audioRecorder.resetRecording()
+                audioRecorder.stopRecording()
+                wavesViewModel.stopMonitoring()
                 showingAlert = true
             } label: {
                 RoundedRectangle(cornerRadius: 24)
@@ -60,8 +60,10 @@ struct ButtonsPlayStopResset: View {
                 title: Text("Cancel Recording?"),
                 message: Text("Cancelling the recording will discard any unsaved data. Continue?"),
                 primaryButton: .destructive(Text("Cancel")) {
-                    wavesViewModel.stopMonitoring()
                     audioRecorder.resetRecording()
+                    audioRecorder.stopRecording()
+                    wavesViewModel.stopMonitoring()
+                    viewModel.stopTimer()
                 },
                 secondaryButton: .cancel(Text("Back")) {
                    

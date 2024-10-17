@@ -2,61 +2,63 @@ import SwiftUI
 
 struct PlayHeadCrop: View {
     @Binding var leftOffset: CGFloat
-    @State private var audioDuration: String = "00:00"
     @EnvironmentObject var audioPlayer: AudioPlayer
     var audioURL: URL
     
     var body: some View {
         HStack {
-            HStack {
-                HStack(spacing: 3) {
-                    Text(audioPlayer.currentTime())
-                        .foregroundColor(.white)
-                        .font(.system(size: 12, weight: .medium))
-                    
-                    Text(audioDuration)
-                        .foregroundColor(.white.opacity(0.5))
-                        .font(.system(size: 12, weight: .medium))
-                }
-                .padding(.vertical, 4)
-                .background(
-                    Capsule()
-                        .foregroundColor(.blue)
-                        .frame(width: calculateCapsuleWidth() + 16)
-                )
-            }
-            .overlay {
-                Triangle()
-                    .fill(Color.blue)
-                    .frame(width: 16, height: 8)
-                    .rotationEffect(.degrees(180))
-                    .offset(y: 14.4)
+            VStack {
+                Capsule()
+                    .frame(width: 82, height: 22)
+                    .foregroundColor(.blue)
                     .overlay {
-                        Rectangle()
-                            .frame(width: 2, height: 143)
-                            .foregroundColor(.blue)
-                            .offset(y: 84)
+                        HStack(spacing: 2) {
+                            Text(audioPlayer.currentTime())
+                                .foregroundColor(.white)
+                                .font(.system(size: 12, weight: .medium))
+                            
+                            Text(audioPlayer.audioDurationString)
+                                .foregroundColor(.white.opacity(0.5))
+                                .font(.system(size: 12, weight: .medium))
+                        }
                     }
+                ZStack {
+                    Triangle()
+                        .fill(Color.blue)
+                        .frame(width: 16, height: 8)
+                        .rotationEffect(.degrees(180))
+                        .offset(y: -8)
+                        .overlay {
+                            Rectangle()
+                                .frame(width: 2, height: 143)
+                                .foregroundColor(.blue)
+                                .offset(y: 63)
+                        }
+                }
             }
-            .offset(x: leftOffset - 12)
+            .offset(x: leftOffset - 16)
             Spacer()
-                
         }
+       
         .onAppear {
             audioPlayer.initializeAudioPlayer(with: audioURL)
             
             AudioPlayer.getAudioDuration(url: audioURL) { duration in
-                let minutes = Int(duration) / 60
-                let seconds = Int(duration) % 60
-                audioDuration = String(format: "%02d:%02d", minutes, seconds)
+                DispatchQueue.main.async {
+                    let minutes = Int(duration) / 60
+                    let seconds = Int(duration) % 60
+                    audioPlayer.audioDurationString = String(format: "%02d:%02d", minutes, seconds)
+                }
             }
         }
     }
+           
+    
     private func calculateCapsuleWidth() -> CGFloat {
-            let text1Width = (audioPlayer.currentTime() as NSString).size(withAttributes: [.font: UIFont.systemFont(ofSize: 12, weight: .medium)]).width
-            let text2Width = (audioDuration as NSString).size(withAttributes: [.font: UIFont.systemFont(ofSize: 12, weight: .medium)]).width
-            return text1Width + text2Width
-        }
+        let text1Width = (audioPlayer.currentTime() as NSString).size(withAttributes: [.font: UIFont.systemFont(ofSize: 12, weight: .medium)]).width
+        let text2Width = (audioPlayer.audioDurationString as NSString).size(withAttributes: [.font: UIFont.systemFont(ofSize: 12, weight: .medium)]).width
+        return text1Width + text2Width
+    }
 }
 
 struct Triangle: Shape {

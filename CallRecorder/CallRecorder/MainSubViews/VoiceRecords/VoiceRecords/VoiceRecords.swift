@@ -10,7 +10,7 @@ import SwiftUI
 struct VoiceRecords: View {
     @State var showMiniPlayer: Bool = false
     @State private var selection = 0
-    
+    @EnvironmentObject var audioPlayer: AudioPlayer
     var body: some View {
         ZStack {
             MakeBackgroundView()
