@@ -2,17 +2,22 @@ import SwiftUI
 import AVFoundation
 
 struct CropRecord: View {
+    // MARK: - Environment Objects
     @EnvironmentObject var audioPlayer: AudioPlayer
     @EnvironmentObject var audioRecorder: AudioRecorder
+    @State private var resetTrigger: Bool = false
+    
+    // MARK: - Properties
     var audioURL: URL
     @State private var cropCounter = 1
     let maxWidth = UIScreen.main.bounds.width - 8
     @Binding var showSheet: Bool
     
-    // Array to store cropped recordings
+    // MARK: - State Variables
     @State private var croppedRecordings: [URL] = []
     @State private var cropCount = 0  // Counter for numbering crops
     
+    // MARK: - Body
     var body: some View {
         let creationDate = getFileDate(for: audioURL)
         let formattedDate = creationDate?.formattedDate() ?? "Unknown date"
@@ -20,9 +25,11 @@ struct CropRecord: View {
         ZStack {
             MakeBackgroundView()
             VStack {
+                // MARK: - Navigation Bar
                 NavigationBarSubView(title: "Crop Record")
                     .padding(.bottom, 54)
                 
+                // MARK: - Audio File Name and Date
                 Text(audioURL.deletingPathExtension().lastPathComponent)
                     .font(.system(size: 24, weight: .semibold))
                     .padding(.bottom, 16)
@@ -32,10 +39,11 @@ struct CropRecord: View {
                     .foregroundColor(.primaryExtraDark.opacity(0.5))
                     .padding(.bottom, 100)
                 
-                ClipFrame(audioURL: audioURL)
-                
+                // MARK: - Audio Clip Frame and Player
+                ClipFrame(resetTrigger: $resetTrigger, audioURL: audioURL)
                 TimePlayerInterval(audioURL: audioURL)
                 
+                // MARK: - Play/Pause Button
                 Button {
                     if audioPlayer.isPlaying {
                         audioPlayer.pausePlayback()
@@ -57,11 +65,13 @@ struct CropRecord: View {
                 }
                 
                 Spacer()
+                
+                // MARK: - Control Buttons (Reset, Crop)
                 HStack {
                     Spacer()
                     
                     Button {
-                        audioPlayer.resetPlayback()
+                        resetTrigger.toggle()
                     } label: {
                         VStack {
                             Image(.resetButton)
@@ -87,7 +97,7 @@ struct CropRecord: View {
                 }
                 .padding(.bottom, 66)
                 
-                // Display list of cropped recordings
+                // MARK: - Cropped Recordings List
                 List {
                     ForEach(croppedRecordings, id: \.self) { recording in
                         Text(recording.lastPathComponent)
@@ -101,6 +111,7 @@ struct CropRecord: View {
         }
     }
     
+    // MARK: - Crop Audio Function
     private func cropAudio() {
         guard let player = audioPlayer.audioPlayer else {
             print("Audio player is nil.")
@@ -110,7 +121,6 @@ struct CropRecord: View {
         let startTime = player.currentTime
         let endTime = timeStringToDouble(audioPlayer.audioDurationString)
         
-        // Diagnostic output for checking the crop range
         print("Cropping audio from \(startTime) to \(endTime)")
         
         let asset = AVAsset(url: audioURL)
@@ -120,11 +130,14 @@ struct CropRecord: View {
         }
         
         exportSession.outputFileType = .m4a
+        
+        // Generate a unique identifier for the filename using current timestamp and counter
+        let uniqueID = Int(Date().timeIntervalSince1970)
         let croppedAudioURL = audioURL
             .deletingLastPathComponent()
-            .appendingPathComponent("croppedAudio_\(cropCounter).m4a") // Use counter for numbering
+            .appendingPathComponent("croppedAudio_\(uniqueID)_\(cropCounter).m4a")
         
-        // Remove any existing file with the same name
+        // Remove existing file
         if FileManager.default.fileExists(atPath: croppedAudioURL.path) {
             try? FileManager.default.removeItem(at: croppedAudioURL)
         }
@@ -140,13 +153,12 @@ struct CropRecord: View {
             case .completed:
                 print("Cropped audio saved at \(croppedAudioURL)")
                 
-                // Create new recording data model with the current date
                 let newRecording = RecordingDataModel(fileURL: croppedAudioURL, createdAt: Date())
                 
-                // Add the new recording to your audio recorder or update your recordings list
                 DispatchQueue.main.async {
-                    self.audioRecorder.recordings.append(newRecording) // Update your list
-                    self.cropCounter += 1 // Increment the counter for the next recording
+                    self.audioRecorder.recordings.append(newRecording)
+                    self.cropCounter += 1
+                    self.croppedRecordings.append(croppedAudioURL)
                 }
                 
             case .failed:
@@ -159,14 +171,16 @@ struct CropRecord: View {
                 print("Unknown export status: \(exportSession.status.rawValue)")
             }
         }
-        func timeStringToDouble(_ timeString: String) -> Double {
-            let components = timeString.split(separator: ":")
-            guard components.count == 2,
-                  let minutes = Double(components[0]),
-                  let seconds = Double(components[1]) else {
-                return 0.0
-            }
-            return (minutes * 60) + seconds
+    }
+    
+    // MARK: - Helper: Time String to Double
+    private func timeStringToDouble(_ timeString: String) -> Double {
+        let components = timeString.split(separator: ":")
+        guard components.count == 2,
+              let minutes = Double(components[0]),
+              let seconds = Double(components[1]) else {
+            return 0.0
         }
+        return (minutes * 60) + seconds
     }
 }

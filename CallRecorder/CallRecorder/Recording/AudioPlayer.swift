@@ -122,6 +122,8 @@ class AudioPlayer: NSObject, ObservableObject, AVAudioPlayerDelegate {
         stopPlayback()
             DispatchQueue.main.async {
             self.audioPlayer?.currentTime = 0
+            self.progress = 0
+            self.audioPlayer?.currentTime = 0
             self.audioDurationString = self.formattedDuration(self.duration)
         }
     }

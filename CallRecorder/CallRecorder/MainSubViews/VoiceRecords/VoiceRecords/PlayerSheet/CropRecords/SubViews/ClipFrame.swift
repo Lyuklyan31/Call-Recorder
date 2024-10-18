@@ -1,6 +1,7 @@
 import SwiftUI
 
 struct ClipFrame: View {
+    // MARK: - State Properties
     @State private var leftOffset: CGFloat = 16
     @State private var rightOffset: CGFloat = -16
     @State private var maxWidth: CGFloat = 0
@@ -10,6 +11,7 @@ struct ClipFrame: View {
     @State private var lastPlaybackTime: Double = 0
     
     @EnvironmentObject var audioPlayer: AudioPlayer
+    @Binding var resetTrigger: Bool
     
     let minimumSpacing: CGFloat = 50
     var audioURL: URL
@@ -25,45 +27,54 @@ struct ClipFrame: View {
                 .offset(y: -87)
                 .offset(x: getPlayheadOffset() - 16)
                 .animation(.easeInOut(duration: 0.3), value: audioPlayer.progress)
-                
+            
             HStack {
-                makeClipControl(isLeft: true, offset: leftOffset, onChange: ({ newOffset in
+                makeClipControl(isLeft: true, offset: leftOffset, onChange: { newOffset in
                     leftOffset = max(lastLeftOffset + newOffset, 16)
                     leftOffset = min(leftOffset, maxWidth - (-rightOffset) - minimumSpacing)
+                    
                     updateAudioPlayerTime()
                     audioPlayer.progress = 0.0
+                    
+                    resetTrigger = false
+                    
                     if audioPlayer.isPlaying {
                         audioPlayer.resetPlayback()
                     }
+                    
                     updateAudioPlayerTime()
                     updateAudioDuration()
-                }), onEnded: { newOffset in
+                    
+                }, onEnded: { newOffset in
                     lastLeftOffset = leftOffset
                     audioPlayer.progress = 0.0
+                    resetTrigger = false
                     if audioPlayer.isPlaying {
                         audioPlayer.resetPlayback()
                     }
                     updateAudioDuration()
                     updateAudioPlayerTime()
                 })
-
+                
                 Spacer()
-
-                makeClipControl(isLeft: false, offset: rightOffset, onChange: ({ newOffset in
+                
+                makeClipControl(isLeft: false, offset: rightOffset, onChange: { newOffset in
                     rightOffset = min(lastRightOffset + newOffset, -16)
                     rightOffset = max(rightOffset, -(maxWidth - leftOffset - minimumSpacing))
                     audioPlayer.progress = 0.0
                     if audioPlayer.isPlaying {
                         audioPlayer.resetPlayback()
                     }
+                    resetTrigger = false
                     updateAudioDuration()
                     updateAudioPlayerTime()
-                }), onEnded: { newOffset in
+                }, onEnded: { newOffset in
                     lastRightOffset = rightOffset
                     audioPlayer.progress = 0.0
                     if audioPlayer.isPlaying {
                         audioPlayer.resetPlayback()
                     }
+                    resetTrigger = false
                     updateAudioDuration()
                     updateAudioPlayerTime()
                 })
@@ -89,7 +100,7 @@ struct ClipFrame: View {
                             .offset(x: leftOffset)
                     }
             }
-
+            
             Rectangle()
                 .foregroundColor(.clear)
                 .frame(width: 16)
@@ -108,11 +119,30 @@ struct ClipFrame: View {
                 }
             }
         }
+        .onChange(of: resetTrigger) { newValue in
+            if newValue {
+                resetView()
+            }
+        }
         .onChange(of: audioPlayer.isPlaying) { newValue in
             if !newValue {
                 shiftClipControls()
             }
         }
+    }
+    
+    // MARK: - Helper Methods
+
+    func resetView() {
+        leftOffset = 16
+        rightOffset = -16
+        lastLeftOffset = 16
+        lastRightOffset = -16
+        audioPlayer.resetPlayback()
+        audioPlayer.progress = 0.0
+        lastPlaybackTime = 0
+        updateAudioPlayerTime()
+        updateAudioDuration()
     }
 
     private func shiftClipControls() {

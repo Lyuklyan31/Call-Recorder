@@ -8,10 +8,6 @@ struct PairingSheet<SheetContent: View>: ViewModifier {
     var closeAction: (() -> Void)?
     let sheetContent: SheetContent
     
-    private var defaultDetent: PresentationDetent = .large
-    
-    @State private var detent: PresentationDetent
-    
     private var detents: Set<PresentationDetent> {
             let screenHeight = UIScreen.main.bounds.height
             let detentValue: CGFloat
@@ -41,14 +37,13 @@ struct PairingSheet<SheetContent: View>: ViewModifier {
                             .fill(Color.white)
                     }
                 }
-                .presentationDetents(detents, selection: $detent)
+                .presentationDetents(detents)
                 .presentationDragIndicator(.hidden)
                 .presentationBackground(Color.white)
                 .presentationBackgroundInteraction(.enabled)
             }
             .animation(.easeInOut, value: isShowing)
     }
-
     
     init(isShowing: Binding<Bool>,
          isExpandedByDefault: Bool,
@@ -59,8 +54,6 @@ struct PairingSheet<SheetContent: View>: ViewModifier {
          @ViewBuilder sheetContent: () -> SheetContent) {
         _isShowing = isShowing
         self.isExpandedByDefault = isExpandedByDefault
-        self._detent = .init(initialValue: defaultDetent)
-        self.defaultDetent = defaultDetent
         self.title = title
         self.description = description
         self.closeAction = closeAction

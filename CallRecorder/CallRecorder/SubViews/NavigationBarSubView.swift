@@ -13,7 +13,6 @@ struct NavigationBarSubView: View {
                     Image(.arrowBack)
                 }
                 Spacer()
-                Spacer()
             }
             
             Text(title)
@@ -21,7 +20,7 @@ struct NavigationBarSubView: View {
                 .bold()
                 .foregroundColor(.primary)
         }
-        .padding(.horizontal)
+        .padding(.horizontal, 8)
     }
 }
 
