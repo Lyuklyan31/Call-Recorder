@@ -7,18 +7,153 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		042D7F572CB0CE7F0022FCC3 /* TagsNotesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042D7F562CB0CE7F0022FCC3 /* TagsNotesManager.swift */; };
+		045D3E5D2C9CF1F100F56B08 /* ClipFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 045D3E5C2C9CF1F000F56B08 /* ClipFrame.swift */; };
+		0466C0812CB028D5005123FB /* RecordingRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0466C0802CB028D5005123FB /* RecordingRow.swift */; };
+		0475754C2CADDF53004C227F /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0475754B2CADDF53004C227F /* GoogleService-Info.plist */; };
+		0475EC9B2CADF0B000F170A3 /* AuthennticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0475EC9A2CADF0B000F170A3 /* AuthennticationManager.swift */; };
+		0475EC9E2CADF18500F170A3 /* DBUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0475EC9D2CADF18500F170A3 /* DBUser.swift */; };
+		0475ECA02CADF21600F170A3 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0475EC9F2CADF21600F170A3 /* UserManager.swift */; };
+		0475ECA72CAE0B3100F170A3 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 0475ECA62CAE0B3100F170A3 /* FirebaseAuth */; };
+		0475ECA92CAE0B3900F170A3 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 0475ECA82CAE0B3900F170A3 /* FirebaseFirestore */; };
+		0475ECAB2CAE0B4A00F170A3 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 0475ECAA2CAE0B4A00F170A3 /* FirebaseAnalytics */; };
+		0475ECAD2CAE0B5300F170A3 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 0475ECAC2CAE0B5300F170A3 /* FirebaseFirestore */; };
+		0475ECAF2CAE0B5700F170A3 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */ = {isa = PBXBuildFile; productRef = 0475ECAE2CAE0B5700F170A3 /* FirebaseAnalyticsWithoutAdIdSupport */; };
+		0475ECB12CAE0B5E00F170A3 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 0475ECB02CAE0B5E00F170A3 /* FirebaseDatabase */; };
+		048374692C9B6FF500256978 /* PairingSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048374682C9B6FF500256978 /* PairingSheet.swift */; };
+		0483746D2C9B7E1900256978 /* MakeBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0483746C2C9B7E1900256978 /* MakeBackgroundView.swift */; };
+		048374722C9B974C00256978 /* CropRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 048374712C9B974C00256978 /* CropRecord.swift */; };
+		04B9D17D2CA6116000B318D4 /* PlayHeadCrop.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B9D17C2CA6115F00B318D4 /* PlayHeadCrop.swift */; };
+		7B1668912C95EDFF004CC4F1 /* TagSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B1668902C95EDFF004CC4F1 /* TagSheet.swift */; };
+		7B39C28D2C8C9D8F0099B213 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B39C28C2C8C9D8F0099B213 /* SettingView.swift */; };
+		7B39C2912C8C9EB70099B213 /* ButtonSetting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B39C2902C8C9EB70099B213 /* ButtonSetting.swift */; };
+		7B3FF73B2C95DCEE00559A72 /* ButtonsTagAndNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3FF73A2C95DCEE00559A72 /* ButtonsTagAndNote.swift */; };
+		7B551B212C9394FC009E4661 /* ButtonPlayerFavorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B551B202C9394FC009E4661 /* ButtonPlayerFavorite.swift */; };
+		7B551B232C93B1A9009E4661 /* ButtonPlayerShare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B551B222C93B1A9009E4661 /* ButtonPlayerShare.swift */; };
+		7B551B262C93BF7C009E4661 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B551B252C93BF7C009E4661 /* Player.swift */; };
+		7B551B292C93C541009E4661 /* Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B551B282C93C541009E4661 /* Progress.swift */; };
+		7B551B2B2C93C5C1009E4661 /* TimePlayerInterval.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B551B2A2C93C5C1009E4661 /* TimePlayerInterval.swift */; };
+		7B551B2D2C93CCE6009E4661 /* ButtonsOfPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B551B2C2C93CCE6009E4661 /* ButtonsOfPlayer.swift */; };
+		7B7C3DFE2C9714B8004BA353 /* TagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7C3DFD2C9714B8004BA353 /* TagButton.swift */; };
+		7B7C3E002C9719B8004BA353 /* CreateTagButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B7C3DFF2C9719B8004BA353 /* CreateTagButton.swift */; };
+		7B9B5E292C8F1971007F2325 /* PlayerSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B5E282C8F1971007F2325 /* PlayerSheet.swift */; };
+		7B9B5E2D2C8F1A97007F2325 /* CallRecorderAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B5E2C2C8F1A97007F2325 /* CallRecorderAlert.swift */; };
+		7B9B5E312C8F9662007F2325 /* IPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B5E302C8F9662007F2325 /* IPhone.swift */; };
+		7B9B5E352C8F979E007F2325 /* TabBarIphones.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B5E342C8F979E007F2325 /* TabBarIphones.swift */; };
+		7B9B5E372C8F97F3007F2325 /* SwipeProgress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B5E362C8F97F3007F2325 /* SwipeProgress.swift */; };
 		7B9B6A692C87A6740001D94D /* CallRecorderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A682C87A6740001D94D /* CallRecorderApp.swift */; };
-		7B9B6A6B2C87A6740001D94D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A6A2C87A6740001D94D /* ContentView.swift */; };
 		7B9B6A6D2C87A6750001D94D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B9B6A6C2C87A6750001D94D /* Assets.xcassets */; };
 		7B9B6A702C87A6750001D94D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7B9B6A6F2C87A6750001D94D /* Preview Assets.xcassets */; };
+		7B9B6A802C87B2390001D94D /* MainContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A7F2C87B2390001D94D /* MainContentView.swift */; };
+		7B9B6A862C87B5230001D94D /* CallRecording.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A852C87B5230001D94D /* CallRecording.swift */; };
+		7B9B6A892C87B65A0001D94D /* VoiceRecordingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A882C87B65A0001D94D /* VoiceRecordingButton.swift */; };
+		7B9B6A8D2C87BD670001D94D /* MainNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A8C2C87BD670001D94D /* MainNavigationBar.swift */; };
+		7B9B6A912C87C5400001D94D /* CallRecordsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A902C87C5400001D94D /* CallRecordsButton.swift */; };
+		7B9B6A932C87C72B0001D94D /* VoiceRecordsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A922C87C72B0001D94D /* VoiceRecordsButton.swift */; };
+		7B9B6A952C87C9700001D94D /* CallSetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A942C87C9700001D94D /* CallSetupView.swift */; };
+		7B9B6A9A2C87C9E60001D94D /* NavigationBarSubView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A992C87C9E60001D94D /* NavigationBarSubView.swift */; };
+		7B9B6A9C2C8860CC0001D94D /* ChooseCountryDialCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A9B2C8860CC0001D94D /* ChooseCountryDialCode.swift */; };
+		7B9B6A9E2C8876D80001D94D /* countryCode.json in Resources */ = {isa = PBXBuildFile; fileRef = 7B9B6A9D2C8876D80001D94D /* countryCode.json */; };
+		7B9B6AA02C8877000001D94D /* CountryCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6A9F2C8877000001D94D /* CountryCode.swift */; };
+		7B9B6AA22C887AAC0001D94D /* CountryCodeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AA12C887AAC0001D94D /* CountryCodeViewModel.swift */; };
+		7B9B6AA42C89CF2F0001D94D /* PhoneNumberTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AA32C89CF2F0001D94D /* PhoneNumberTextField.swift */; };
+		7B9B6AA62C89D7A20001D94D /* ContinueButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AA52C89D7A20001D94D /* ContinueButton.swift */; };
+		7B9B6AA82C8A21CE0001D94D /* ConfirmOTPcodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AA72C8A21CE0001D94D /* ConfirmOTPcodeView.swift */; };
+		7B9B6AAC2C8A2DD00001D94D /* MainTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AAB2C8A2DD00001D94D /* MainTabBar.swift */; };
+		7B9B6AAF2C8A3E2A0001D94D /* ConfirmOTPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AAE2C8A3E2A0001D94D /* ConfirmOTPViewModel.swift */; };
+		7B9B6AB12C8A3E970001D94D /* OTPLine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AB02C8A3E970001D94D /* OTPLine.swift */; };
+		7B9B6AB42C8A4B560001D94D /* VoiceRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AB32C8A4B560001D94D /* VoiceRecords.swift */; };
+		7B9B6AB72C8A4C970001D94D /* SegmnetVoiceRecords.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AB62C8A4C970001D94D /* SegmnetVoiceRecords.swift */; };
+		7B9B6AB92C8A4F1C0001D94D /* ChoosingTagButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AB82C8A4F1C0001D94D /* ChoosingTagButtons.swift */; };
+		7B9B6ABB2C8A5AC40001D94D /* VoiceRecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ABA2C8A5AC40001D94D /* VoiceRecordingView.swift */; };
+		7B9B6ABF2C8A61080001D94D /* WaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ABE2C8A61080001D94D /* WaveView.swift */; };
+		7B9B6AC12C8A61530001D94D /* ButtonsPlayStopResset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AC02C8A61530001D94D /* ButtonsPlayStopResset.swift */; };
+		7B9B6AC32C8A6B840001D94D /* Timer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AC22C8A6B840001D94D /* Timer.swift */; };
+		7B9B6AD12C8B307E0001D94D /* RecordingDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AD02C8B307E0001D94D /* RecordingDataModel.swift */; };
+		7B9B6AD52C8B31060001D94D /* ExtensionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AD42C8B31060001D94D /* ExtensionData.swift */; };
+		7B9B6AD72C8B31210001D94D /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AD62C8B31210001D94D /* Helper.swift */; };
+		7B9B6AD92C8B31400001D94D /* AudioRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6AD82C8B31400001D94D /* AudioRecorder.swift */; };
+		7B9B6ADB2C8B3C500001D94D /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ADA2C8B3C500001D94D /* AudioPlayer.swift */; };
+		7B9B6ADD2C8B3D410001D94D /* WavesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ADC2C8B3D410001D94D /* WavesViewModel.swift */; };
+		7B9B6ADF2C8BD3DF0001D94D /* RecordingsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B9B6ADE2C8BD3DF0001D94D /* RecordingsList.swift */; };
+		7BAAFDB92C9123ED008B2AAF /* ButtonPlayerDelete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BAAFDB82C9123ED008B2AAF /* ButtonPlayerDelete.swift */; };
+		7BABC3472C8D308D0047F65A /* ChoosingStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABC3462C8D308D0047F65A /* ChoosingStorage.swift */; };
+		7BABC34B2C8D323F0047F65A /* ICloudDriveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABC34A2C8D323F0047F65A /* ICloudDriveButton.swift */; };
+		7BABC34D2C8D368D0047F65A /* OnMyiPhone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABC34C2C8D368D0047F65A /* OnMyiPhone.swift */; };
+		7BABC34F2C8DF5D70047F65A /* MiniPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7BABC34E2C8DF5D70047F65A /* MiniPlayer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		042D7F562CB0CE7F0022FCC3 /* TagsNotesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsNotesManager.swift; sourceTree = "<group>"; };
+		045D3E5C2C9CF1F000F56B08 /* ClipFrame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipFrame.swift; sourceTree = "<group>"; };
+		0466C0802CB028D5005123FB /* RecordingRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingRow.swift; sourceTree = "<group>"; };
+		0475754B2CADDF53004C227F /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		0475EC9A2CADF0B000F170A3 /* AuthennticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthennticationManager.swift; sourceTree = "<group>"; };
+		0475EC9D2CADF18500F170A3 /* DBUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DBUser.swift; sourceTree = "<group>"; };
+		0475EC9F2CADF21600F170A3 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		0475ECB22CAE0E1700F170A3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		048374682C9B6FF500256978 /* PairingSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PairingSheet.swift; sourceTree = "<group>"; };
+		0483746C2C9B7E1900256978 /* MakeBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakeBackgroundView.swift; sourceTree = "<group>"; };
+		048374712C9B974C00256978 /* CropRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CropRecord.swift; sourceTree = "<group>"; };
+		04B9D17C2CA6115F00B318D4 /* PlayHeadCrop.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayHeadCrop.swift; sourceTree = "<group>"; };
+		7B1668902C95EDFF004CC4F1 /* TagSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagSheet.swift; sourceTree = "<group>"; };
+		7B39C28C2C8C9D8F0099B213 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
+		7B39C2902C8C9EB70099B213 /* ButtonSetting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonSetting.swift; sourceTree = "<group>"; };
+		7B3FF73A2C95DCEE00559A72 /* ButtonsTagAndNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsTagAndNote.swift; sourceTree = "<group>"; };
+		7B551B202C9394FC009E4661 /* ButtonPlayerFavorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPlayerFavorite.swift; sourceTree = "<group>"; };
+		7B551B222C93B1A9009E4661 /* ButtonPlayerShare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPlayerShare.swift; sourceTree = "<group>"; };
+		7B551B252C93BF7C009E4661 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		7B551B282C93C541009E4661 /* Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Progress.swift; sourceTree = "<group>"; };
+		7B551B2A2C93C5C1009E4661 /* TimePlayerInterval.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimePlayerInterval.swift; sourceTree = "<group>"; };
+		7B551B2C2C93CCE6009E4661 /* ButtonsOfPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsOfPlayer.swift; sourceTree = "<group>"; };
+		7B7C3DFD2C9714B8004BA353 /* TagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagButton.swift; sourceTree = "<group>"; };
+		7B7C3DFF2C9719B8004BA353 /* CreateTagButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateTagButton.swift; sourceTree = "<group>"; };
+		7B9B5E282C8F1971007F2325 /* PlayerSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerSheet.swift; sourceTree = "<group>"; };
+		7B9B5E2C2C8F1A97007F2325 /* CallRecorderAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecorderAlert.swift; sourceTree = "<group>"; };
+		7B9B5E302C8F9662007F2325 /* IPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPhone.swift; sourceTree = "<group>"; };
+		7B9B5E342C8F979E007F2325 /* TabBarIphones.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarIphones.swift; sourceTree = "<group>"; };
+		7B9B5E362C8F97F3007F2325 /* SwipeProgress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeProgress.swift; sourceTree = "<group>"; };
 		7B9B6A652C87A6740001D94D /* CallRecorder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CallRecorder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7B9B6A682C87A6740001D94D /* CallRecorderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecorderApp.swift; sourceTree = "<group>"; };
-		7B9B6A6A2C87A6740001D94D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7B9B6A6C2C87A6750001D94D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7B9B6A6F2C87A6750001D94D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7B9B6A7F2C87B2390001D94D /* MainContentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainContentView.swift; sourceTree = "<group>"; };
+		7B9B6A852C87B5230001D94D /* CallRecording.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecording.swift; sourceTree = "<group>"; };
+		7B9B6A882C87B65A0001D94D /* VoiceRecordingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecordingButton.swift; sourceTree = "<group>"; };
+		7B9B6A8C2C87BD670001D94D /* MainNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainNavigationBar.swift; sourceTree = "<group>"; };
+		7B9B6A902C87C5400001D94D /* CallRecordsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallRecordsButton.swift; sourceTree = "<group>"; };
+		7B9B6A922C87C72B0001D94D /* VoiceRecordsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecordsButton.swift; sourceTree = "<group>"; };
+		7B9B6A942C87C9700001D94D /* CallSetupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallSetupView.swift; sourceTree = "<group>"; };
+		7B9B6A992C87C9E60001D94D /* NavigationBarSubView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarSubView.swift; sourceTree = "<group>"; };
+		7B9B6A9B2C8860CC0001D94D /* ChooseCountryDialCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChooseCountryDialCode.swift; sourceTree = "<group>"; };
+		7B9B6A9D2C8876D80001D94D /* countryCode.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = countryCode.json; sourceTree = "<group>"; };
+		7B9B6A9F2C8877000001D94D /* CountryCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCode.swift; sourceTree = "<group>"; };
+		7B9B6AA12C887AAC0001D94D /* CountryCodeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryCodeViewModel.swift; sourceTree = "<group>"; };
+		7B9B6AA32C89CF2F0001D94D /* PhoneNumberTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneNumberTextField.swift; sourceTree = "<group>"; };
+		7B9B6AA52C89D7A20001D94D /* ContinueButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContinueButton.swift; sourceTree = "<group>"; };
+		7B9B6AA72C8A21CE0001D94D /* ConfirmOTPcodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOTPcodeView.swift; sourceTree = "<group>"; };
+		7B9B6AAB2C8A2DD00001D94D /* MainTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBar.swift; sourceTree = "<group>"; };
+		7B9B6AAE2C8A3E2A0001D94D /* ConfirmOTPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmOTPViewModel.swift; sourceTree = "<group>"; };
+		7B9B6AB02C8A3E970001D94D /* OTPLine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OTPLine.swift; sourceTree = "<group>"; };
+		7B9B6AB32C8A4B560001D94D /* VoiceRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecords.swift; sourceTree = "<group>"; };
+		7B9B6AB62C8A4C970001D94D /* SegmnetVoiceRecords.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmnetVoiceRecords.swift; sourceTree = "<group>"; };
+		7B9B6AB82C8A4F1C0001D94D /* ChoosingTagButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingTagButtons.swift; sourceTree = "<group>"; };
+		7B9B6ABA2C8A5AC40001D94D /* VoiceRecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecordingView.swift; sourceTree = "<group>"; };
+		7B9B6ABE2C8A61080001D94D /* WaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaveView.swift; sourceTree = "<group>"; };
+		7B9B6AC02C8A61530001D94D /* ButtonsPlayStopResset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonsPlayStopResset.swift; sourceTree = "<group>"; };
+		7B9B6AC22C8A6B840001D94D /* Timer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Timer.swift; sourceTree = "<group>"; };
+		7B9B6AD02C8B307E0001D94D /* RecordingDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingDataModel.swift; sourceTree = "<group>"; };
+		7B9B6AD42C8B31060001D94D /* ExtensionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionData.swift; sourceTree = "<group>"; };
+		7B9B6AD62C8B31210001D94D /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
+		7B9B6AD82C8B31400001D94D /* AudioRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioRecorder.swift; sourceTree = "<group>"; };
+		7B9B6ADA2C8B3C500001D94D /* AudioPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		7B9B6ADC2C8B3D410001D94D /* WavesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WavesViewModel.swift; sourceTree = "<group>"; };
+		7B9B6ADE2C8BD3DF0001D94D /* RecordingsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingsList.swift; sourceTree = "<group>"; };
+		7BAAFDB82C9123ED008B2AAF /* ButtonPlayerDelete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonPlayerDelete.swift; sourceTree = "<group>"; };
+		7BABC3462C8D308D0047F65A /* ChoosingStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoosingStorage.swift; sourceTree = "<group>"; };
+		7BABC34A2C8D323F0047F65A /* ICloudDriveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ICloudDriveButton.swift; sourceTree = "<group>"; };
+		7BABC34C2C8D368D0047F65A /* OnMyiPhone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnMyiPhone.swift; sourceTree = "<group>"; };
+		7BABC34E2C8DF5D70047F65A /* MiniPlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,16 +161,306 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0475ECB12CAE0B5E00F170A3 /* FirebaseDatabase in Frameworks */,
+				0475ECA72CAE0B3100F170A3 /* FirebaseAuth in Frameworks */,
+				0475ECAF2CAE0B5700F170A3 /* FirebaseAnalyticsWithoutAdIdSupport in Frameworks */,
+				0475ECAD2CAE0B5300F170A3 /* FirebaseFirestore in Frameworks */,
+				0475ECA92CAE0B3900F170A3 /* FirebaseFirestore in Frameworks */,
+				0475ECAB2CAE0B4A00F170A3 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		045D3E5E2C9CF1F800F56B08 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				045D3E5C2C9CF1F000F56B08 /* ClipFrame.swift */,
+				04B9D17C2CA6115F00B318D4 /* PlayHeadCrop.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		0475EC9C2CADF0B400F170A3 /* FireBase */ = {
+			isa = PBXGroup;
+			children = (
+				0475EC9A2CADF0B000F170A3 /* AuthennticationManager.swift */,
+				0475EC9D2CADF18500F170A3 /* DBUser.swift */,
+				0475EC9F2CADF21600F170A3 /* UserManager.swift */,
+			);
+			path = FireBase;
+			sourceTree = "<group>";
+		};
+		0475ECA12CAE0A6C00F170A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		048374702C9B970B00256978 /* CropRecords */ = {
+			isa = PBXGroup;
+			children = (
+				048374712C9B974C00256978 /* CropRecord.swift */,
+				045D3E5E2C9CF1F800F56B08 /* SubViews */,
+			);
+			path = CropRecords;
+			sourceTree = "<group>";
+		};
+		7B39C28E2C8C9D970099B213 /* SetingView */ = {
+			isa = PBXGroup;
+			children = (
+				7B39C28C2C8C9D8F0099B213 /* SettingView.swift */,
+				7B39C28F2C8C9E980099B213 /* SubViews */,
+			);
+			path = SetingView;
+			sourceTree = "<group>";
+		};
+		7B39C28F2C8C9E980099B213 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B39C2902C8C9EB70099B213 /* ButtonSetting.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		7B3FF7272C95C7F800559A72 /* MainTabBar */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6AAB2C8A2DD00001D94D /* MainTabBar.swift */,
+				7B9B6A972C87C9AD0001D94D /* CallRecording */,
+				7B9B6ABC2C8A5ACF0001D94D /* VoiceRecording */,
+			);
+			path = MainTabBar;
+			sourceTree = "<group>";
+		};
+		7B3FF7282C95C85900559A72 /* MainNavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6A8C2C87BD670001D94D /* MainNavigationBar.swift */,
+				7B39C28E2C8C9D970099B213 /* SetingView */,
+			);
+			path = MainNavigationBar;
+			sourceTree = "<group>";
+		};
+		7B3FF7292C95C87300559A72 /* CallRecords */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6A902C87C5400001D94D /* CallRecordsButton.swift */,
+				7B3FF72B2C95C8F100559A72 /* CallSetupView */,
+			);
+			path = CallRecords;
+			sourceTree = "<group>";
+		};
+		7B3FF72A2C95C87E00559A72 /* VoiceRecords */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6A922C87C72B0001D94D /* VoiceRecordsButton.swift */,
+				7B3FF7352C95CFBB00559A72 /* VoiceRecords */,
+			);
+			path = VoiceRecords;
+			sourceTree = "<group>";
+		};
+		7B3FF72B2C95C8F100559A72 /* CallSetupView */ = {
+			isa = PBXGroup;
+			children = (
+				7B3FF72D2C95C9D900559A72 /* Model */,
+				7B3FF7302C95CBA000559A72 /* View */,
+				7B3FF72C2C95C9D100559A72 /* ViewModel */,
+				7B9B6A982C87C9BB0001D94D /* SubViews */,
+				7B9B6AAD2C8A3E030001D94D /* ConfirmOTPCode */,
+			);
+			path = CallSetupView;
+			sourceTree = "<group>";
+		};
+		7B3FF72C2C95C9D100559A72 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6AA12C887AAC0001D94D /* CountryCodeViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7B3FF72D2C95C9D900559A72 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6A9F2C8877000001D94D /* CountryCode.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		7B3FF72E2C95CA3900559A72 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6AAE2C8A3E2A0001D94D /* ConfirmOTPViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		7B3FF72F2C95CA4400559A72 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6AA72C8A21CE0001D94D /* ConfirmOTPcodeView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7B3FF7302C95CBA000559A72 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6A942C87C9700001D94D /* CallSetupView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		7B3FF7312C95CD4300559A72 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				7BABC3482C8D31FC0047F65A /* ChoosingStorage */,
+				7B9B6ABA2C8A5AC40001D94D /* VoiceRecordingView.swift */,
+				7B9B6AC22C8A6B840001D94D /* Timer.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		7B3FF7332C95CDFE00559A72 /* Wave */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6ADC2C8B3D410001D94D /* WavesViewModel.swift */,
+				7B9B6ABE2C8A61080001D94D /* WaveView.swift */,
+			);
+			path = Wave;
+			sourceTree = "<group>";
+		};
+		7B3FF7342C95CE7F00559A72 /* CallRecordAlert */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B5E2C2C8F1A97007F2325 /* CallRecorderAlert.swift */,
+				7B9B5E2F2C8F9647007F2325 /* SubViews */,
+			);
+			path = CallRecordAlert;
+			sourceTree = "<group>";
+		};
+		7B3FF7352C95CFBB00559A72 /* VoiceRecords */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6AB32C8A4B560001D94D /* VoiceRecords.swift */,
+				7B9B6AB22C8A46250001D94D /* SubViews */,
+				7B3FF7362C95D13900559A72 /* MiniPlayer */,
+				7B9B5E2A2C8F1A48007F2325 /* PlayerSheet */,
+			);
+			path = VoiceRecords;
+			sourceTree = "<group>";
+		};
+		7B3FF7362C95D13900559A72 /* MiniPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				7BABC34E2C8DF5D70047F65A /* MiniPlayer.swift */,
+			);
+			path = MiniPlayer;
+			sourceTree = "<group>";
+		};
+		7B3FF7372C95D2D100559A72 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B551B272C93C521009E4661 /* PlayerSubViews */,
+				7B3FF73C2C95DCF700559A72 /* ButtonsTagAndNote */,
+			);
+			name = SubViews;
+			sourceTree = "<group>";
+		};
+		7B3FF7382C95DBA700559A72 /* ButtonsDeleteShare */ = {
+			isa = PBXGroup;
+			children = (
+				7BAAFDB82C9123ED008B2AAF /* ButtonPlayerDelete.swift */,
+				7B551B222C93B1A9009E4661 /* ButtonPlayerShare.swift */,
+				7B551B202C9394FC009E4661 /* ButtonPlayerFavorite.swift */,
+			);
+			name = ButtonsDeleteShare;
+			sourceTree = "<group>";
+		};
+		7B3FF7392C95DCA100559A72 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B3FF7382C95DBA700559A72 /* ButtonsDeleteShare */,
+				7B551B282C93C541009E4661 /* Progress.swift */,
+				7B551B2A2C93C5C1009E4661 /* TimePlayerInterval.swift */,
+				7B551B2C2C93CCE6009E4661 /* ButtonsOfPlayer.swift */,
+				048374702C9B970B00256978 /* CropRecords */,
+			);
+			name = SubViews;
+			sourceTree = "<group>";
+		};
+		7B3FF73C2C95DCF700559A72 /* ButtonsTagAndNote */ = {
+			isa = PBXGroup;
+			children = (
+				7B3FF73A2C95DCEE00559A72 /* ButtonsTagAndNote.swift */,
+				042D7F562CB0CE7F0022FCC3 /* TagsNotesManager.swift */,
+				7B7C3DFB2C971489004BA353 /* TagSheet */,
+			);
+			path = ButtonsTagAndNote;
+			sourceTree = "<group>";
+		};
+		7B551B272C93C521009E4661 /* PlayerSubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B551B252C93BF7C009E4661 /* Player.swift */,
+				7B3FF7392C95DCA100559A72 /* SubViews */,
+			);
+			name = PlayerSubViews;
+			sourceTree = "<group>";
+		};
+		7B7C3DFB2C971489004BA353 /* TagSheet */ = {
+			isa = PBXGroup;
+			children = (
+				7B1668902C95EDFF004CC4F1 /* TagSheet.swift */,
+				7B7C3DFC2C971495004BA353 /* SubViews */,
+			);
+			path = TagSheet;
+			sourceTree = "<group>";
+		};
+		7B7C3DFC2C971495004BA353 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B7C3DFD2C9714B8004BA353 /* TagButton.swift */,
+				7B7C3DFF2C9719B8004BA353 /* CreateTagButton.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		7B9B5E2A2C8F1A48007F2325 /* PlayerSheet */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B5E282C8F1971007F2325 /* PlayerSheet.swift */,
+				7B3FF7372C95D2D100559A72 /* SubViews */,
+			);
+			path = PlayerSheet;
+			sourceTree = "<group>";
+		};
+		7B9B5E2E2C8F963D007F2325 /* CallRecording */ = {
+			isa = PBXGroup;
+			children = (
+				7B3FF7342C95CE7F00559A72 /* CallRecordAlert */,
+			);
+			path = CallRecording;
+			sourceTree = "<group>";
+		};
+		7B9B5E2F2C8F9647007F2325 /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B5E302C8F9662007F2325 /* IPhone.swift */,
+				7B9B5E342C8F979E007F2325 /* TabBarIphones.swift */,
+				7B9B5E362C8F97F3007F2325 /* SwipeProgress.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
 		7B9B6A5C2C87A6740001D94D = {
 			isa = PBXGroup;
 			children = (
 				7B9B6A672C87A6740001D94D /* CallRecorder */,
+				0475ECA12CAE0A6C00F170A3 /* Frameworks */,
 				7B9B6A662C87A6740001D94D /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,9 +476,17 @@
 		7B9B6A672C87A6740001D94D /* CallRecorder */ = {
 			isa = PBXGroup;
 			children = (
+				0475ECB22CAE0E1700F170A3 /* Info.plist */,
 				7B9B6A682C87A6740001D94D /* CallRecorderApp.swift */,
-				7B9B6A6A2C87A6740001D94D /* ContentView.swift */,
+				0475EC9C2CADF0B400F170A3 /* FireBase */,
+				7B9B6AAA2C8A26C40001D94D /* SubViews */,
+				7B9B6ACF2C8B306A0001D94D /* Recording */,
+				7B9B6A7F2C87B2390001D94D /* MainContentView.swift */,
+				7B9B6A872C87B5270001D94D /* MainSubViews */,
+				7B9B6AD32C8B30E50001D94D /* Extension */,
 				7B9B6A6C2C87A6750001D94D /* Assets.xcassets */,
+				0475754B2CADDF53004C227F /* GoogleService-Info.plist */,
+				7B9B6A9D2C8876D80001D94D /* countryCode.json */,
 				7B9B6A6E2C87A6750001D94D /* Preview Content */,
 			);
 			path = CallRecorder;
@@ -65,6 +498,131 @@
 				7B9B6A6F2C87A6750001D94D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7B9B6A872C87B5270001D94D /* MainSubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B3FF7282C95C85900559A72 /* MainNavigationBar */,
+				7B3FF7272C95C7F800559A72 /* MainTabBar */,
+				7B3FF72A2C95C87E00559A72 /* VoiceRecords */,
+				7B3FF7292C95C87300559A72 /* CallRecords */,
+			);
+			path = MainSubViews;
+			sourceTree = "<group>";
+		};
+		7B9B6A972C87C9AD0001D94D /* CallRecording */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6A852C87B5230001D94D /* CallRecording.swift */,
+				7B9B5E2E2C8F963D007F2325 /* CallRecording */,
+			);
+			path = CallRecording;
+			sourceTree = "<group>";
+		};
+		7B9B6A982C87C9BB0001D94D /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6A9B2C8860CC0001D94D /* ChooseCountryDialCode.swift */,
+				7B9B6AA32C89CF2F0001D94D /* PhoneNumberTextField.swift */,
+				7B9B6AA52C89D7A20001D94D /* ContinueButton.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		7B9B6AA92C8A22990001D94D /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6AB02C8A3E970001D94D /* OTPLine.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		7B9B6AAA2C8A26C40001D94D /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				048374682C9B6FF500256978 /* PairingSheet.swift */,
+				7B9B6A992C87C9E60001D94D /* NavigationBarSubView.swift */,
+				0483746C2C9B7E1900256978 /* MakeBackgroundView.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		7B9B6AAD2C8A3E030001D94D /* ConfirmOTPCode */ = {
+			isa = PBXGroup;
+			children = (
+				7B3FF72F2C95CA4400559A72 /* View */,
+				7B3FF72E2C95CA3900559A72 /* ViewModel */,
+				7B9B6AA92C8A22990001D94D /* SubViews */,
+			);
+			path = ConfirmOTPCode;
+			sourceTree = "<group>";
+		};
+		7B9B6AB22C8A46250001D94D /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6AB62C8A4C970001D94D /* SegmnetVoiceRecords.swift */,
+				7B9B6ADE2C8BD3DF0001D94D /* RecordingsList.swift */,
+				0466C0802CB028D5005123FB /* RecordingRow.swift */,
+				7B9B6AB82C8A4F1C0001D94D /* ChoosingTagButtons.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		7B9B6ABC2C8A5ACF0001D94D /* VoiceRecording */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6A882C87B65A0001D94D /* VoiceRecordingButton.swift */,
+				7B3FF7312C95CD4300559A72 /* View */,
+				7B9B6ABD2C8A60F50001D94D /* SubViews */,
+			);
+			path = VoiceRecording;
+			sourceTree = "<group>";
+		};
+		7B9B6ABD2C8A60F50001D94D /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7B3FF7332C95CDFE00559A72 /* Wave */,
+				7B9B6AC02C8A61530001D94D /* ButtonsPlayStopResset.swift */,
+			);
+			path = SubViews;
+			sourceTree = "<group>";
+		};
+		7B9B6ACF2C8B306A0001D94D /* Recording */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6AD82C8B31400001D94D /* AudioRecorder.swift */,
+				7B9B6ADA2C8B3C500001D94D /* AudioPlayer.swift */,
+				7B9B6AD02C8B307E0001D94D /* RecordingDataModel.swift */,
+				7B9B6AD62C8B31210001D94D /* Helper.swift */,
+			);
+			path = Recording;
+			sourceTree = "<group>";
+		};
+		7B9B6AD32C8B30E50001D94D /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				7B9B6AD42C8B31060001D94D /* ExtensionData.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		7BABC3482C8D31FC0047F65A /* ChoosingStorage */ = {
+			isa = PBXGroup;
+			children = (
+				7BABC3462C8D308D0047F65A /* ChoosingStorage.swift */,
+				7BABC3492C8D32160047F65A /* SubViews */,
+			);
+			path = ChoosingStorage;
+			sourceTree = "<group>";
+		};
+		7BABC3492C8D32160047F65A /* SubViews */ = {
+			isa = PBXGroup;
+			children = (
+				7BABC34A2C8D323F0047F65A /* ICloudDriveButton.swift */,
+				7BABC34C2C8D368D0047F65A /* OnMyiPhone.swift */,
+			);
+			path = SubViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -111,6 +669,9 @@
 				Base,
 			);
 			mainGroup = 7B9B6A5C2C87A6740001D94D;
+			packageReferences = (
+				0475754D2CADE0F9004C227F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 7B9B6A662C87A6740001D94D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,7 +687,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				7B9B6A702C87A6750001D94D /* Preview Assets.xcassets in Resources */,
+				0475754C2CADDF53004C227F /* GoogleService-Info.plist in Resources */,
 				7B9B6A6D2C87A6750001D94D /* Assets.xcassets in Resources */,
+				7B9B6A9E2C8876D80001D94D /* countryCode.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +700,70 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7B9B6A6B2C87A6740001D94D /* ContentView.swift in Sources */,
+				7B9B6A9C2C8860CC0001D94D /* ChooseCountryDialCode.swift in Sources */,
+				7B9B6AB92C8A4F1C0001D94D /* ChoosingTagButtons.swift in Sources */,
+				7B9B6A8D2C87BD670001D94D /* MainNavigationBar.swift in Sources */,
+				7B551B262C93BF7C009E4661 /* Player.swift in Sources */,
+				7B9B6A892C87B65A0001D94D /* VoiceRecordingButton.swift in Sources */,
+				7B9B6AC32C8A6B840001D94D /* Timer.swift in Sources */,
+				7B9B5E2D2C8F1A97007F2325 /* CallRecorderAlert.swift in Sources */,
+				7BAAFDB92C9123ED008B2AAF /* ButtonPlayerDelete.swift in Sources */,
+				7B9B6AB72C8A4C970001D94D /* SegmnetVoiceRecords.swift in Sources */,
+				0475ECA02CADF21600F170A3 /* UserManager.swift in Sources */,
+				7B551B212C9394FC009E4661 /* ButtonPlayerFavorite.swift in Sources */,
+				7B9B6ABB2C8A5AC40001D94D /* VoiceRecordingView.swift in Sources */,
+				7B9B6A862C87B5230001D94D /* CallRecording.swift in Sources */,
+				7BABC34B2C8D323F0047F65A /* ICloudDriveButton.swift in Sources */,
 				7B9B6A692C87A6740001D94D /* CallRecorderApp.swift in Sources */,
+				7B9B6A802C87B2390001D94D /* MainContentView.swift in Sources */,
+				7B9B6A9A2C87C9E60001D94D /* NavigationBarSubView.swift in Sources */,
+				7B9B6AD92C8B31400001D94D /* AudioRecorder.swift in Sources */,
+				7B551B292C93C541009E4661 /* Progress.swift in Sources */,
+				0475EC9B2CADF0B000F170A3 /* AuthennticationManager.swift in Sources */,
+				7B39C2912C8C9EB70099B213 /* ButtonSetting.swift in Sources */,
+				7B9B6ABF2C8A61080001D94D /* WaveView.swift in Sources */,
+				7B9B6AD52C8B31060001D94D /* ExtensionData.swift in Sources */,
+				7B9B5E312C8F9662007F2325 /* IPhone.swift in Sources */,
+				7B551B2D2C93CCE6009E4661 /* ButtonsOfPlayer.swift in Sources */,
+				7B9B6A912C87C5400001D94D /* CallRecordsButton.swift in Sources */,
+				042D7F572CB0CE7F0022FCC3 /* TagsNotesManager.swift in Sources */,
+				7B9B6AD12C8B307E0001D94D /* RecordingDataModel.swift in Sources */,
+				7BABC3472C8D308D0047F65A /* ChoosingStorage.swift in Sources */,
+				7B9B6ADD2C8B3D410001D94D /* WavesViewModel.swift in Sources */,
+				7B9B6AD72C8B31210001D94D /* Helper.swift in Sources */,
+				7B9B6ADB2C8B3C500001D94D /* AudioPlayer.swift in Sources */,
+				045D3E5D2C9CF1F100F56B08 /* ClipFrame.swift in Sources */,
+				7B9B6AAF2C8A3E2A0001D94D /* ConfirmOTPViewModel.swift in Sources */,
+				7B9B6A952C87C9700001D94D /* CallSetupView.swift in Sources */,
+				7B39C28D2C8C9D8F0099B213 /* SettingView.swift in Sources */,
+				7B9B6AB42C8A4B560001D94D /* VoiceRecords.swift in Sources */,
+				7B9B5E292C8F1971007F2325 /* PlayerSheet.swift in Sources */,
+				0483746D2C9B7E1900256978 /* MakeBackgroundView.swift in Sources */,
+				7B9B6AC12C8A61530001D94D /* ButtonsPlayStopResset.swift in Sources */,
+				7B7C3DFE2C9714B8004BA353 /* TagButton.swift in Sources */,
+				7B9B6AA22C887AAC0001D94D /* CountryCodeViewModel.swift in Sources */,
+				7BABC34F2C8DF5D70047F65A /* MiniPlayer.swift in Sources */,
+				7B9B5E372C8F97F3007F2325 /* SwipeProgress.swift in Sources */,
+				7B7C3E002C9719B8004BA353 /* CreateTagButton.swift in Sources */,
+				0466C0812CB028D5005123FB /* RecordingRow.swift in Sources */,
+				7B551B232C93B1A9009E4661 /* ButtonPlayerShare.swift in Sources */,
+				7B1668912C95EDFF004CC4F1 /* TagSheet.swift in Sources */,
+				04B9D17D2CA6116000B318D4 /* PlayHeadCrop.swift in Sources */,
+				7B9B6AA82C8A21CE0001D94D /* ConfirmOTPcodeView.swift in Sources */,
+				7B9B6A932C87C72B0001D94D /* VoiceRecordsButton.swift in Sources */,
+				7B551B2B2C93C5C1009E4661 /* TimePlayerInterval.swift in Sources */,
+				7B9B6AAC2C8A2DD00001D94D /* MainTabBar.swift in Sources */,
+				7B9B6ADF2C8BD3DF0001D94D /* RecordingsList.swift in Sources */,
+				7B9B6AA62C89D7A20001D94D /* ContinueButton.swift in Sources */,
+				7B9B6AB12C8A3E970001D94D /* OTPLine.swift in Sources */,
+				0475EC9E2CADF18500F170A3 /* DBUser.swift in Sources */,
+				048374692C9B6FF500256978 /* PairingSheet.swift in Sources */,
+				7B9B6AA02C8877000001D94D /* CountryCode.swift in Sources */,
+				7B9B6AA42C89CF2F0001D94D /* PhoneNumberTextField.swift in Sources */,
+				7B9B5E352C8F979E007F2325 /* TabBarIphones.swift in Sources */,
+				7B3FF73B2C95DCEE00559A72 /* ButtonsTagAndNote.swift in Sources */,
+				048374722C9B974C00256978 /* CropRecord.swift in Sources */,
+				7BABC34D2C8D368D0047F65A /* OnMyiPhone.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,7 +822,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -254,7 +879,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -269,23 +894,27 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CallRecorder/CallRecorder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CallRecorder/Preview Content\"";
-				DEVELOPMENT_TEAM = HT476QBRPD;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CallRecorder/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need access to your microphone to conduct recording sessions";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.andrii.boichuk.CallRecorder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oleh.liuklian.CallRecorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -298,23 +927,27 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CallRecorder/CallRecorder.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"CallRecorder/Preview Content\"";
-				DEVELOPMENT_TEAM = HT476QBRPD;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CallRecorder/Info.plist;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "We need access to your microphone to conduct recording sessions";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.andrii.boichuk.CallRecorder;
+				PRODUCT_BUNDLE_IDENTIFIER = com.oleh.liuklian.CallRecorder;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -344,6 +977,50 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0475754D2CADE0F9004C227F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.3.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0475ECA62CAE0B3100F170A3 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0475754D2CADE0F9004C227F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		0475ECA82CAE0B3900F170A3 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0475754D2CADE0F9004C227F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		0475ECAA2CAE0B4A00F170A3 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0475754D2CADE0F9004C227F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		0475ECAC2CAE0B5300F170A3 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0475754D2CADE0F9004C227F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		0475ECAE2CAE0B5700F170A3 /* FirebaseAnalyticsWithoutAdIdSupport */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0475754D2CADE0F9004C227F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsWithoutAdIdSupport;
+		};
+		0475ECB02CAE0B5E00F170A3 /* FirebaseDatabase */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0475754D2CADE0F9004C227F /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDatabase;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7B9B6A5D2C87A6740001D94D /* Project object */;
 }
